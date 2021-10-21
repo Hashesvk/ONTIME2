@@ -19,7 +19,7 @@ public class Estado implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idEstado;
 	
-	@Column(name="nombreEstado", length = 60, nullable = false)
+	@Column(name="nombreEstado", length = 20, nullable = false)
 	private String nombreEstado;
 
 	public Estado() {
