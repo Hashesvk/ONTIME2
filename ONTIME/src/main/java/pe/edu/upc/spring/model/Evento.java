@@ -1,6 +1,7 @@
 package pe.edu.upc.spring.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,81 @@ public class Evento implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name="idTipovento", nullable=false)
-	private TipoEvento tipoevento;
+	private TipoEvento tipoEvento;
+	
+	@ManyToOne
+	@JoinColumn(name="idPersona", nullable=false)
+	private Persona persona;
+	
+	@Column(name = "fechaEvento", length = 30, nullable=false)
+	private Date fechaEvento;
+
+	@Column(name = "descripcionEvento", length = 60, nullable=false)
+	private String descripcionEvento;
+
+	@Column(name = "ComplejidadEvento", length = 30, nullable=false)
+	private int numcomplejidad ;
+
+	public Evento() {
+		super();
+	}
+
+	public int getIdEvento() {
+		return idEvento;
+	}
+
+	public void setIdEvento(int idEvento) {
+		this.idEvento = idEvento;
+	}
+
+	public String getNombreEvento() {
+		return nombreEvento;
+	}
+
+	public void setNombreEvento(String nombreEvento) {
+		this.nombreEvento = nombreEvento;
+	}
+
+	public TipoEvento getTipoEvento() {
+		return tipoEvento;
+	}
+
+	public void setTipoEvento(TipoEvento tipoEvento) {
+		this.tipoEvento = tipoEvento;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public Date getFechaEvento() {
+		return fechaEvento;
+	}
+
+	public void setFechaEvento(Date fechaEvento) {
+		this.fechaEvento = fechaEvento;
+	}
+
+	public String getDescripcionEvento() {
+		return descripcionEvento;
+	}
+
+	public void setDescripcionEvento(String descripcionEvento) {
+		this.descripcionEvento = descripcionEvento;
+	}
+
+	public int getNumcomplejidad() {
+		return numcomplejidad;
+	}
+
+	public void setNumcomplejidad(int numcomplejidad) {
+		this.numcomplejidad = numcomplejidad;
+	}
+
 	
 	
 	
