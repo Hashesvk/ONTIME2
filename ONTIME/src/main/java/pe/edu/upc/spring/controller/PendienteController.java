@@ -16,20 +16,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Nota;
+import pe.edu.upc.spring.model.Pendiente;
 import pe.edu.upc.spring.model.Persona;
-
-import pe.edu.upc.spring.service.INotaService;
+import pe.edu.upc.spring.service.IPendienteService;
 import pe.edu.upc.spring.service.IPersonaService;
 
 @Controller
-@RequestMapping("/nota")
-public class NotaController {
+@RequestMapping("/pendiente")
+public class PendienteController {
 	@Autowired
-	private INotaService nService;
-	
+	private IPendienteService pService;
+
 	@Autowired
-	private IPersonaService pService;	
+	private IPersonaService eService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -37,38 +36,38 @@ public class NotaController {
 	}
 		
 	@RequestMapping("/")
-	public String irPaginaListadoNotas(Map<String, Object> model) {
-		model.put("listaNotas", pService.listar());
-		return "listNota";
+	public String irPaginaListadoEventos(Map<String, Object> model) {
+		model.put("listaPendientes", pService.listar());
+		return "listPendiente";
 	}
 	
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		
-		model.addAttribute("nota", new Nota());
+		model.addAttribute("pendiente", new Pendiente());
 		model.addAttribute("persona", new Persona());
 		
-		model.addAttribute("listaPersonas", pService.listar());	
+		model.addAttribute("listaPersonas", eService.listar());	
 		
-		return "nota";
+		return "pendiente";
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Nota objNota, BindingResult binRes, Model model)
+	public String registrar(@ModelAttribute Pendiente objPendiente, BindingResult binRes, Model model)
 			throws ParseException
 	{
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaPersonas", pService.listar());
-				return "nota";
+				model.addAttribute("listaPersonas", eService.listar());
+				return "pendiente";
 			}
 		else {
-			boolean flag = nService.registrar(objNota);
+			boolean flag = pService.registrar(objPendiente);
 			if (flag)
-				return "redirect:/nota/listar";
+				return "redirect:/pendiente/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/nota/irRegistrar";
+				return "redirect:/pendiente/irRegistrar";
 			}
 		}
 	}
@@ -78,18 +77,18 @@ public class NotaController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
-		Optional<Nota> objNota = nService.buscarId(id);
-		if (objNota == null) {
+		Optional<Pendiente> objPendiente = pService.buscarId(id);
+		if (objPendiente == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/nota/listar";
+			return "redirect:/pendiente/listar";
 		}
-		else {		
-			model.addAttribute("listaPersonas", pService.listar());
-				
-			if (objNota.isPresent())
-				objNota.ifPresent(o -> model.addAttribute("nota", o));
+		else {
+			model.addAttribute("listaPersonas", eService.listar());
 			
-			return "nota";
+			if (objPendiente.isPresent())
+				objPendiente.ifPresent(o -> model.addAttribute("pendiente", o));
+			
+			return "pendiente";
 		}
 	}
 	
@@ -97,54 +96,54 @@ public class NotaController {
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				nService.eliminar(id);
-				model.put("listaNotas", nService.listar());
+				pService.eliminar(id);
+				model.put("listaPendientes", pService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
-			model.put("mensaje","Ocurrio un roche");
-			model.put("listaNotas", nService.listar());
+			model.put("mensaje","Ocurrio un error");
+			model.put("listaPendientes", pService.listar());
 			
 		}
-		return "listNota";
+		return "listPendiente";
 	}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaNotas", nService.listar());
-		return "listNota"; 
+		model.put("listaPendientes", pService.listar());
+		return "listPendiente"; 
 	}		
 	
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Nota nota) 
+	public String listarId(Map<String, Object> model, @ModelAttribute Pendiente pendiente) 
 	throws ParseException
 	{
-		nService.listarId(nota.getIdNota());
-		return "listPet";
+		pService.listarId(pendiente.getIdPendiente());
+		return "listEvento";
 	}	
 	
 	@RequestMapping("/irBuscar")
 	public String irBuscar(Model model) 
 	{
-		model.addAttribute("nota", new Nota());
+		model.addAttribute("pendiente", new Pendiente());
 		return "buscar";
 	}	
 	
 	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Nota nota)
+	public String buscar(Map<String, Object> model, @ModelAttribute Pendiente pendiente)
 			throws ParseException
 	{
-		List<Nota> listaNotas;
-		nota.setNameNota(nota.getNameNota());
-		listaNotas = nService.buscarNombre(nota.getNameNota());
-		if (listaNotas.isEmpty()) {
-			listaNotas = nService.buscarNombre(nota.getNameNota());
+		List<Pendiente> listaPendientes;
+		pendiente.setNamePendiente(pendiente.getNamePendiente());
+		listaPendientes = pService.buscarNombre(pendiente.getNamePendiente());
+		if(listaPendientes.isEmpty()) {
+			listaPendientes = pService.buscarNombre(pendiente.getNamePendiente());
 		}
-		if (listaNotas.isEmpty()) {
+		if (listaPendientes.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
-		model.put("listaNotas", listaNotas);		
+		model.put("listaPendientes", listaPendientes);		
 		return "buscar";
-	}		
+	}	
 }

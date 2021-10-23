@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Evento;
-import pe.edu.upc.spring.model.Persona;
 import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.service.IEventoService;
 import pe.edu.upc.spring.service.IPersonaService;
@@ -53,7 +52,7 @@ public class EventoController {
 		model.addAttribute("evento", new Evento());
 		model.addAttribute("tipoEvento", new TipoEvento());
 		model.addAttribute("listaTipoEventos", tService.listar());
-		model.addAttribute("persona", new Persona());
+		model.addAttribute("persona", pService.listar());
 		
 		
 		return "Evento";
