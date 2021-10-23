@@ -135,7 +135,7 @@ public class EventoController {
 	public String irBuscar(Model model) 
 	{
 		model.addAttribute("Evento", new Evento());
-		return "buscar";//cambiar el return
+		return "buscar";
 	}	
 	
 	@RequestMapping("/buscar")
@@ -152,6 +152,6 @@ public class EventoController {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaEventos", listaEventos);		
-		return "buscar";//cambiar el return
+		return "buscar";
 	}	
 }

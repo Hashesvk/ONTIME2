@@ -17,71 +17,63 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Nota;
-import pe.edu.upc.spring.model.Estado;
 import pe.edu.upc.spring.model.Persona;
 
 import pe.edu.upc.spring.service.INotaService;
-import pe.edu.upc.spring.service.IEstadoService;
-//import pe.edu.upc.spring.service.IPersonaService;
+import pe.edu.upc.spring.service.IPersonaService;
 
 @Controller
-@RequestMapping("/pet")
+@RequestMapping("/nota")
 public class NotaController {
 	@Autowired
 	private INotaService nService;
 	
 	@Autowired
-	private IEstadoService eService;
-	
-	//@Autowired
-	//private IPersonaService pService;	
+	private IPersonaService pService;	
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "bienvenido";
 	}
 		
-	/*@RequestMapping("/")
-	public String irPaginaListadoMascotas(Map<String, Object> model) {
-		model.put("listaMascotas", pService.listar());
-		return "listPet";
-	}*/
+	@RequestMapping("/")
+	public String irPaginaListadoNotas(Map<String, Object> model) {
+		model.put("listaNotas", pService.listar());
+		return "listNota";
+	}
 	
-	/*@RequestMapping("/irRegistrar")
+	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		
 		model.addAttribute("nota", new Nota());
-		model.addAttribute("dueno", new Dueno());
-		model.addAttribute("pet", new Pet());
+		model.addAttribute("persona", new Persona());
 		
-		model.addAttribute("listaRazas", rService.listar());
-		model.addAttribute("listaDuenos", dService.listar());		
+		model.addAttribute("listaPersonas", pService.listar());	
 		
-		return "pet";
-	}*/
+		return "nota";
+	}
 	
-	/*@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Pet objPet, BindingResult binRes, Model model)
+	@RequestMapping("/registrar")
+	public String registrar(@ModelAttribute Nota objNota, BindingResult binRes, Model model)
 			throws ParseException
 	{
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaRazas", rService.listar());
-				model.addAttribute("listaDuenos", dService.listar());			
-				return "pet";
+			model.addAttribute("listaPersonas", pService.listar());
+			return "nota";
 			}
 		else {
-			boolean flag = pService.registrar(objPet);
+			boolean flag = nService.registrar(objNota);
 			if (flag)
-				return "redirect:/pet/listar";
+				return "redirect:/nota/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/pet/irRegistrar";
+				return "redirect:/nota/irRegistrar";
 			}
 		}
-	}*/
+	}
 	
-	/*
+	
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
@@ -91,16 +83,15 @@ public class NotaController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/nota/listar";
 		}
-		else {
-			model.addAttribute("listaEstado", eService.listar());
-			model.addAttribute("listaDuenos", dService.listar());			
-					
-			if (objPet.isPresent())
-				objPet.ifPresent(o -> model.addAttribute("pet", o));
+		else {		
+			model.addAttribute("listaPersonas", pService.listar());
+				
+			if (objNota.isPresent())
+				objNota.ifPresent(o -> model.addAttribute("nota", o));
 			
-			return "pet";
+			return "nota";
 		}
-	}*/
+	}
 	
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
@@ -116,13 +107,13 @@ public class NotaController {
 			model.put("listaNotas", nService.listar());
 			
 		}
-		return "listnota"; // cambiar el return 
+		return "listnota";
 	}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaNotas", nService.listar());
-		return "listNota"; // cambiar el return 
+		return "listNota"; 
 	}		
 	
 	@RequestMapping("/listarId")
@@ -133,24 +124,27 @@ public class NotaController {
 		return "listPet";
 	}	
 	
-	/*@RequestMapping("/irBuscar")
+	@RequestMapping("/irBuscar")
 	public String irBuscar(Model model) 
 	{
 		model.addAttribute("nota", new Nota());
-		return "buscar";//cambiar el return
-	}	*/
+		return "buscar";
+	}	
 	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Nota nota)
 			throws ParseException
 	{
 		List<Nota> listaNotas;
-		nota.setNombreNota(nota.getNombreNota());
-		listaNotas = nService.buscarNombre(nota.getNombreNota());
+		nota.setNameNota(nota.getNameNota());
+		listaNotas = nService.buscarNombre(nota.getNameNota());
+		if (listaNotas.isEmpty()) {
+			listaNotas = nService.buscarNombre(nota.getNameNota());
+		}
 		if (listaNotas.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaNotas", listaNotas);		
-		return "buscar";//cambiar el return
+		return "buscar";
 	}		
 }

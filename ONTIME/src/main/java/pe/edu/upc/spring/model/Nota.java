@@ -22,10 +22,10 @@ public class Nota implements Serializable {
 	private int idNota;
 	
 	@Column(name="nombreNota", length=30, nullable=false)
-	private String nombreNota;
+	private String nameNota;
 	
 	@Column(name="descripcionNota", length=100, nullable=false)
-	private String descripcionNota;
+	private String descriptionNota;
 	
 	@ManyToOne
 	@JoinColumn(name="idPersona", nullable=false)
@@ -35,11 +35,11 @@ public class Nota implements Serializable {
 		super();
 	}
 
-	public Nota(int idNota, String nombreNota, String descripcionNota, Persona persona) {
+	public Nota(int idNota, String nameNota, String descriptionNota, Persona persona) {
 		super();
 		this.idNota = idNota;
-		this.nombreNota = nombreNota;
-		this.descripcionNota = descripcionNota;
+		this.nameNota = nameNota;
+		this.descriptionNota = descriptionNota;
 		this.persona = persona;
 	}
 
@@ -51,20 +51,20 @@ public class Nota implements Serializable {
 		this.idNota = idNota;
 	}
 
-	public String getNombreNota() {
-		return nombreNota;
+	public String getNameNota() {
+		return nameNota;
 	}
 
-	public void setNombreNota(String nombreNota) {
-		this.nombreNota = nombreNota;
+	public void setNameNota(String nameNota) {
+		this.nameNota = nameNota;
 	}
 
-	public String getDescripcionNota() {
-		return descripcionNota;
+	public String getDescriptionNota() {
+		return descriptionNota;
 	}
 
-	public void setDescripcionNota(String descripcionNota) {
-		this.descripcionNota = descripcionNota;
+	public void setDescriptionNota(String descriptionNota) {
+		this.descriptionNota = descriptionNota;
 	}
 
 	public Persona getPersona() {
@@ -74,5 +74,4 @@ public class Nota implements Serializable {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}	
-	
 }

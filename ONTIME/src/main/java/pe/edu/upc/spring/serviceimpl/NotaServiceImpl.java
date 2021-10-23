@@ -53,8 +53,8 @@ public class NotaServiceImpl implements INotaService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Nota> buscarNombre(String nombreNota) {
-		return dNota.buscarNombre(nombreNota);
+	public List<Nota> buscarNombre(String nameNota) {
+		return dNota.buscarNombre(nameNota);
 	}
 
 }

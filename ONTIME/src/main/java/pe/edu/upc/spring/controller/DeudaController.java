@@ -30,9 +30,7 @@ public class DeudaController {
 	private IDeudaService dService;
 	
 	@Autowired
-	private IPersonaService pService;
-	
-	
+	private IPersonaService pService;	
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -87,8 +85,7 @@ public class DeudaController {
 			return "redirect:/deuda/listar";
 		}
 		else {
-			model.addAttribute("listaPersonas", pService.listar());
-				
+			model.addAttribute("listaPersonas", pService.listar());				
 					
 			if (objDeuda.isPresent())
 				objDeuda.ifPresent(o -> model.addAttribute("deuda", o));
@@ -111,13 +108,13 @@ public class DeudaController {
 			model.put("listaDeudas", dService.listar());
 			
 		}
-		return "listDeuda"; // cambiar el return 
+		return "listDeuda"; 
 	}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaDeudas", dService.listar());
-		return "listDeuda"; // cambiar el return 
+		return "listDeuda"; 
 	}		
 	
 	@RequestMapping("/listarId")
@@ -132,7 +129,7 @@ public class DeudaController {
 	public String irBuscar(Model model) 
 	{
 		model.addAttribute("deuda", new Deuda());
-		return "buscar";//cambiar el return
+		return "buscar";
 	}	
 	
 	@RequestMapping("/buscar")
@@ -149,6 +146,6 @@ public class DeudaController {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaDeudas", listaDeudas);		
-		return "buscar";//cambiar el return
+		return "buscar";
 	}		
 }

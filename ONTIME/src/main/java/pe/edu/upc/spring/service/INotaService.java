@@ -11,5 +11,5 @@ public interface INotaService {
 	public Optional<Nota> listarId(int idNota);
 	public Optional<Nota> buscarId(int idNota);
 	List<Nota> listar();
-	List<Nota> buscarNombre(String nameRace);
+	List<Nota> buscarNombre(String nameNota);
 }

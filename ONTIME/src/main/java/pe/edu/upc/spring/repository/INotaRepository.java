@@ -11,6 +11,6 @@ import pe.edu.upc.spring.model.Nota;
 
 @Repository
 public interface INotaRepository extends JpaRepository<Nota, Integer> {
-	@Query("from Nota n where n.nombreNota like %:nombreNota%")
-	List<Nota> buscarNombre(@Param("namePet") String namePet);
+	@Query("from Nota n where n.nameNota like %:nameNota%")
+	List<Nota> buscarNombre(@Param("nameNota") String nameNota);
 }
