@@ -45,6 +45,17 @@ public class Evento implements Serializable{
 	public Evento() {
 		super();
 	}
+	
+	public Evento(int idEvento, String nombreEvento, TipoEvento tpevento, Persona persona, Date fecha, String descripcion, int complejidad) {
+		super();
+		this.idEvento = idEvento;
+		this.descripcionEvento = descripcion;
+		this.fechaEvento = fecha;
+		this.nombreEvento = nombreEvento;
+		this.persona = persona;
+		this.tipoEvento = tpevento;
+		this.numcomplejidad = complejidad;
+	}
 
 	public int getIdEvento() {
 		return idEvento;

@@ -16,13 +16,13 @@
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
-<script type="text/javascript" src=""></script>
+
 
 </head>
 
 <body oncontextmenu="return false" class="snippet-body" id="body-pd">
 
-	<div th:fragment="header">
+	<div th:fragment="sidebar">
 		<header class="header" id="header">
 			<div class="header_toggle">
 				<i class="bx bx-menu" id="header-toggle"></i>
@@ -36,7 +36,9 @@
 			</div>
 
 		</header>
-
+		
+			
+			
 		<div class="l-navbar" id="nav-bar">
 			<nav class="nav">
 				<div>
@@ -75,9 +77,8 @@
 
 
 	<div>aaacacacac</div>
-
-	<script src="../../static/app2.js">
-    </script>
+    <script type="text/javascript" th:src="@{/js/app2.js}"></script>
+	
 </body>
 
 </html>
