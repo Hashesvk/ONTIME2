@@ -11,8 +11,8 @@ import pe.edu.upc.spring.model.Evento;
 
 @Repository
 public interface IEventoRepository extends JpaRepository<Evento, Integer> {
-	@Query("from Evento e where e.nameEvento like %:nameEvento%")
-	List<Evento> buscarNombre(@Param("nameEvento") String nameEvento);
+	@Query("from Evento e where e.nombreEvento like %:nombreEvento%")
+	List<Evento> buscarNombre(@Param("nombreEvento") String nombreEvento);
 	
 	
 }

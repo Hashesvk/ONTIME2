@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.repository.ITipoEventoRepository;
 import pe.edu.upc.spring.service.ITipoEventoService;
 
+@Service
 public class TipoEventoServiceImpl implements ITipoEventoService {
 	
 	@Autowired
