@@ -20,11 +20,12 @@
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
+<script type="text/javascript" src=""></script>
 		
 	</head>
 
 	<body>
-    	<div th:replace="fragments/header :: sidebar"></div>
+    	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
     		<form id="myform">
     			<div class="row clearfix">
@@ -34,9 +35,6 @@
     			</div>
     		</form>
     	</div>
-    <script src="/js/app2.js"> </script>
-    <script type="text/javascript" th:src="@{/js/app2.js}"></script>
-    	
-</body>
+	</body>
 
 </html>
