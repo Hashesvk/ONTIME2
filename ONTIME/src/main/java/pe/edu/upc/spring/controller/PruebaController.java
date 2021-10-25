@@ -49,7 +49,7 @@ public class PruebaController {
 	public String irPaginaRegistrar(Model model) {
 		
 		model.addAttribute("prueba", new Prueba());
-		model.addAttribute("tipopersona", new TipoEvento());
+		model.addAttribute("tipoEvento", new TipoEvento());
 		
 		model.addAttribute("listaTipoEventos", tpService.listar());
 		
