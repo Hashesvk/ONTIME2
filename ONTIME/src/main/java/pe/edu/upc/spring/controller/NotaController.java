@@ -38,7 +38,7 @@ public class NotaController {
 		
 	@RequestMapping("/")
 	public String irPaginaListadoNotas(Map<String, Object> model) {
-		model.put("listaNotas", pService.listar());
+		model.put("listaNotas", nService.listar());
 		return "listNota";
 	}
 	
@@ -121,7 +121,7 @@ public class NotaController {
 	throws ParseException
 	{
 		nService.listarId(nota.getIdNota());
-		return "listPet";
+		return "listNota";
 	}	
 	
 	@RequestMapping("/irBuscar")
