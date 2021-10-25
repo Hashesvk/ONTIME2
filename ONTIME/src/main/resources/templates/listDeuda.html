@@ -17,20 +17,22 @@
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
-<script type="text/javascript" src=""></script>
 	
 </head>
 		
 	</head>
 
 	<body>
-    	<div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
+    	
+    	
     		<form id="myform">
     			<div class="row clearfix">
     				<div class="col-md-12 column">
-    					
-    					<a 	style="border-bottom-color: green" th:href="@{/deuda/irRegistrar}"
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Launch demo modal
+</button>				<a 	style="border-bottom-color: green" th:href="@{/deuda/irRegistrar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-plus"></span> Deuda
     					</a>
@@ -66,9 +68,29 @@
     				<p th:text="${mensaje}"></p>
     			</div>
     		</form>
+    		
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     	</div>
-   <script src="/js/app2.js"></script>
-   
+    	   
 	</body>
 
 </html>
