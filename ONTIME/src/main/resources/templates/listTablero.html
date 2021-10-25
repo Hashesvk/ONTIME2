@@ -32,32 +32,94 @@
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
  							 Launch demo modal
 						</button>	
-						<a 	style="border-bottom-color: green" th:href="@{/deuda/irRegistrar}"
+						<a 	style="border-bottom-color: green" th:href="@{/tablero/irRegistrarPendiente}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Deuda
+    						<span class="glyphicon glyphicon-plus"></span> Pendiente
     					</a>
     					    					
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
     								<th class="text-center">CODIGO</th>
-    								<th class="text-center">Nombre</th>
-    								<th class="text-center">Pago</th>
-    								<th class="text-center">Fecha</th>
-    								<th class="text-center">pagorealizado</th>
+    								<th class="text-center">Nombre de Pendiente</th>
+    								<th class="text-center">Tipo de Pendiente</th>
+    								<th class="text-center">Estado</th>
     								<th class="text-center">OPERACION</th>
     								<th class="text-center">OPERACION</th>
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="de: ${listaDeudas}">
-    								<td th:text="${de.idDeuda}"></td>
-    								<td th:text="${de.nameCreditor}"></td>
-    								<td th:text="${de.moneypayment}"></td>
-    								<td th:text="${de.paymentDate}"></td>
-    								<td th:text="${de.paymentMade}"></td>
-    								<td><a th:href="@{/deuda/eliminar?id=}+${de.idDeuda}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/deuda/modificar/'}+${de.idDeuda}">Modificar</a></td>
+    							<tr th:each="pe: ${listaPendientes}">
+    								<td th:text="${pe.idPendiente}"></td>
+    								<td th:text="${pe.namePendiente}"></td>
+    								<td th:text="${pe.nameTipoPendiente}"></td>
+    								<td th:text="${pe.nameStatus}"></td>
+    								<td><a th:href="@{/tablero/eliminarPendiente?id=}+${pe.idPendiente}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/tablero/modificarPendiente/'}+${pe.idPendiente}">Modificar</a></td>
+    							</tr>
+    						</tbody>
+    					</table> 
+    					
+    				</div>
+    			</div>
+    			<div th:if="${mensaje}" class="alert alert-danger">
+    				<p th:text="${mensaje}"></p>
+    			</div>
+    		</form>
+    		
+			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+    	</div>
+ 
+ 
+    	
+    	<div class="container">  	    	
+    		<form id="myform">
+    			<div class="row clearfix">
+    				<div class="col-md-12 column">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+ 							 Launch demo modal
+						</button>	
+						<a 	style="border-bottom-color: green" th:href="@{/tablero/irRegistrarNota}"
+    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
+    						<span class="glyphicon glyphicon-plus"></span> Nota
+    					</a>
+    					    					
+    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    						<thead>
+    							<tr>
+    								<th class="text-center">CODIGO</th>
+    								<th class="text-center">Nombre de la Nota</th>
+    								<th class="text-center">Descripción de la Nota</th>
+    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">OPERACION</th>
+    							</tr>
+    						</thead>
+    						<tbody>
+    							<tr th:each="no: ${listaNotas}">
+    								<td th:text="${no.idNota}"></td>
+    								<td th:text="${no.nameNota}"></td>
+    								<td th:text="${no.descriptionNota}"></td>
+    								<td><a th:href="@{/tablero/eliminarNota?id=}+${no.idNota}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/tablero/modificarNota/'}+${no.idNota}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 

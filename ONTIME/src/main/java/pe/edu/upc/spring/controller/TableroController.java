@@ -42,7 +42,7 @@ public class TableroController {
 	}
 		
 	@RequestMapping("/")
-	public String irPaginaListadoEventos(Map<String, Object> model) {
+	public String irPaginaListado(Map<String, Object> model) {
 		model.put("listaPendientes", pService.listar());
 		model.put("listaNotas", nService.listar());
 		return "listTablero";
