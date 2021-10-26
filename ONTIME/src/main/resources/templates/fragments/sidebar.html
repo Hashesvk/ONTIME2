@@ -26,27 +26,21 @@
 					<div class="logo">
 						<img class="logo_img" href="#" src="img/logo.png"></img>
 					</div>
-					<div class="nav_list">
-						<a href="tablero.html" class="nav_link active">  <span class="nav_name">Tablero</span>
-						<i class="bx bx-grid-alt nav_icon" ></i>
-						</a> 
-						<a href="horario.xhtml" class="nav_link"> <span class="nav_name">Horario</span><i
-							class="bx bx-calendar-alt nav_icon" ></i>
-						</a> 
-						<a href="evento.html" class="nav_link"> <span class="nav_name">Eventos</span> <i
-							class="bx bx-bell na_icon"  ></i>
-						</a> 
-						<a href="notificaciones.html" class="nav_link"><span class="nav_name">Notificaciones</span><i
-							class="bx bx-alarm nav_icon" > </i>
-						</a> 
-						<a href="album.html" class="nav_link"> <span class="nav_name">Album</span><i
-							class="bx bx-photo-album nav_icon" > </i>
-						</a> 
-						<a th:href="@{/deuda/listar}" class="nav_link">  <span class="nav_name">Deudas</span>
-						<i class="bx bxs-graduation nav_icon"> </i>
-						</a> 
-						<a href="pruebas.html" class="nav_link"> <span class="nav_name">Notas</span>
-						<i class="bx bxs-graduation nav_icon"> </i>
+				<div class="nav_list">
+						<a th:href="@{/tablero/listar}" class="nav_link active"> <i
+							class="bx bx-grid-alt nav_icon"></i> <span class="nav_name">Tablero</span>
+						</a> <a href="horario.xhtml" class="nav_link"> <i
+							class="bx bx-calendar-alt nav_icon"></i> <span class="nav_name">Horario</span>
+						</a> <a th:href="@{/eventopagina/listar}" class="nav_link"> <i
+							class="bx bx-bell na_icon"> </i> <span class="nav_name">Eventos</span>
+						</a> <a th:href="@{/notificaciones/listar}" class="nav_link"> <i
+							class="bx bx-alarm nav_icon"> </i> <span class="nav_name">Notificaciones</span>
+						</a> <a href="album.html" class="nav_link"> <i
+							class="bx bx-photo-album nav_icon"> </i> <span class="nav_name">Album</span>
+						</a> <a th:href="@{/deuda/listar}" class="nav_link"> <i
+							class="bx bxs-graduation nav_icon"> </i> <span class="nav_name">Deudas</span>
+						</a> <a href="pruebas.html" class="nav_link"> <i
+							class="bx bxs-graduation nav_icon"> </i> <span class="nav_name">Notas</span>
 						</a>
 
 					</div>
