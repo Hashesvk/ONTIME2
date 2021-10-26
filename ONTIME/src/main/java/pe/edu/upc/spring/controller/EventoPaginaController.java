@@ -80,10 +80,10 @@ public class EventoPaginaController {
 		else {
 			boolean flag = eService.registrar(objEvento);
 			if (flag)
-				return "redirect:/evento/listar";
+				return "redirect:/eventopagina/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/evento/irRegistrar";
+				return "redirect:/eventopagina/irRegistrarEvento";
 			}
 		}
 	}
@@ -98,10 +98,10 @@ public class EventoPaginaController {
 			boolean flag = tService.registrar(objTipoEvento);
 			
 			if (flag)
-				return "redirect:/tipoevento/listar";
+				return "redirect:/eventopagina/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/tipoevento/irRegistrar";
+				return "redirect:/eventopagina/irRegistrarEvento";
 				
 			}
 		}
