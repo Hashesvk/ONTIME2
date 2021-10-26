@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="UTF-8"></meta>
+		<title>Eventos</title>
+		
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous" />
+<link
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+	
+</head>
+
+	<body>
+    	<div th:replace="fragments/header :: header"></div>
+    	<div class="container">
+    		<form id="myform">
+    			<div class="row clearfix">
+    				<div class="col-md-12 column">
+    					
+    					<a 	style="border-bottom-color: green" th:href="@{/evento/irRegistrar}"
+    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
+    						<span class="glyphicon glyphicon-plus"></span> Agregar
+    					</a>
+    					
+						<a 	style="border-bottom-color: green" th:href="@{/evento/irBuscar}"
+    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
+    						<span class="glyphicon glyphicon-search"></span> Buscar
+    					</a>
+    					
+    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    						<thead>
+    							<tr>
+    								<th class="text-center">CODIGO</th>
+    								<th class="text-center">NOMBRE</th>
+    								<th class="text-center">FECHA</th>
+    								<th class="text-center">DESCRIPCION</th>
+    								<th class="text-center">COMPLEJIDAD</th>
+    								<th class="text-center">PERSONA</th>
+    								<th class="text-center">TIPO EVENTO</th>
+    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">OPERACION</th>
+    							</tr>
+    						</thead>
+    						<tbody>
+    							<tr th:each="evento: ${listaEventos}">
+    								<td th:text="${evento.idEvento}"></td>
+    								<td th:text="${evento.nombreEvento}"></td>
+    								<td th:text="${#dates.format(evento.fechaEvento, 'dd/MM/yyyy')}"></td>
+    								<td th:text="${evento.persona.nombrePersona}"></td>
+    								<td th:text="${evento.tipoEvento.nombreTipoEvento}"></td>
+    								<td><a th:href="@{/evento/eliminar?id=}+${evento.idEvento}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/evento/modificar/'}+${evento.idEvento}">Modificar</a></td>
+    							</tr>
+    						</tbody>
+    					</table> 
+    					
+    				</div>
+    			</div>
+    			<div th:if="${mensaje}" class="alert alert-danger">
+    				<p th:text="${mensaje}"></p>
+    			</div>
+    		</form>
+    	</div>
+	</body>
+
+</html>

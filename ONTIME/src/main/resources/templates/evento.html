@@ -27,7 +27,7 @@
     	<div class="container">
     		<form th:action="@{/evento/registrar}" method="post" th:object="${evento}">
     			<div class="form-group">
-    				<label for="idpet">ID:</label>
+    				<label for="idEvento">ID:</label>
     				<input type="text" class="form-control" th:field="*{idEvento}"></input>
     				
     				<div class="form-group">
@@ -75,21 +75,20 @@
 
     				<div class="form-group">
     					<label for="tipoevento">TIPO EVENTO</label>
-    					<select class="form-control" th:field="*{tipoEvento.idTipovento}">
+    					<select class="form-control" th:field="*{tipoEvento.idTipoEvento}">
     						<option th:each="t: ${listaTipoEventos}"
     							th:value="${t.idTipoEvento}"
     							th:text="${t.nombreTipoEvento}"
-    							th:selected="(${t.idTipovento} == *{tipoEvento.idTipovento})">
+    							th:selected="(${t.idTipovento} == *{tipoEvento.idTipoEvento})">
     						</option>    					
     					</select>
     				</div>    
    				
     			</div>
     			<button type="submit" class="btn btn-primary">Aceptar</button>
-    			<a href="/pet/listar" class="btn btn-danger">Cancelar</a>
+    			<a href="/evento/listar" class="btn btn-danger">Cancelar</a>
     		</form>
     	</div>
-    	<div th:replace="fragments/footer :: footer"></div>
 	</body>
 
 </html>
