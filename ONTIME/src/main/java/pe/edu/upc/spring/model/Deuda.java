@@ -37,8 +37,8 @@ public class Deuda implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date paymentDate;
 	
-	@Column(name="pagoRealizado", nullable=false)
-	private boolean  paymentMade;
+	//@Column(name="pagoRealizado", nullable=false)
+	//private boolean  paymentMade;
 	
 	@ManyToOne
 	@JoinColumn(name="idPersona", nullable=false)
@@ -48,14 +48,14 @@ public class Deuda implements Serializable {
 		super();
 	}
 
-	public Deuda(int idDeuda, String nameCreditor, float moneypayment, Date paymentDate, boolean paymentMade,
+	public Deuda(int idDeuda, String nameCreditor, float moneypayment, Date paymentDate, //boolean paymentMade,
 			Persona persona) {
 		super();
 		this.idDeuda = idDeuda;
 		this.nameCreditor = nameCreditor;
 		this.moneypayment = moneypayment;
 		this.paymentDate = paymentDate;
-		this.paymentMade = paymentMade;
+		//this.paymentMade = paymentMade;
 		this.persona = persona;
 	}
 
@@ -91,13 +91,13 @@ public class Deuda implements Serializable {
 		this.paymentDate = paymentDate;
 	}
 
-	public boolean isPaymentMade() {
-		return paymentMade;
-	}
+	//public boolean isPaymentMade() {
+	//	return paymentMade;
+	//}
 
-	public void setPaymentMade(boolean paymentMade) {
-		this.paymentMade = paymentMade;
-	}
+	//public void setPaymentMade(boolean paymentMade) {
+	//	this.paymentMade = paymentMade;
+	//}
 
 	public Persona getPersona() {
 		return persona;
