@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="ISO-8859-1"></meta>
+		<title>Persona</title>
+		
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+	crossorigin="anonymous" />
+<link
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+				
+	</head>
+
+	<body>
+    	<div th:replace="fragments/header :: header"></div>
+    	<div class="container">
+    		<form th:action="@{/persona/registrar}" method="post" th:object="${persona}">
+    			<div class="form-group">
+    				<label for="idPersona">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idPersona}"></input>
+    				
+    				<div class="form-group">
+    					<label for="nombre">NOMBRE:</label>
+    					<input type="text" class="form-control" th:field="*{nombrePersona}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nombrePersona')}" 
+								th:errors="*{nombrePersona}">
+						</div>    					
+ 
+    				<div class="form-group">
+    					<label for="contrasena">CONTRASEÑA:</label>
+    					<input type="text" class="form-control" th:field="*{contrasenaPersona}" id="contrasena"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('contrasenaPersona')}" 
+								th:errors="*{contrasenaPersona}">
+						</div>    					
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="claseper">TIPO PERSONA:</label>
+    					<input type="text" class="form-control" th:field="*{tipoPersona}" id="claseper"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('tipoPersona')}" 
+								th:errors="*{tipoPersona}">
+						</div>    					
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="salario">SUELDO:</label>
+    					<input type="number" class="form-control" th:field="*{sueldoPersona}" id="salario"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('sueldoPersona')}" 
+								th:errors="*{sueldoPersona}">
+						</div>    					
+    				</div>
+    
+   				
+    			</div>
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/persona/listar" class="btn btn-danger">Cancelar</a>
+    		</form>
+    	</div>
+	</body>
+
+</html>

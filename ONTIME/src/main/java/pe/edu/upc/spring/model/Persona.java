@@ -22,8 +22,8 @@ public class Persona implements Serializable{
 	@Column(name="nombrePersona", nullable=false, length=15)
 	private String nombrePersona;
 	
-	@Column(name="contraseñaPersona", nullable=false, length=20)
-	private String contraseñaPersona;
+	@Column(name="contrasenaPersona", nullable=false, length=20)
+	private String contrasenaPersona;
 	
 	@Column(name="tipoPersona", nullable=false)
 	private char tipoPersona;
@@ -35,12 +35,12 @@ public class Persona implements Serializable{
 		super();
 	}
 
-	public Persona(int idPersona, String nombrePersona, String contraseñaPersona, char tipoPersona,
+	public Persona(int idPersona, String nombrePersona, String contrasenaPersona, char tipoPersona,
 			float sueldoPersona) {
 		super();
 		this.idPersona = idPersona;
 		this.nombrePersona = nombrePersona;
-		this.contraseñaPersona = contraseñaPersona;
+		this.contrasenaPersona = contrasenaPersona;
 		this.tipoPersona = tipoPersona;
 		this.sueldoPersona = sueldoPersona;
 	}
@@ -61,12 +61,12 @@ public class Persona implements Serializable{
 		this.nombrePersona = nombrePersona;
 	}
 
-	public String getContraseñaPersona() {
-		return contraseñaPersona;
+	public String getContrasenaPersona() {
+		return contrasenaPersona;
 	}
 
-	public void setContraseñaPersona(String contraseñaPersona) {
-		this.contraseñaPersona = contraseñaPersona;
+	public void setContrasenaPersona(String contrasenaPersona) {
+		this.contrasenaPersona = contrasenaPersona;
 	}
 
 	public char getTipoPersona() {
