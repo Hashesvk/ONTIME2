@@ -16,8 +16,13 @@
 	</head>
 
 	<body>
-    	<div th:replace="fragments/header :: header"></div>
-    	<div class="container">
+    	 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
+		class="activepanel"></div>
+
+	<div class="bg row">
+		
+		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+		<div class="container">
     		<form th:action="@{/eventopagina/registrarEvento}" method="post" th:object="${evento}">
     			<div class="form-group">
     				<label for="idEvento">ID:</label>
@@ -82,6 +87,8 @@
     			<a href="/eventopagina/listar" class="btn btn-danger">Cancelar</a>
     		</form>
     	</div>
+	</div>
+    	
     	
     	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
