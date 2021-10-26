@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="UTF-8"></meta>
+		<title>Eventos</title>
+		
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/dive.css">
+<link rel="stylesheet" href="/css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
+	
+</head>
+
+	<body>
+    	<div th:replace="fragments/sidebar :: sidebar" id="panel"
+		class="activepanel"></div>
+
+	<div class="bg row">
+		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+    	<div class="container">
+    	   	<div class="row">
+    		<form id="myform">
+    		
+    		
+    				<div class="col-md-12 column">
+    					
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+				  Modal ejemplo
+				</button>	
+    					
+    					
+						<a 	style="border-bottom-color: green" th:href="@{/nota/irBuscar}"
+    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
+    						<span class="glyphicon glyphicon-search"></span> Buscar
+    					</a>
+    					
+    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    						<thead>
+    							<tr>
+    								<th class="text-center">CODIGO</th>
+    								<th class="text-center">NOMBRE</th>
+    								<th class="text-center">DESCRIPCION</th>
+    					
+    								<th class="text-center">PERSONA</th>
+    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">OPERACION</th>
+    							</tr>
+    						</thead>
+    						<tbody>
+    							<tr th:each="nota: ${listaNotas}">
+    								<td th:text="${nota.idNota}"></td>
+    								<td th:text="${nota.nameNota}"></td>
+    								<td th:text="${nota.descriptionNota}"></td>
+    								
+    								<td th:text="${nota.persona.nombrePersona}"></td>
+    								<td><a th:href="@{/nota/eliminar?id=}+${nota.idNota}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/nota/modificar/'}+${nota.idNota}">Modificar</a></td>
+    							</tr>
+    						</tbody>
+    					</table> 
+    					
+    				</div>
+    			<div th:if="${mensaje}" class="alert alert-danger">
+    				<p th:text="${mensaje}"></p>
+    			</div>
+    		</form>
+  			</div>
+    		
+    	</div>
+    	
+    	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	  
+        	<label>en proceso</label>
+        
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+            					<a 	style="border-bottom-color: green" th:href="@{/nota/irRegistrar}"
+    						id="add-row" type="button" class="btn btn-primary">
+    						<span class="glyphicon glyphicon-plus"></span> Agregar
+    					</a>
+    					    
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+
+    	
+    	
+    	
+    	
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/dive.js"></script>
+	<script src="/js/app2.js"></script>
+	</body>
+
+</html>
