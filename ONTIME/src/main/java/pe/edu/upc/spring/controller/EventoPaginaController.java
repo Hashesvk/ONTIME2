@@ -114,14 +114,14 @@ public class EventoPaginaController {
 		Optional<Evento> objEvento = eService.buscarId(id);
 		if (objEvento == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/evento/listar";
+			return "redirect:/eventopagina/listar";
 		}
 		else {
 			model.addAttribute("listaTipoEventos", tService.listar());
 			model.addAttribute("listaPersonas", pService.listar());
 					
 			if (objEvento.isPresent())
-				objEvento.ifPresent(o -> model.addAttribute("Evento", o));
+				objEvento.ifPresent(o -> model.addAttribute("evento", o));
 			
 			return "evento";
 		}
@@ -134,10 +134,15 @@ public class EventoPaginaController {
 		Optional<TipoEvento> objTipoEvento = tService.listarId(id);
 		if (objTipoEvento == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/tipoevento/listar";
+			return "redirect:/eventopagina/listar";
 		}
 		else {
-			model.addAttribute("tipoevento", objTipoEvento);
+			model.addAttribute("listaTipoEventos", tService.listar());
+			model.addAttribute("listaPersonas", pService.listar());
+					
+			if (objTipoEvento.isPresent())
+				objTipoEvento.ifPresent(o -> model.addAttribute("tipoevento", o));
+			
 			return "tipoevento";
 		}
 	}
@@ -148,15 +153,17 @@ public class EventoPaginaController {
 			if (id!=null && id>0) {
 				eService.eliminar(id);
 				model.put("listaEventos", eService.listar());
+				model.put("listaTipoEventos", tService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
 			model.put("listaEventos", eService.listar());
+			model.put("listaTipoEventos", tService.listar());
 			
 		}
-		return "listEvento"; // cambiar el return 
+		return "listEventoPag"; // cambiar el return 
 	}
 	
 	@RequestMapping("/eliminarTipoEvento")
@@ -164,15 +171,17 @@ public class EventoPaginaController {
 		try {
 			if (id!=null && id>0) {
 				tService.eliminar(id);
+				model.put("listaEventos", eService.listar());
 				model.put("listaTipoEventos", tService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un roche");
+			model.put("listaEventos", eService.listar());
 			model.put("listaTipoEventos", tService.listar());
 		}
-		return "listTipoEvento";
+		return "listEventoPag";
 
 	}
 	
@@ -188,7 +197,7 @@ public class EventoPaginaController {
 	throws ParseException
 	{
 		eService.listarId(Evento.getIdEvento());
-		return "listEvento";
+		return "listEventoPag";
 	}	
 	
 	@RequestMapping("/listarIdTipoEvento")
@@ -196,7 +205,7 @@ public class EventoPaginaController {
 	throws ParseException
 	{
 		tService.listarId(TipoEvento.getIdTipoEvento());
-		return "listTipoEvento";
+		return "listEventoPag";
 	}
 	
 	@RequestMapping("/irBuscarEvento")
