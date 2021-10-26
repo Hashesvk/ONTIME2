@@ -44,7 +44,7 @@ public class EventoController {
 	@RequestMapping("/")
 	public String irPaginaListadoEventos(Map<String, Object> model) {
 		model.put("listaEventos", eService.listar());
-		return "Eventos"; //html de eventos
+		return "listEvento"; //html de eventos
 	}
 	
 	@RequestMapping("/irRegistrar")
@@ -54,10 +54,10 @@ public class EventoController {
 		model.addAttribute("tipoEvento", new TipoEvento());
 		model.addAttribute("listaTipoEventos", tService.listar());
 		model.addAttribute("persona", new Persona());
-		model.addAttribute("listapersona", pService.listar());
+		model.addAttribute("listaPersonas", pService.listar());
 
 		
-		return "Evento";
+		return "evento";
 	}
 	
 	@RequestMapping("/registrar")
@@ -67,15 +67,16 @@ public class EventoController {
 		if (binRes.hasErrors()) 
 			{
 				model.addAttribute("listaTipoEventos", tService.listar());
+				model.addAttribute("listaPersonas", pService.listar());
 				return "Evento";
 			}
 		else {
 			boolean flag = eService.registrar(objEvento);
 			if (flag)
-				return "redirect:/Evento/listar";
+				return "redirect:/evento/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/Evento/irRegistrar";
+				return "redirect:/evento/irRegistrar";
 			}
 		}
 	}
@@ -88,16 +89,16 @@ public class EventoController {
 		Optional<Evento> objEvento = eService.buscarId(id);
 		if (objEvento == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/Evento/listar";
+			return "redirect:/evento/listar";
 		}
 		else {
 			model.addAttribute("listaTipoEventos", tService.listar());
-				
+			model.addAttribute("listaPersonas", pService.listar());
 					
 			if (objEvento.isPresent())
 				objEvento.ifPresent(o -> model.addAttribute("Evento", o));
 			
-			return "Evento";
+			return "evento";
 		}
 	}
 	
