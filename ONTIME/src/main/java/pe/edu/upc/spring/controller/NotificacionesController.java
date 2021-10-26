@@ -37,9 +37,9 @@ public class NotificacionesController {
 	}
 			
 	@RequestMapping("/")
-	public String irPaginaListadonotificacioness(Map<String, Object> model) {
-		model.put("listanotificacioness", nService.listar());
-		return "listnotificaciones";
+	public String irPaginaListadoNotificaciones(Map<String, Object> model) {
+		model.put("listaNotificaciones", nService.listar());
+		return "listNotificaciones";
 	}
 	
 	@RequestMapping("/irRegistrar")
@@ -99,22 +99,22 @@ public class NotificacionesController {
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);
-				model.put("listanotificacioness", nService.listar());
+				model.put("listaNotificaciones", nService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listanotificaciones", nService.listar());
+			model.put("listaNotificaciones", nService.listar());
 			
 		}
-		return "listnotificaciones"; // cambiar el return 
+		return "listNotificaciones"; // cambiar el return 
 	}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listanotificaciones", nService.listar());
-		return "listnotificaciones"; // cambiar el return 
+		model.put("listaNotificaciones", nService.listar());
+		return "listNotificaciones"; // cambiar el return 
 	}		
 	
 	@RequestMapping("/listarId")
@@ -122,7 +122,7 @@ public class NotificacionesController {
 	throws ParseException
 	{
 		nService.listarId(notificaciones.getIdNotificaciones());
-		return "listnotificaciones";
+		return "listNotificaciones";
 	}	
 	
 	@RequestMapping("/irBuscar")
@@ -145,7 +145,7 @@ public class NotificacionesController {
 		if (listanotificaciones.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
-		model.put("listanotificaciones", listanotificaciones);		
+		model.put("listaNotificaciones", listanotificaciones);		
 		return "buscar";//cambiar el return
 	}		
 }
