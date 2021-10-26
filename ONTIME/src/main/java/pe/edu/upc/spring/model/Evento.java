@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="Evento")
@@ -33,7 +37,9 @@ public class Evento implements Serializable{
 	@JoinColumn(name="idPersona", nullable=false)
 	private Persona persona;
 	
-	@Column(name = "fechaEvento", length = 30, nullable=false)
+	@Temporal(TemporalType.DATE)
+	@Column(name="fechaEvento")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaEvento;
 
 	@Column(name = "descripcionEvento", length = 60, nullable=false)

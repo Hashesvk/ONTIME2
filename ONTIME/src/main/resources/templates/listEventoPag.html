@@ -58,6 +58,8 @@
     								<td th:text="${eventopagina.idEvento}"></td>
     								<td th:text="${eventopagina.nombreEvento}"></td>
     								<td th:text="${#dates.format(eventopagina.fechaEvento, 'dd/MM/yyyy')}"></td>
+    								<td th:text="${eventopagina.descripcionEvento}"></td>
+    								<td th:text="${eventopagina.numcomplejidad}"></td>
     								<td th:text="${eventopagina.persona.nombrePersona}"></td>
     								<td th:text="${eventopagina.tipoEvento.nombreTipoEvento}"></td>
     								<td><a th:href="@{/eventopagina/eliminarEvento?id=}+${eventopagina.idEvento}">Eliminar</a></td>    								
