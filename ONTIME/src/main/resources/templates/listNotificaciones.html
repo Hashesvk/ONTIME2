@@ -6,25 +6,21 @@
 		<meta charset="UTF-8"></meta>
 		<title>Eventos</title>
 		
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-	crossorigin="anonymous"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-	crossorigin="anonymous" />
-<link
-	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
-	rel="stylesheet" />
-<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/dive.css">
+<link rel="stylesheet" href="/css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
 	
 </head>
 
 	<body>
-    	<div th:replace="fragments/header :: header"></div>
-    	<div class="container">
+    	<div th:replace="fragments/sidebar :: sidebar" id="panel"
+		class="activepanel"></div>
+		<div class="bg row">
+			<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+			<div class="container">
     		<form id="myform">
     			<div class="row clearfix">
     				<div class="col-md-12 column">
@@ -69,8 +65,14 @@
     			</div>
     		</form>
     	</div>
+		</div>
     	
-
+    	
+<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/dive.js"></script>
+	<script src="/js/app2.js"></script>
 	</body>
 
 </html>
