@@ -20,12 +20,13 @@ import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.service.ITipoEventoService;
 
 @Controller
-@RequestMapping("/TipoEvento")
+@RequestMapping("/tipoevento")
 public class TipoEventoController {
 	
 	@Autowired
 	private ITipoEventoService tService;
 	@RequestMapping("/bienvenido")
+	
 	public String irPaginaBienvenida() {
 		return "bienvenido";
 	}
@@ -99,6 +100,14 @@ public class TipoEventoController {
 		model.put("listaTipoEventos", tService.listar());
 		return "listTipoEvento";
 	}		
+	
+	@RequestMapping("/listarId")
+	public String listarId(Map<String, Object> model, @ModelAttribute TipoEvento TipoEvento) 
+	throws ParseException
+	{
+		tService.listarId(TipoEvento.getIdTipoEvento());
+		return "listTipoEvento";
+	}	
 	
 	@RequestMapping("/irBuscar")
 	public String irBuscar(Model model) 

@@ -25,7 +25,7 @@
 	<body>
     	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
-    		<form th:action="@{/evento/registrar}" method="post" th:object="${evento}">
+    		<form th:action="@{/eventopagina/registrarEvento}" method="post" th:object="${evento}">
     			<div class="form-group">
     				<label for="idEvento">ID:</label>
     				<input type="text" class="form-control" th:field="*{idEvento}"></input>
@@ -79,16 +79,18 @@
     						<option th:each="t: ${listaTipoEventos}"
     							th:value="${t.idTipoEvento}"
     							th:text="${t.nombreTipoEvento}"
-    							th:selected="(${t.idTipovento} == *{tipoEvento.idTipoEvento})">
+    							th:selected="(${t.idTipoEvento} == *{tipoEvento.idTipoEvento})">
     						</option>    					
     					</select>
     				</div>    
    				
     			</div>
     			<button type="submit" class="btn btn-primary">Aceptar</button>
-    			<a href="/evento/listar" class="btn btn-danger">Cancelar</a>
+    			<a href="/eventopagina/listar" class="btn btn-danger">Cancelar</a>
     		</form>
     	</div>
+    	
+    	
 	</body>
 
 </html>
