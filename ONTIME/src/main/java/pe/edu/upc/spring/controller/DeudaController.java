@@ -51,7 +51,7 @@ public class DeudaController {
 		
 		model.addAttribute("listaPersonas", pService.listar());
 		
-		return "deuda";
+		return "listDeuda";
 	}
 	
 	@RequestMapping("/registrar")
@@ -61,7 +61,7 @@ public class DeudaController {
 		if (binRes.hasErrors()) 
 			{
 				model.addAttribute("listaPersonas", pService.listar());
-				return "deuda";
+				return "listDeuda";
 			}
 		else {
 			boolean flag = dService.registrar(objDeuda);
@@ -90,7 +90,7 @@ public class DeudaController {
 			if (objDeuda.isPresent())
 				objDeuda.ifPresent(o -> model.addAttribute("deuda", o));
 			
-			return "deuda";
+			return "listDeuda";
 		}
 	}
 	
@@ -111,12 +111,16 @@ public class DeudaController {
 		return "listDeuda"; 
 	}
 	
+	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaDeudas", dService.listar());
+		model.put("deuda", new Deuda());
+		model.put("persona", new Persona());
+		model.put("listaPersonas", pService.listar());
+
 		return "listDeuda"; 
 	}		
-	
 	@RequestMapping("/listarId")
 	public String listarId(Map<String, Object> model, @ModelAttribute Deuda deuda) 
 	throws ParseException
