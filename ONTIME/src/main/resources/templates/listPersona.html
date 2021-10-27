@@ -15,7 +15,11 @@
 </head>
 
 	<body>
-    	<div th:replace="fragments/header :: header"></div>
+    	<div th:replace="fragments/sidebar :: sidebar" id="panel"
+		class="activepanel"></div>
+
+	<div class="bg row">
+		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
     	<div class="container">
     		<form id="myform">
     			<div class="row clearfix">
@@ -61,6 +65,8 @@
     			</div>
     		</form>
     	</div>
+    	
+    </div>	
     	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

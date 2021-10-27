@@ -47,29 +47,7 @@ public class TableroController {
 		model.put("listaNotas", nService.listar());
 		return "listTablero";
 	}
-	
-	@RequestMapping("/irRegistrarPendiente")
-	public String irPaginaRegistrarPendiente(Model model) {
 		
-		model.addAttribute("pendiente", new Pendiente());
-		model.addAttribute("persona", new Persona());
-		
-		model.addAttribute("listaPersonas", eService.listar());	
-		
-		return "pendiente";
-	}
-	
-	@RequestMapping("/irRegistrarNota")
-	public String irPaginaRegistrarNota(Model model) {
-		
-		model.addAttribute("nota", new Nota());
-		model.addAttribute("persona", new Persona());
-		
-		model.addAttribute("listaPersonas", eService.listar());	
-		
-		return "nota";
-	}
-	
 	@RequestMapping("/registrarPendiente")
 	public String registrarPendiente(@ModelAttribute Pendiente objPendiente, BindingResult binRes, Model model)
 			throws ParseException
@@ -114,8 +92,12 @@ public class TableroController {
 	public String modificarPendiente(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("nota",new Nota());
+		model.addAttribute("listaNotas", nService.listar());
 		model.addAttribute("pendiente",new Pendiente());
 		model.addAttribute("listaPendiente", pService.listar());
+
+		
 		Optional<Pendiente> objPendiente = pService.buscarId(id);
 		if (objPendiente == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -127,7 +109,7 @@ public class TableroController {
 			if (objPendiente.isPresent())
 				objPendiente.ifPresent(o -> model.addAttribute("pendiente", o));
 			
-			return "listarTablero";
+			return "listTablero";
 		}
 	}
 	
@@ -137,6 +119,9 @@ public class TableroController {
 	{
 		model.addAttribute("nota",new Nota());
 		model.addAttribute("listaNotas", nService.listar());
+		model.addAttribute("pendiente",new Pendiente());
+		model.addAttribute("listaPendiente", pService.listar());
+		
 		Optional<Nota> objNota = nService.buscarId(id);
 		if (objNota == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -148,12 +133,18 @@ public class TableroController {
 			if (objNota.isPresent())
 				objNota.ifPresent(o -> model.addAttribute("nota", o));
 			
-			return "listaTablero";
+			return "listTablero";
 		}
 	}
 	
 	@RequestMapping("/eliminarPendiente")
 	public String eliminarPendiente(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		
+		model.put("nota",new Nota());
+		model.put("listaNotas", nService.listar());
+		model.put("pendiente",new Pendiente());
+		model.put("listaPendiente", pService.listar());
+		
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
@@ -171,6 +162,10 @@ public class TableroController {
 	
 	@RequestMapping("/eliminarNota")
 	public String eliminarNota(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		model.put("nota",new Nota());
+		model.put("listaNotas", nService.listar());
+		model.put("pendiente",new Pendiente());
+		model.put("listaPendiente", pService.listar());
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);
