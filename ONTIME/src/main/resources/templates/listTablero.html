@@ -3,7 +3,8 @@
 
 <head>
 		<meta charset="UTF-8"></meta>
-				<title>Tablero</title>		
+		<title>Tablero</title>	
+			
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -12,20 +13,18 @@
 <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
 	
 </head>
-		
-	</head>
 
-	<body>
+<body>
 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
 		class="activepanel"></div>
 		<div class="bg row">
 			<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
-			<div class="container">  	    	
-    		<form id="myform">
-    			<div class="row clearfix">
+			<div class="container">  	 
+			   <div class="row">   	
+    			<form id="myform">
     				<div class="col-md-12 column">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
- 							 Launch demo modal
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong2">
+ 							 Registrar
 						</button>	
 						<a 	style="border-bottom-color: green" th:href="@{/tablero/irRegistrarPendiente}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
@@ -56,45 +55,26 @@
     					</table> 
     					
     				</div>
+    			 </form>
     			</div>
     			<div th:if="${mensaje}" class="alert alert-danger">
     				<p th:text="${mensaje}"></p>
     			</div>
-    		</form>
-    		
-			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        ...
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-
     		</div>
-    		<div class="container">  	    	
-    		<form id="myform">
-    			<div class="row clearfix">
+
+    		<div class="container"> 
+    		    <div class="row"> 	    	
+    				<form id="myform">
     				<div class="col-md-12 column">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
- 							 Launch demo modal
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
+ 							 Registrar
 						</button>	
-						<a 	style="border-bottom-color: green" th:href="@{/tablero/irRegistrarNota}"
+						
+						<a 	style="border-bottom-color: green" th:href="@{/tablero/irBuscarNota}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Nota
-    					</a>
-    					    					
+    						<span class="glyphicon glyphicon-search"></span> Buscar
+    					</a>	
+    								
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
@@ -117,23 +97,135 @@
     					</table> 
     					
     				</div>
+    				</form>
     			</div>
     			<div th:if="${mensaje}" class="alert alert-danger">
     				<p th:text="${mensaje}"></p>
     			</div>
-    		</form>
-    		
-			<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    	</div>
+			
+		<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" 
+		 	 aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+			        <h5 class="modal-title" id="exampleModalLongTitle1">Nota</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        ...
+      	  
+			        	<form th:action="@{/tablero/registrarNota}" method="post" th:object="${nota}">
+			    			<div class="form-group">
+			    			
+			    				<label for="idNota">ID:</label>
+			    				<input type="text" class="form-control" th:field="*{idNota}"></input>
+			    				
+			    				<div class="form-group">
+			    					<label for="nombre">Nombre de la nota:</label>
+			    					<input type="text" class="form-control" th:field="*{nameNota}" id="nombre"></input>
+			
+									<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameNota')}" 
+											th:errors="*{nameNota}">
+									</div>    					
+			    				</div>
+			    				
+			    				<div class="form-group">
+			    					<label for="descripcion">Descripción:</label>
+			    					<input type="text" class="form-control" th:field="*{descriptionNota}" id="descriptionNota"></input>
+			
+									<div 	class="alert alert-danger" th:if="${#fields.hasErrors('descriptionNota')}" 
+											th:errors="*{descriptionNota}">
+									</div>    					
+			    				</div>  			
+			    				
+			    				<div class="form-group">
+			    					<label for="persona">Persona</label>
+			    					<select class="form-control" th:field="*{persona.idPersona}">
+			    						<option th:each="p: ${listaPersonas}"
+			    							th:value="${p.idPersona}"
+			    							th:text="${p.nombrePersona}"
+			    							th:selected="(${p.idPersona} == *{persona.idPersona})">
+			    						</option>    					
+			    					</select>
+			    				</div>    
+			 				
+			    			</div>
+			    			<button type="submit" class="btn btn-primary">Aceptar</button>
+			    			<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>
+			    		</form>
+    		</div>
+			<div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+			</div>
+			</div>
+		</div>
+	
+		<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" 
+			 aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLongTitle">Pendiente</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+					<form th:action="@{/tablero/registrarPendiente}" method="post" th:object="${pendiente}">
+		    			<div class="form-group">
+		    			
+		    				<label for="idNota">ID:</label>
+		    				<input type="text" class="form-control" th:field="*{idNota}"></input>
+		    				
+		    				<div class="form-group">
+		    					<label for="nombre">Nombre del pendiente:</label>
+		    					<input type="text" class="form-control" th:field="*{namePendiente}" id="nombre"></input>
+		
+								<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameNota')}" 
+										th:errors="*{nameNota}">
+								</div>    					
+		    				</div>	
+		    				
+		    				<div class="form-group">
+		    					<label for="descripcion">Tipo de Pendiente:</label>
+								<select class="form-control" th:field="*{nameTipoPendiente}">
+		    						<option>Limpieza</option>    
+		    						<option>Cocina</option>       	
+		    						<option>Compras</option>    
+		    						<option>Trabajo</option>  
+		    						<option>Universidad</option>      
+		    						<option>Otro</option> 					
+		    					</select>  					
+		    				</div>  	
+		    				
+		    				<div class="form-group">
+		    					<label for="descripcion">Estado:</label>
+								<select class="form-control" th:field="*{nameTipoPendiente}">
+		    						<option>Incompleto</option>    
+		    						<option>Semicompleto</option>       	
+		    						<option>Completo</option>    				
+		    					</select>  					
+		    				</div>  			
+		    				
+		    				<div class="form-group">
+		    					<label for="persona">PERSONA</label>
+		    					<select class="form-control" th:field="*{persona.idPersona}">
+		    						<option th:each="p: ${listaPersonas}"
+		    							th:value="${p.idPersona}"
+		    							th:text="${p.nombrePersona}"
+		    							th:selected="(${p.idPersona} == *{persona.idPersona})">
+		    						</option>    					
+		    					</select>
+		    				</div>    
+		 				
+		    			</div>
+		    			<button type="submit" class="btn btn-primary">Aceptar</button>
+		    			<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>
+		    		</form>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -143,19 +235,14 @@
 			  </div>
 			</div>
 
-    	</div>
-		</div>
-	
+
+    	</div> 	
     	
- 
- 
-    	
-    	
-    	   <script src="/js/popper.min.js"></script>
+    <script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/dive.js"></script>
 	<script src="/js/app2.js"></script>
-	</body>
+</body>
 
 </html>

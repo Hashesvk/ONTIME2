@@ -41,9 +41,7 @@ public class DeudaController {
 	public String irPaginaListadoDeudas(Map<String, Object> model) {
 		model.put("listaDeudas", dService.listar());
 		return "listDeuda";
-	}
-	
-	
+	}	
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Deuda objDeuda, BindingResult binRes, Model model)
@@ -64,8 +62,7 @@ public class DeudaController {
 			}
 		}
 	}
-	
-	
+		
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
