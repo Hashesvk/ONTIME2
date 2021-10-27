@@ -178,36 +178,36 @@
 					<form th:action="@{/tablero/registrarPendiente}" method="post" th:object="${pendiente}">
 		    			<div class="form-group">
 		    			
-		    				<label for="idNota">ID:</label>
-		    				<input type="text" class="form-control" th:field="*{idNota}"></input>
+		    				<label for="idPendiente">ID:</label>
+		    				<input type="text" class="form-control" th:field="*{idPendiente}"></input>
 		    				
 		    				<div class="form-group">
 		    					<label for="nombre">Nombre del pendiente:</label>
 		    					<input type="text" class="form-control" th:field="*{namePendiente}" id="nombre"></input>
 		
-								<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameNota')}" 
-										th:errors="*{nameNota}">
+								<div 	class="alert alert-danger" th:if="${#fields.hasErrors('namePendiente')}" 
+										th:errors="*{namePendiente}">
 								</div>    					
 		    				</div>	
 		    				
 		    				<div class="form-group">
 		    					<label for="descripcion">Tipo de Pendiente:</label>
 								<select class="form-control" th:field="*{nameTipoPendiente}">
-		    						<option>Limpieza</option>    
-		    						<option>Cocina</option>       	
-		    						<option>Compras</option>    
-		    						<option>Trabajo</option>  
-		    						<option>Universidad</option>      
-		    						<option>Otro</option> 					
+		    						<option value="Limpieza">Limpieza</option>    
+		    						<option value="Cocina">Cocina</option>       	
+		    						<option value="Compras">Compras</option>    
+		    						<option value="Trabajo">Trabajo</option>  
+		    						<option value="Universidad">Universidad</option>      
+		    						<option value="Otro">Otro</option> 					
 		    					</select>  					
 		    				</div>  	
-		    				
+	   				
 		    				<div class="form-group">
 		    					<label for="descripcion">Estado:</label>
-								<select class="form-control" th:field="*{nameTipoPendiente}">
-		    						<option>Incompleto</option>    
-		    						<option>Semicompleto</option>       	
-		    						<option>Completo</option>    				
+								<select class="form-control" th:field="*{nameStatus}">
+		    						<option value="Incompleto">Incompleto</option>    
+		    						<option value="Semicompleto">Semicompleto</option>       	
+		    						<option value="Completo">Completo</option>    				
 		    					</select>  					
 		    				</div>  			
 		    				
@@ -220,8 +220,8 @@
 		    							th:selected="(${p.idPersona} == *{persona.idPersona})">
 		    						</option>    					
 		    					</select>
-		    				</div>    
-		 				
+		    				</div>  
+		    						 				
 		    			</div>
 		    			<button type="submit" class="btn btn-primary">Aceptar</button>
 		    			<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>

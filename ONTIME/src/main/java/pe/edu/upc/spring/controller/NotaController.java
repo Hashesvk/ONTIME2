@@ -85,7 +85,7 @@ public class NotaController {
 			return "listNota";
 		}
 	}
-	
+
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		try {

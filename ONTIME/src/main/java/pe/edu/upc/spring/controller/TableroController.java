@@ -114,6 +114,8 @@ public class TableroController {
 	public String modificarPendiente(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("pendiente",new Pendiente());
+		model.addAttribute("listaPendiente", pService.listar());
 		Optional<Pendiente> objPendiente = pService.buscarId(id);
 		if (objPendiente == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -125,7 +127,7 @@ public class TableroController {
 			if (objPendiente.isPresent())
 				objPendiente.ifPresent(o -> model.addAttribute("pendiente", o));
 			
-			return "pendiente";
+			return "listarTablero";
 		}
 	}
 	
@@ -133,6 +135,8 @@ public class TableroController {
 	public String modificarNota(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("nota",new Nota());
+		model.addAttribute("listaNotas", nService.listar());
 		Optional<Nota> objNota = nService.buscarId(id);
 		if (objNota == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -144,7 +148,7 @@ public class TableroController {
 			if (objNota.isPresent())
 				objNota.ifPresent(o -> model.addAttribute("nota", o));
 			
-			return "nota";
+			return "listaTablero";
 		}
 	}
 	
@@ -184,8 +188,14 @@ public class TableroController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
+		model.put("nota", new Nota());
+		model.put("pendiente", new Pendiente());
+		model.put("persona", new Persona());
+		
 		model.put("listaPendientes", pService.listar());
 		model.put("listaNotas", nService.listar());
+		model.put("listaPersonas", eService.listar());
+		
 		return "listTablero"; 
 	}		
 	
