@@ -45,16 +45,7 @@ public class PruebaController {
 		return "listPrueba";
 	}
 	
-	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
-		
-		model.addAttribute("prueba", new Prueba());
-		model.addAttribute("tipoEvento", new TipoEvento());
-		
-		model.addAttribute("listaTipoEventos", tpService.listar());
-		
-		return "prueba";
-	}
+	
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Prueba objPrueba, BindingResult binRes, Model model)
@@ -81,6 +72,8 @@ public class PruebaController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("prueba", new Prueba());
+		model.addAttribute("listaPruebas", pService.listar());
 		Optional<Prueba> objPrueba = pService.buscarId(id);
 		if (objPrueba == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -93,7 +86,7 @@ public class PruebaController {
 			if (objPrueba.isPresent())
 				objPrueba.ifPresent(o -> model.addAttribute("prueba", o));
 			
-			return "prueba";
+			return "listPrueba";
 		}
 	}
 	
@@ -117,6 +110,10 @@ public class PruebaController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaPruebas", pService.listar());
+		model.put("prueba", new Prueba());
+		model.put("tipoEvento", new TipoEvento());
+		model.put("listaTipoEventos", tpService.listar());
+		
 		return "listPrueba"; // cambiar el return 
 	}		
 	
