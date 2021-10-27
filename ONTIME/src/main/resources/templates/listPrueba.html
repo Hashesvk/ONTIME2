@@ -61,10 +61,10 @@
 									<td th:text="${prueba.idPrueba}"></td>
 									<td th:text="${prueba.namePrueba}"></td>
 									<td th:text="${prueba.NumberGrade}"></td>
-									
+									<td th:text="${prueba.Numberweighted}"></td>
 
 									<td th:text="${prueba.Tevento.nombreTipoEvento}"></td>
-									<td th:text="${prueba.Numberweighted}"></td>
+									
 									<td><a th:href="@{/prueba/eliminar?id=}+${prueba.idPrueba}">Eliminar</a></td>
 									<td><a th:href="@{'/prueba/modificar/'}+${prueba.idPrueba}">Modificar</a></td>
 								</tr>
@@ -101,6 +101,7 @@
 								<label for="idPrueba">ID:</label> <input type="text"
 									class="form-control" th:field="*{idPrueba}"></input>
 
+
 								<div class="form-group">
 									<label for="nombre">NOMBRE:</label> <input type="text"
 										class="form-control" th:field="*{namePrueba}" id="nombre"></input>
@@ -109,6 +110,7 @@
 										th:if="${#fields.hasErrors('namePrueba')}"
 										th:errors="*{namePrueba}"></div>
 								</div>
+
 
 								<div class="form-group">
 									<label for="nota">NOTA:</label> <input type="number"
@@ -119,6 +121,7 @@
 										th:if="${#fields.hasErrors('NumberGrade')}"
 										th:errors="*{NumberGrade}"></div>
 								</div>
+
 
 								<div class="form-group">
 									<label for="Ponderado">PONDERADO:</label> <input type="number"

@@ -92,6 +92,8 @@ public class PruebaController {
 	
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		model.put("listaPruebas", pService.listar());
+		model.put("prueba", new Prueba());
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
