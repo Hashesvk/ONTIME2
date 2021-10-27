@@ -42,16 +42,7 @@ public class NotaController {
 		return "listNota";
 	}
 	
-	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
-		
-		model.addAttribute("nota", new Nota());
-		model.addAttribute("persona", new Persona());
-		
-		model.addAttribute("listaPersonas", pService.listar());	
-		
-		return "nota";
-	}
+	
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Nota objNota, BindingResult binRes, Model model)
@@ -78,6 +69,8 @@ public class NotaController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("nota",new Nota());
+		model.addAttribute("listaNotas", nService.listar());
 		Optional<Nota> objNota = nService.buscarId(id);
 		if (objNota == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -89,7 +82,7 @@ public class NotaController {
 			if (objNota.isPresent())
 				objNota.ifPresent(o -> model.addAttribute("nota", o));
 			
-			return "nota";
+			return "listNota";
 		}
 	}
 	
@@ -113,6 +106,9 @@ public class NotaController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaNotas", nService.listar());
+		model.put("nota", new Nota());
+		model.put("persona", new Persona());
+		model.put("listaPersonas", pService.listar());
 		return "listNota"; 
 	}		
 	
