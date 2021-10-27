@@ -43,16 +43,7 @@ public class DeudaController {
 		return "listDeuda";
 	}
 	
-	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
-		
-		model.addAttribute("deuda", new Deuda());
-		model.addAttribute("persona", new Persona());
-		
-		model.addAttribute("listaPersonas", pService.listar());
-		
-		return "listDeuda";
-	}
+	
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Deuda objDeuda, BindingResult binRes, Model model)
