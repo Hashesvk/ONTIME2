@@ -79,6 +79,10 @@ public class DeudaController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		
+		model.addAttribute("deuda", new Deuda());
+		model.addAttribute("listaDeudas", dService.listar());
+		
 		Optional<Deuda> objDeuda = dService.buscarId(id);
 		if (objDeuda == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
