@@ -1,17 +1,27 @@
 package pe.edu.upc.spring.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
@@ -22,6 +32,8 @@ import pe.edu.upc.spring.model.TipoEvento;
 
 import pe.edu.upc.spring.service.IFotoService;
 import pe.edu.upc.spring.service.ITipoEventoService;
+import pe.edu.upc.spring.service.IUploadFileService;
+
 
 @Controller
 @RequestMapping("/foto")
@@ -32,7 +44,8 @@ public class FotoController {
 	@Autowired
 	private ITipoEventoService tpService;
 	
-	
+	@Autowired
+	private IUploadFileService uploadFileService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -57,20 +70,36 @@ public class FotoController {
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Foto objFoto, BindingResult binRes, Model model)
+	public String registrar(@ModelAttribute @Valid Foto objft, BindingResult binRes, Model model,
+			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws ParseException
 	{
-		if (binRes.hasErrors()) 
-			{
-				model.addAttribute("listaTipoEventos", tpService.listar());
-				return "foto";
-			}
+		if(binRes.hasErrors()) {
+			
+		model.addAttribute("listaTipoEventos",tpService.listar());
+		return "foto";
+		} // cambiar el return 
 		else {
-			boolean flag = fService.registrar(objFoto);
-			if (flag)
+			if(!foto.isEmpty()) {
+				if(objft.getIdFoto()>0 && objft.getImage() !=null && objft.getImage().length()>0) {
+					uploadFileService.delete(objft.getImage());
+				}
+				String uniqueFilename = null;
+				
+				try {
+					uniqueFilename=uploadFileService.copy(foto);
+				}  catch (IOException e) {
+					e.printStackTrace();
+				}
+				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
+				objft.setImage(uniqueFilename);
+
+			}
+			boolean flag=fService.registrar(objft);
+			if (flag) {
 				return "redirect:/foto/listar";
-			else {
-				model.addAttribute("mensaje", "Ocurrio un error");
+			} else {
+				model.addAttribute("mensaje", "Ocurrió un error");
 				return "redirect:/foto/irRegistrar";
 			}
 		}
@@ -117,9 +146,43 @@ public class FotoController {
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaFotos", fService.listar());
-		return "listFoto"; // cambiar el return 
-	}		
+		model.put("foto", new Foto());
+		model.put("listaTipoEventos",tpService.listar());
+		model.put("tipoEvento", new TipoEvento());
+		return "listFoto";
+	}	
 	
+	@GetMapping(value = "/uploads/{filename:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
+
+		Resource recurso = null;
+
+		try {
+			recurso = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+	}
+	@GetMapping(value = "/view/{id}")
+	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+
+		Foto foto = fService.listarId(id);
+
+		if (foto == null) {
+			flash.addFlashAttribute("error", "El producto no existe en la base de datos");
+			return "product/listProducts";
+		}
+
+		model.put("foto", foto);
+		model.put("titulo", "Detalle de producto: " + foto.getNamephoto());
+ 
+		return "ver";
+	}
+
 	@RequestMapping("/listarId")
 	public String listarId(Map<String, Object> model, @ModelAttribute Foto foto) 
 	throws ParseException
