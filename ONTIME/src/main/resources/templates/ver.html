@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="UTF-8"></meta>
+<title>VER IMAGEN</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/dive.css">
+<link rel="stylesheet" href="/css/style.css">
+<link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
+	
+</head>
+<body>
+	<div th:replace="fragments/sidebar :: sidebar" id="panel"
+		class="activepanel"></div>
+
+	<div class="bg row">
+			<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+			<div class="conten container">
+				<div class="detail">
+					<img class="detailimg" th:if="${#strings.length(foto.image)>0}"
+						th:src="@{'/foto/uploads/' + ${foto.image}}"
+						th:alt="${foto.image}">
+					<div class="blend"></div>
+					<div class="detalles">
+						<a th:href="@{/foto/listar}"href=""><i class="fa fa-arrow-left"></i></a>
+						<h2 th:text="${foto.namephoto}" class="prodnombre"></h2>
+						
+				
+					
+					</div>	
+				
+				
+				</div>
+				
+			
+			</div>
+			
+	</div>
+	
+
+
+
+
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/dive.js"></script>
+	<script src="/js/app2.js"></script>
+</body>
+</html>

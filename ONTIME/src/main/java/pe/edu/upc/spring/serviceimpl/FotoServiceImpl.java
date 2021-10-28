@@ -35,8 +35,9 @@ public class FotoServiceImpl implements IFotoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Foto> listarId(int idFoto) {
-		return dFoto.findById(idFoto);
+	public Foto listarId(int idFoto) {
+		Optional<Foto> ft=dFoto.findById(idFoto);
+		return ft.isPresent() ? ft.get() : new Foto();
 	}
 	
 	@Override

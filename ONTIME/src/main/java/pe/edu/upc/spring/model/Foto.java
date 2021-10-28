@@ -25,10 +25,10 @@ public class Foto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idFoto;
 	
-	@Column(name="nombreFoto", length=30, nullable=false)
+	@Column(name="nombreFoto",length=80, nullable=false)
 	private String namephoto;//acreedor
 	
-	@Column(name="imagen",length=80, nullable=false)
+	@Column(name="imagen", nullable=false)
 	private String  image;
 	
 	
