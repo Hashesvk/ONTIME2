@@ -58,16 +58,7 @@ public class FotoController {
 		return "listFoto";
 	}
 	
-	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
-		
-		model.addAttribute("foto", new Foto());
-		model.addAttribute("tipopersona", new TipoEvento());
-		
-		model.addAttribute("listaTipoEventos", tpService.listar());
-		
-		return "foto";
-	}
+	
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute @Valid Foto objft, BindingResult binRes, Model model,
@@ -110,6 +101,8 @@ public class FotoController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("listaFotos", fService.listar());
+		model.addAttribute("foto", new Foto());
 		Optional<Foto> objFoto = fService.buscarId(id);
 		if (objFoto == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -122,12 +115,16 @@ public class FotoController {
 			if (objFoto.isPresent())
 				objFoto.ifPresent(o -> model.addAttribute("foto", o));
 			
-			return "foto";
+			return "listFoto";
 		}
 	}
 	
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		
+		model.put("listaFotos", fService.listar());
+		model.put("foto", new Foto());
+		
 		try {
 			if (id!=null && id>0) {
 				fService.eliminar(id);
@@ -140,7 +137,7 @@ public class FotoController {
 			model.put("listaFotos", fService.listar());
 			
 		}
-		return "listPrueba"; // cambiar el return 
+		return "listFoto"; // cambiar el return 
 	}
 	
 	@RequestMapping("/listar")
