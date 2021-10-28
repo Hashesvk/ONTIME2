@@ -170,12 +170,12 @@ public class FotoController {
 		Foto foto = fService.listarId(id);
 
 		if (foto == null) {
-			flash.addFlashAttribute("error", "El producto no existe en la base de datos");
-			return "product/listProducts";
+			flash.addFlashAttribute("error", "La foto no existe en la base de datos");
+			return "product/listFoto";
 		}
 
 		model.put("foto", foto);
-		model.put("titulo", "Detalle de producto: " + foto.getNamephoto());
+		model.put("titulo", "Detalle de foto: " + foto.getNamephoto());
  
 		return "ver";
 	}
@@ -208,7 +208,7 @@ public class FotoController {
 		if (listaFotos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
-		model.put("listaPruebas", listaFotos);		
+		model.put("listaFotos", listaFotos);		
 		return "buscar";//cambiar el return
 	}		
 }
