@@ -28,12 +28,12 @@
     			<div class="row clearfix">
     				<div class="col-md-12 column">
     					
-    					<a 	style="border-bottom-color: green" th:href="@{/eventopagina/irRegistrarEvento}"
+    					<a 	style="border-bottom-color: green; margin-bottom: 15px; margin-right: 10px" th:href="@{/eventopagina/irRegistrarEvento}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Agregar
+    						<span class="glyphicon glyphicon-plus"></span> +Agregar Evento
     					</a>
     					
-						<a 	style="border-bottom-color: green" th:href="@{/eventopagina/irBuscarEvento}"
+						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/eventopagina/irBuscarEvento}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-search"></span> Buscar
     					</a>
@@ -41,28 +41,28 @@
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
-    								<th class="text-center">CODIGO</th>
-    								<th class="text-center">NOMBRE</th>
-    								<th class="text-center">FECHA</th>
-    								<th class="text-center">DESCRIPCION</th>
-    								<th class="text-center">COMPLEJIDAD</th>
-    								<th class="text-center">PERSONA</th>
-    								<th class="text-center">TIPO EVENTO</th>
-    								<th class="text-center">OPERACION</th>
-    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">Codigo</th>
+    								<th class="text-center">Nombre</th>
+    								<th class="text-center">Fecha</th>
+    								<th class="text-center">Descripcion</th>
+    								<th class="text-center">Complejidad</th>
+    								<th class="text-center">Persona</th>
+    								<th class="text-center">Tipo Evento</th>
+    								<th class="text-center">Operacion 01</th>
+    								<th class="text-center">Operacion 02</th>
     							</tr>
     						</thead>
     						<tbody>
     							<tr th:each="eventopagina: ${listaEventos}">
-    								<td th:text="${eventopagina.idEvento}"></td>
-    								<td th:text="${eventopagina.nombreEvento}"></td>
-    								<td th:text="${#dates.format(eventopagina.fechaEvento, 'dd/MM/yyyy')}"></td>
-    								<td th:text="${eventopagina.descripcionEvento}"></td>
-    								<td th:text="${eventopagina.numcomplejidad}"></td>
-    								<td th:text="${eventopagina.persona.nombrePersona}"></td>
-    								<td th:text="${eventopagina.tipoEvento.nombreTipoEvento}"></td>
-    								<td><a th:href="@{/eventopagina/eliminarEvento?id=}+${eventopagina.idEvento}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/eventopagina/modificarEvento/'}+${eventopagina.idEvento}">Modificar</a></td>
+    								<td class="text-center" th:text="${eventopagina.idEvento}"></td>
+    								<td class="text-center" th:text="${eventopagina.nombreEvento}"></td>
+    								<td class="text-center" th:text="${#dates.format(eventopagina.fechaEvento, 'dd/MM/yyyy')}"></td>
+    								<td class="text-center" th:text="${eventopagina.descripcionEvento}"></td>
+    								<td class="text-center" th:text="${eventopagina.numcomplejidad}"></td>
+    								<td class="text-center" th:text="${eventopagina.persona.nombrePersona}"></td>
+    								<td class="text-center" th:text="${eventopagina.tipoEvento.nombreTipoEvento}"></td>
+    								<td class="text-center"><a th:href="@{/eventopagina/eliminarEvento?id=}+${eventopagina.idEvento}">Eliminar</a></td>    								
+    								<td class="text-center"><a th:href="@{'/eventopagina/modificarEvento/'}+${eventopagina.idEvento}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 
@@ -80,12 +80,12 @@
     			<div class="row clearfix">
     				<div class="col-md-12 column">
     					
-    					<a 	style="border-bottom-color: green" th:href="@{/eventopagina/irRegistrarTipoEvento}"
+    					<a 	style="border-bottom-color: green; margin-bottom: 15px; margin-right: 10px" th:href="@{/eventopagina/irRegistrarTipoEvento}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Agregar
+    						<span class="glyphicon glyphicon-plus"></span> +Agregar Tipo Evento
     					</a>
     					
-						<a 	style="border-bottom-color: green" th:href="@{/eventopagina/irBuscarTipoEvento}"
+						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/eventopagina/irBuscarTipoEvento}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-search"></span> Buscar
     					</a>
@@ -93,20 +93,20 @@
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
-    								<th class="text-center">CODIGO</th>
-    								<th class="text-center">NOMBRE</th>
-    								<th class="text-center">DESCRIPCION</th>
-    								<th class="text-center">OPERACION</th>
-    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">Codigo</th>
+    								<th class="text-center">Nombre</th>
+    								<th class="text-center">Descripcion</th>
+    								<th class="text-center">Operacion 01</th>
+    								<th class="text-center">Operacion 02</th>
     							</tr>
     						</thead>
     						<tbody>
     							<tr th:each="tipoeventopagina: ${listaTipoEventos}">
-    								<td th:text="${tipoeventopagina.idTipoEvento}"></td>
-    								<td th:text="${tipoeventopagina.nombreTipoEvento}"></td>
-    								<td th:text="${tipoeventopagina.descripcionTipoEvento}"></td>
-    								<td><a th:href="@{/eventopagina/eliminarTipoEvento?id=}+${tipoeventopagina.idTipoEvento}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/eventopagina/modificarTipoEvento/'}+${tipoeventopagina.idTipoEvento}">Modificar</a></td>
+    								<td class="text-center" th:text="${tipoeventopagina.idTipoEvento}"></td>
+    								<td class="text-center" th:text="${tipoeventopagina.nombreTipoEvento}"></td>
+    								<td class="text-center" th:text="${tipoeventopagina.descripcionTipoEvento}"></td>
+    								<td class="text-center"><a th:href="@{/eventopagina/eliminarTipoEvento?id=}+${tipoeventopagina.idTipoEvento}">Eliminar</a></td>    								
+    								<td class="text-center"><a th:href="@{'/eventopagina/modificarTipoEvento/'}+${tipoeventopagina.idTipoEvento}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 

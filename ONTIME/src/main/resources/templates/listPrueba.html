@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8"></meta>
-<title>Eventos</title>
+<title>Pruebas</title>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,11 +30,11 @@
 
 					<div class="col-md-12 column">
 
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#exampleModalLong">Modal ejemplo</button>
+						<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#exampleModalLong">+Agregar Prueba</button>
 
 
-						<a style="border-bottom-color: green"
+						<a style="border-bottom-color: green; margin-bottom: 15px"
 							th:href="@{/prueba/irBuscar}" id="add-row" type="button"
 							class="btn btn-primary btn-md left-block"> <span
 							class="glyphicon glyphicon-search"></span> Buscar
@@ -44,29 +44,29 @@
 							id="tab_logic">
 							<thead>
 								<tr>
-									<th class="text-center">CODIGO</th>
-									<th class="text-center">NOMBRE</th>
-									<th class="text-center">NOTA</th>
+									<th class="text-center">Codigo</th>
+									<th class="text-center">Nombre</th>
+									<th class="text-center">Calificacion</th>
 
-									<th class="text-center">PONDERADO</th>
-									<th class="text-center">TIPO EVENTO</th>
+									<th class="text-center">Ponderado</th>
+									<th class="text-center">Tipo Evento</th>
 									
 
-									<th class="text-center">OPERACION</th>
-									<th class="text-center">OPERACION</th>
+									<th class="text-center">Operacion 01</th>
+									<th class="text-center">Operacion 02</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="prueba: ${listaPruebas}">
-									<td th:text="${prueba.idPrueba}"></td>
-									<td th:text="${prueba.namePrueba}"></td>
-									<td th:text="${prueba.NumberGrade}"></td>
-									<td th:text="${prueba.Numberweighted}"></td>
+									<td class="text-center" th:text="${prueba.idPrueba}"></td>
+									<td class="text-center" th:text="${prueba.namePrueba}"></td>
+									<td class="text-center" th:text="${prueba.NumberGrade}"></td>
+									<td class="text-center" th:text="${prueba.Numberweighted}"></td>
 
-									<td th:text="${prueba.Tevento.nombreTipoEvento}"></td>
+									<td class="text-center" th:text="${prueba.Tevento.nombreTipoEvento}"></td>
 									
-									<td><a th:href="@{/prueba/eliminar?id=}+${prueba.idPrueba}">Eliminar</a></td>
-									<td><a th:href="@{'/prueba/modificar/'}+${prueba.idPrueba}">Modificar</a></td>
+									<td class="text-center"><a th:href="@{/prueba/eliminar?id=}+${prueba.idPrueba}">Eliminar</a></td>
+									<td class="text-center"><a th:href="@{'/prueba/modificar/'}+${prueba.idPrueba}">Modificar</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -103,7 +103,7 @@
 
 
 								<div class="form-group">
-									<label for="nombre">NOMBRE:</label> <input type="text"
+									<label for="nombre">Nombre:</label> <input type="text"
 										class="form-control" th:field="*{namePrueba}" id="nombre"></input>
 
 									<div class="alert alert-danger"
@@ -113,7 +113,7 @@
 
 
 								<div class="form-group">
-									<label for="nota">NOTA:</label> <input type="number"
+									<label for="nota">Calificacion:</label> <input type="number"
 										class="form-control" th:field="*{NumberGrade}"
 										id="numerodenota"></input>
 
@@ -124,7 +124,7 @@
 
 
 								<div class="form-group">
-									<label for="Ponderado">PONDERADO:</label> <input type="number"
+									<label for="Ponderado">Ponderado:</label> <input type="number"
 										class="form-control" th:field="*{Numberweighted}"
 										id="ponderado"></input>
 
@@ -135,7 +135,7 @@
 
 
 								<div class="form-group">
-									<label for="TIEVENTO">TIPO EVENTO</label> <select
+									<label for="TIEVENTO">Tipo Evento:</label> <select
 										class="form-control" th:field="*{Tevento.idTipoEvento}">
 										<option th:each="p: ${listaTipoEventos}"
 											th:value="${p.idTipoEvento}" th:text="${p.nombreTipoEvento}"

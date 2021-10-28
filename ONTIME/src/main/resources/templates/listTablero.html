@@ -23,35 +23,38 @@
 			   <div class="row">   	
     			<form id="myform">
     				<div class="col-md-12 column">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong2">
- 							 +Add Pendiente
+						<button style="margin-bottom: 15px; margin-right: 10px"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong2">
+ 							 +Agregar Pendiente
 						</button>	
-						<a 	style="border-bottom-color: green" th:href="@{/tablero/irRegistrarPendiente}"
+						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/tablero/irRegistrarPendiente}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-plus"></span> Buscar
     					</a>
     					    					
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    					
     						<thead>
     							<tr>
-    								<th class="text-center">CODIGO</th>
+    								<th class="text-center">Codigo</th>
     								<th class="text-center">Nombre de Pendiente</th>
     								<th class="text-center">Tipo de Pendiente</th>
     								<th class="text-center">Estado</th>
-    								<th class="text-center">OPERACION</th>
-    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">Operacion 01</th>
+    								<th class="text-center">Operacion 02</th>
     							</tr>
     						</thead>
+    						
     						<tbody>
     							<tr th:each="pe: ${listaPendientes}">
-    								<td th:text="${pe.idPendiente}"></td>
-    								<td th:text="${pe.namePendiente}"></td>
-    								<td th:text="${pe.nameTipoPendiente}"></td>
-    								<td th:text="${pe.nameStatus}"></td>
-    								<td><a th:href="@{/tablero/eliminarPendiente?id=}+${pe.idPendiente}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/tablero/modificarPendiente/'}+${pe.idPendiente}">Modificar</a></td>
+    								<td class="text-center" th:text="${pe.idPendiente}"></td>
+    								<td class="text-center" th:text="${pe.namePendiente}"></td>
+    								<td class="text-center" th:text="${pe.nameTipoPendiente}"></td>
+    								<td class="text-center" th:text="${pe.nameStatus}"></td>
+    								<td class="text-center"><a th:href="@{/tablero/eliminarPendiente?id=}+${pe.idPendiente}">Eliminar</a></td>    								
+    								<td class="text-center"><a th:href="@{'/tablero/modificarPendiente/'}+${pe.idPendiente}">Modificar</a></td>
     							</tr>
     						</tbody>
+    						
     					</table> 
     					
     				</div>
@@ -66,34 +69,38 @@
     		    <div class="row"> 	    	
     				<form id="myform">
     				<div class="col-md-12 column">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
- 							 +Add Nota
+    				
+						<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
+ 							 +Agregar Nota
 						</button>	
 						
-						<a 	style="border-bottom-color: green" th:href="@{/tablero/irBuscarNota}"
+						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/tablero/irBuscarNota}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-search"></span> Buscar
     					</a>	
-    								
+    						
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    					
     						<thead>
     							<tr>
-    								<th class="text-center">CODIGO</th>
+    								<th class="text-center">Codigo</th>
     								<th class="text-center">Nombre de la Nota</th>
     								<th class="text-center">Descripción de la Nota</th>
-    								<th class="text-center">OPERACION</th>
-    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">Operacion 01</th>
+    								<th class="text-center">Operacion 02</th>
     							</tr>
     						</thead>
+    						
     						<tbody>
     							<tr th:each="no: ${listaNotas}">
-    								<td th:text="${no.idNota}"></td>
-    								<td th:text="${no.nameNota}"></td>
-    								<td th:text="${no.descriptionNota}"></td>
-    								<td><a th:href="@{/tablero/eliminarNota?id=}+${no.idNota}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/tablero/modificarNota/'}+${no.idNota}">Modificar</a></td>
+    								<td class="text-center" th:text="${no.idNota}"></td>
+    								<td class="text-center" th:text="${no.nameNota}"></td>
+    								<td class="text-center" th:text="${no.descriptionNota}"></td>
+    								<td class="text-center"><a th:href="@{/tablero/eliminarNota?id=}+${no.idNota}">Eliminar</a></td>    								
+    								<td class="text-center"><a th:href="@{'/tablero/modificarNota/'}+${no.idNota}">Modificar</a></td>
     							</tr>
     						</tbody>
+    						
     					</table> 
     					
     				</div>
@@ -141,7 +148,7 @@
 			    				</div>  			
 			    				
 			    				<div class="form-group">
-			    					<label for="persona">Persona</label>
+			    					<label for="persona">Persona:</label>
 			    					<select class="form-control" th:field="*{persona.idPersona}">
 			    						<option th:each="p: ${listaPersonas}"
 			    							th:value="${p.idPersona}"
@@ -202,13 +209,13 @@
 		    					<label for="descripcion">Estado:</label>
 								<select class="form-control" th:field="*{nameStatus}">
 		    						<option value="Incompleto">Incompleto</option>    
-		    						<option value="Semicompleto">Semicompleto</option>       	
+		    						<option value="Semicompleto">En proceso</option>       	
 		    						<option value="Completo">Completo</option>    				
 		    					</select>  					
 		    				</div>  			
 		    				
 		    				<div class="form-group">
-		    					<label for="persona">PERSONA</label>
+		    					<label for="persona">Persona:</label>
 		    					<select class="form-control" th:field="*{persona.idPersona}">
 		    						<option th:each="p: ${listaPersonas}"
 		    							th:value="${p.idPersona}"

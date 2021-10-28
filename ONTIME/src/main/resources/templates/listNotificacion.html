@@ -25,11 +25,11 @@
     			<div class="row clearfix">
     				<div class="col-md-12 column">
     					
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-						  +Add
+						<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+						  +Agregar Notificacion
 						</button>	    			
     					
-						<a 	style="border-bottom-color: green" th:href="@{/notificacion/irBuscar}"
+						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/notificacion/irBuscar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-search"></span> Buscar
     					</a>
@@ -37,22 +37,22 @@
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
-    								<th class="text-center">CODIGO</th>
-    								<th class="text-center">NOMBRE</th>
-    								<th class="text-center">DESCRIPCION</th>
-    								<th class="text-center">EVENTO</th>
-    								<th class="text-center">OPERACION</th>
-    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">Codigo</th>
+    								<th class="text-center">Nombre</th>
+    								<th class="text-center">Descripcion</th>
+    								<th class="text-center">Evento</th>
+    								<th class="text-center">Operacion 01</th>
+    								<th class="text-center">Operacion 02</th>
     							</tr>
     						</thead>
     						<tbody>
     							<tr th:each="notificacion: ${listaNotificaciones}">
-    								<td th:text="${notificacion.idNotificacion}"></td>
-    								<td th:text="${notificacion.nameNotificacion}"></td>
-    								<td th:text="${notificacion.descriptionNotificacion}"></td>
-    								<td th:text="${notificacion.evento.nombreEvento}"></td>
-    								<td><a th:href="@{/notificacion/eliminar?id=}+${notificacion.idNotificacion}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/notificacion/modificar/'}+${notificacion.idNotificacion}">Modificar</a></td>
+    								<td class="text-center" th:text="${notificacion.idNotificacion}"></td>
+    								<td class="text-center" th:text="${notificacion.nameNotificacion}"></td>
+    								<td class="text-center" th:text="${notificacion.descriptionNotificacion}"></td>
+    								<td class="text-center" th:text="${notificacion.evento.nombreEvento}"></td>
+    								<td class="text-center"><a th:href="@{/notificacion/eliminar?id=}+${notificacion.idNotificacion}">Eliminar</a></td>    								
+    								<td class="text-center"><a th:href="@{'/notificacion/modificar/'}+${notificacion.idNotificacion}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 
@@ -82,7 +82,7 @@
 			    				<input type="text" class="form-control" th:field="*{idNotificacion}"></input>
 			    				
 			    				<div class="form-group">
-			    					<label for="nombre">NOMBRE:</label>
+			    					<label for="nombre">Nombre:</label>
 			    					<input type="text" class="form-control" th:field="*{nameNotificacion}" id="nombre"></input>
 			
 									<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameNotificacion')}" 
@@ -91,7 +91,7 @@
 			    				</div>
 			
 			    				<div class="form-group">
-			    					<label for="descripcion">DESCRIPCIÓN:</label>
+			    					<label for="descripcion">Descripcion:</label>
 			    					<input type="text" class="form-control" th:field="*{descriptionNotificacion}" id="descripcion"></input>
 			
 									<div 	class="alert alert-danger" th:if="${#fields.hasErrors('descriptionNotificacion')}" 
@@ -100,7 +100,7 @@
 			    				</div>
 			    				
 			    				<div class="form-group">
-			    					<label for="evento">EVENTO</label> 
+			    					<label for="evento">Evento:</label> 
 			    					<select class="form-control" th:field="*{evento.idEvento}">
 										<option th:each="e: ${listaEventos}"
 												th:value="${e.idEvento}" th:text="${e.nombreEvento}"

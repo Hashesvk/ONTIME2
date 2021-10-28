@@ -27,17 +27,11 @@
     		
     				<div class="col-md-12 column">
     					
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-				  Modal ejemplo
+				<button  style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+				  +Agregar Foto
 				</button>	
     					
-    			<a 	style="border-bottom-color: green" th:href="@{/foto/irRegistrar}"
-    						id="add-row" type="button" class="btn btn-primary">
-    						<span class="glyphicon glyphicon-plus"></span> Agregar
-    					</a>
-    			
-    					
-						<a 	style="border-bottom-color: green" th:href="@{/foto/irBuscar}"
+						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/foto/irBuscar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-search"></span> Buscar
     					</a>
@@ -45,27 +39,27 @@
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
-    								<th class="text-center">CODIGO</th>
-    								<th class="text-center">NOMBRE</th>
-    								<th class="text-center">TIPOEVENTO</th>
-    								<th class="text-center">IMAGEN</th>
-    								<th class="text-center">OPERACION</th>
-    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">Codigo</th>
+    								<th class="text-center">Nombre</th>
+    								<th class="text-center">Tipo Evento</th>
+    								<th class="text-center">Imagen</th>
+    								<th class="text-center">Operacion 01</th>
+    								<th class="text-center">Operacion 02</th>
     							</tr>
     						</thead>
     						<tbody>
     							<tr th:each="foto: ${listaFotos}">
-    								<td th:text="${foto.idFoto}"></td>
-    								<td th:text="${foto.namephoto}"></td>
-    							<td th:text="${foto.Tevento.nombreTipoEvento}"></td>
+    								<td class="text-center" th:text="${foto.idFoto}"></td>
+    								<td class="text-center" th:text="${foto.namephoto}"></td>
+    							<td class="text-center" th:text="${foto.Tevento.nombreTipoEvento}"></td>
     								
     								<td class="text-center" align="center"><a
 										th:href="@{/foto/view/} + ${foto.idFoto}">
 							
 											<i class="fa fa-eye" style="color: gray;"></i>
 									</a></td>
-    								<td><a th:href="@{/foto/eliminar?id=}+${foto.idFoto}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/foto/modificar/'}+${foto.idFoto}">Modificar</a></td>
+    								<td class="text-center"><a th:href="@{/foto/eliminar?id=}+${foto.idFoto}">Eliminar</a></td>    								
+    								<td class="text-center"><a th:href="@{'/foto/modificar/'}+${foto.idFoto}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 
@@ -97,7 +91,7 @@
     				<input type="text" class="form-control" th:field="*{idFoto}"></input>
     				
     				<div class="form-group">
-    					<label for="nombre">NOMBRE:</label>
+    					<label for="nombre">Nombre:</label>
     					<input type="text" class="form-control" th:field="*{namephoto}" id="nombre"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('namephoto')}" 
@@ -106,7 +100,7 @@
     				</div>
     				
     				<div class="form-group">
-									<label for="TIEVENTO">TIPO EVENTO</label> <select
+									<label for="TIEVENTO">Tipo Evento:</label> <select
 										class="form-control" th:field="*{Tevento.idTipoEvento}">
 										<option th:each="p: ${listaTipoEventos}"
 											th:value="${p.idTipoEvento}" th:text="${p.nombreTipoEvento}"
@@ -116,7 +110,7 @@
 					</div>  
 
     				<div class="form-group">
-    					<label for="image">IMAGEN:</label>
+    					<label for="image">Imagen:</label>
     					<input type="file" class="form-control" th:text="${foto.image}" name="file"></input>
 
 						    					
