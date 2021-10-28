@@ -66,8 +66,7 @@ public class DeudaController {
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
-	{
-		
+	{		
 		model.addAttribute("deuda", new Deuda());
 		model.addAttribute("listaDeudas", dService.listar());
 		

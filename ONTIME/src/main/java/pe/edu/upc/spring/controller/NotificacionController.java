@@ -17,16 +17,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Evento;
-import pe.edu.upc.spring.model.Notificaciones;
+import pe.edu.upc.spring.model.Notificacion;
 import pe.edu.upc.spring.service.IEventoService;
-import pe.edu.upc.spring.service.INotificacionesService;
+import pe.edu.upc.spring.service.INotificacionService;
 
 @Controller
-@RequestMapping("/notificaciones")
-public class NotificacionesController {
+@RequestMapping("/notificacion")
+public class NotificacionController {
 
 	@Autowired
-	private INotificacionesService nService;
+	private INotificacionService nService;
 	
 	@Autowired
 	private IEventoService eService;
@@ -39,36 +39,25 @@ public class NotificacionesController {
 	@RequestMapping("/")
 	public String irPaginaListadoNotificaciones(Map<String, Object> model) {
 		model.put("listaNotificaciones", nService.listar());
-		return "listNotificaciones";
-	}
-	
-	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
-		
-		model.addAttribute("notificaciones", new Notificaciones());
-		model.addAttribute("evento", new Evento());
-		
-		model.addAttribute("listaEventos", eService.listar());
-		
-		return "notificaciones";
+		return "listNotificacion";
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Notificaciones objnotificaciones, BindingResult binRes, Model model)
+	public String registrar(@ModelAttribute Notificacion objNotificacion, BindingResult binRes, Model model)
 			throws ParseException
 	{
 		if (binRes.hasErrors()) 
 			{
 				model.addAttribute("listaEventos", eService.listar());
-				return "notificaciones";
+				return "listNotificacion";
 			}
 		else {
-			boolean flag = nService.registrar(objnotificaciones);
+			boolean flag = nService.registrar(objNotificacion);
 			if (flag)
-				return "redirect:/notificaciones/listar";
+				return "redirect:/notificacion/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/notificaciones/irRegistrar";
+				return "redirect:/notificacion/irRegistrar";
 			}
 		}
 	}
@@ -78,24 +67,28 @@ public class NotificacionesController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
-		Optional<Notificaciones> objnotificaciones = nService.buscarId(id);
-		if (objnotificaciones == null) {
+		model.addAttribute("notificacion", new Notificacion());
+		model.addAttribute("listaNotificaciones", nService.listar());
+		
+		Optional<Notificacion> objNotificacion = nService.buscarId(id);
+		if (objNotificacion == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
-			return "redirect:/notificaciones/listar";
+			return "redirect:/notificacion/listar";
 		}
 		else {
-			model.addAttribute("listaEventos", eService.listar());
-				
+			model.addAttribute("listaEventos", eService.listar());				
 					
-			if (objnotificaciones.isPresent())
-				objnotificaciones.ifPresent(o -> model.addAttribute("notificaciones", o));
+			if (objNotificacion.isPresent())
+				objNotificacion.ifPresent(o -> model.addAttribute("notificacion", o));
 			
-			return "notificaciones";
+			return "listNotificacion";
 		}
 	}
 	
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		model.put("notificacion", new Notificacion());
+		model.put("listaNotificaciones", nService.listar());
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);
@@ -108,44 +101,48 @@ public class NotificacionesController {
 			model.put("listaNotificaciones", nService.listar());
 			
 		}
-		return "listNotificaciones"; // cambiar el return 
+		return "listNotificacion";
 	}
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
 		model.put("listaNotificaciones", nService.listar());
-		return "listNotificaciones"; // cambiar el return 
+		model.put("notificacion", new Notificacion());
+		model.put("evento", new Evento());
+		model.put("listaEventos", eService.listar());
+		
+		return "listNotificacion"; 
 	}		
 	
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Notificaciones notificaciones) 
+	public String listarId(Map<String, Object> model, @ModelAttribute Notificacion notificaciones) 
 	throws ParseException
 	{
-		nService.listarId(notificaciones.getIdNotificaciones());
-		return "listNotificaciones";
+		nService.listarId(notificaciones.getIdNotificacion());
+		return "listNotificacion";
 	}	
 	
 	@RequestMapping("/irBuscar")
 	public String irBuscar(Model model) 
 	{
-		model.addAttribute("notificaciones", new Notificaciones());
-		return "buscar";//cambiar el return
+		model.addAttribute("notificacion", new Notificacion());
+		return "buscar";
 	}	
 	
 	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Notificaciones notificaciones)
+	public String buscar(Map<String, Object> model, @ModelAttribute Notificacion notificaciones)
 			throws ParseException
 	{
-		List<Notificaciones> listanotificaciones;
-		notificaciones.setNombreNotificacion(notificaciones.getNombreNotificacion());
-		listanotificaciones = nService.buscarNombre(notificaciones.getNombreNotificacion());
+		List<Notificacion> listanotificaciones;
+		notificaciones.setNameNotificacion(notificaciones.getNameNotificacion());
+		listanotificaciones = nService.buscarNombre(notificaciones.getNameNotificacion());
 		if(listanotificaciones.isEmpty()) {
-			listanotificaciones =nService.buscarNombre(notificaciones.getNombreNotificacion());
+			listanotificaciones =nService.buscarNombre(notificaciones.getNameNotificacion());
 		}
 		if (listanotificaciones.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaNotificaciones", listanotificaciones);		
-		return "buscar";//cambiar el return
+		return "buscar";
 	}		
 }
