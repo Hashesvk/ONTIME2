@@ -89,6 +89,7 @@ public class DeudaController {
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		model.put("deuda", new Deuda());
 		model.put("listaDeudas", dService.listar());		
+		model.put("listaPersonas", pService.listar());
 		try {
 			if (id!=null && id>0) {
 				dService.eliminar(id);

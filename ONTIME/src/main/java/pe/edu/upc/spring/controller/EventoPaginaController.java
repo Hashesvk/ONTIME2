@@ -149,6 +149,7 @@ public class EventoPaginaController {
 	
 	@RequestMapping("/eliminarEvento")
 	public String eliminarEvento(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		model.put("listaPersonas", pService.listar());
 		try {
 			if (id!=null && id>0) {
 				eService.eliminar(id);

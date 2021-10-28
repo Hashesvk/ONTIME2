@@ -124,7 +124,7 @@ public class FotoController {
 		
 		model.put("listaFotos", fService.listar());
 		model.put("foto", new Foto());
-		
+
 		try {
 			if (id!=null && id>0) {
 				fService.eliminar(id);

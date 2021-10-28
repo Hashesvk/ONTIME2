@@ -138,13 +138,12 @@ public class TableroController {
 	}
 	
 	@RequestMapping("/eliminarPendiente")
-	public String eliminarPendiente(Map<String, Object> model, @RequestParam(value="id") Integer id) {
-		
+	public String eliminarPendiente(Map<String, Object> model, @RequestParam(value="id") Integer id) {		
 		model.put("nota",new Nota());
 		model.put("listaNotas", nService.listar());
 		model.put("pendiente",new Pendiente());
 		model.put("listaPendiente", pService.listar());
-		
+		model.put("listaPersonas", eService.listar());
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
@@ -166,6 +165,7 @@ public class TableroController {
 		model.put("listaNotas", nService.listar());
 		model.put("pendiente",new Pendiente());
 		model.put("listaPendiente", pService.listar());
+		model.put("listaPersonas", eService.listar());
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);

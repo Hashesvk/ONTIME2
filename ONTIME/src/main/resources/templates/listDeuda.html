@@ -43,7 +43,6 @@
     								<th class="text-center">Nombre</th>
     								<th class="text-center">Fecha</th>
     								<th class="text-center">Monto</th>
-    								<th class="text-center">Persona</th>
     								<th class="text-center">Operacion 01</th>
     								<th class="text-center">Operacion 02</th>
     							</tr>
@@ -54,7 +53,6 @@
     								<td class="text-center" th:text="${deuda.nameCreditor}"></td>
     								<td class="text-center" th:text="${deuda.moneypayment}"></td>
     								<td class="text-center" th:text="${#dates.format(deuda.paymentDate, 'dd/MM/yyyy')}"></td>
-    								<td class="text-center" th:text="${deuda.persona.nombrePersona}"></td>
     								<td class="text-center"><a th:href="@{/deuda/eliminar?id=}+${deuda.idDeuda}">Eliminar</a></td>    								
     								<td class="text-center"><a th:href="@{'/deuda/modificar/'}+${deuda.idDeuda}">Modificar</a></td>
     							</tr>
