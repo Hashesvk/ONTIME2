@@ -55,7 +55,7 @@ public class TableroController {
 		if (binRes.hasErrors()) 
 			{
 				model.addAttribute("listaPersonas", eService.listar());
-				return "pendiente";
+				return "listTablero";
 			}
 		else {
 			boolean flag = pService.registrar(objPendiente);
@@ -63,7 +63,7 @@ public class TableroController {
 				return "redirect:/tablero/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/tablero/irRegistrarPendiente";
+				return "redirect:/tablero/listar";
 			}
 		}
 	}
@@ -75,7 +75,7 @@ public class TableroController {
 		if (binRes.hasErrors()) 
 			{
 				model.addAttribute("listaPersonas", eService.listar());
-				return "nota";
+				return "listTablero";
 			}
 		else {
 			boolean flag = nService.registrar(objNota);
@@ -83,7 +83,7 @@ public class TableroController {
 				return "redirect:/tablero/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/tablero/irRegistrarNota";
+				return "redirect:/tablero/listar";
 			}
 		}
 	}
