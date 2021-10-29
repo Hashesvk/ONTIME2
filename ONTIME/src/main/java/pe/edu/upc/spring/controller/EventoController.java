@@ -55,7 +55,6 @@ public class EventoController {
 		model.addAttribute("listaTipoEventos", tService.listar());
 		model.addAttribute("persona", new Persona());
 		model.addAttribute("listaPersonas", pService.listar());
-
 		
 		return "evento";
 	}
@@ -86,6 +85,12 @@ public class EventoController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("listaEventos", eService.listar());		
+		model.addAttribute("tipoEvento", new TipoEvento());
+		model.addAttribute("listaTipoEventos", tService.listar());
+		model.addAttribute("persona", new Persona());
+		model.addAttribute("listaPersonas", pService.listar());
+		
 		Optional<Evento> objEvento = eService.buscarId(id);
 		if (objEvento == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -105,6 +110,8 @@ public class EventoController {
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		model.put("listaPersonas", pService.listar());
+		
+		
 		try {
 			if (id!=null && id>0) {
 				eService.eliminar(id);
@@ -122,8 +129,14 @@ public class EventoController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaEventos", eService.listar());
-		return "listEvento"; // cambiar el return 
+		model.put("evento", new Evento());
+		model.put("listaEventos", eService.listar());		
+		model.put("tipoEvento", new TipoEvento());
+		model.put("listaTipoEventos", tService.listar());
+		model.put("persona", new Persona());
+		model.put("listaPersonas", pService.listar());
+		
+		return "listEventoPag"; // cambiar el return 
 	}		
 	
 	@RequestMapping("/listarId")
@@ -131,7 +144,7 @@ public class EventoController {
 	throws ParseException
 	{
 		eService.listarId(Evento.getIdEvento());
-		return "listEvento";
+		return "listEventoPag";
 	}	
 	
 	@RequestMapping("/irBuscar")

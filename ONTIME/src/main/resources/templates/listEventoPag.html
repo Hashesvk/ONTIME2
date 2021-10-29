@@ -15,18 +15,17 @@
 	
 </head>
 
-	<body>
-	<div th:replace="fragments/sidebar :: sidebar" id="panel"
-		class="activepanel"></div>
-			
-	<div class="bg row">
-			<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
-	<div class="container">
-			
-		
+<body oncontextmenu="return false" class="snippet-body" id="body-pd">
+    	<div th:replace="fragments/header :: header"> </div>
+
+	<div class="container">	
     		<form id="myform">
     			<div class="row clearfix">
     				<div class="col-md-12 column">
+    					
+    					<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+						  +Agregar Deuda
+						</button>	
     					
     					<a 	style="border-bottom-color: green; margin-bottom: 15px; margin-right: 10px" th:href="@{/eventopagina/irRegistrarEvento}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
@@ -118,10 +117,89 @@
     			</div>
     		</form>
     	</div>
-	
-	
-	</div>
+    	    	
     	
+    	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+      	  
+				<form th:action="@{/eventopagina/registrarEvento}" method="post" th:object="${evento}">
+    			<div class="form-group">
+    				<label for="idEvento">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idEvento}"></input>
+    				
+    				<div class="form-group">
+    					<label for="nombre">NOMBRE:</label>
+    					<input type="text" class="form-control" th:field="*{nombreEvento}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nombreEvento')}" 
+								th:errors="*{nombreEvento}">
+						</div>    					
+    				</div>
+    				<div class="form-group">
+    					<label for="fecha">FECHA:</label>
+    					<input type="date" class="form-control" th:field="*{fechaEvento}" id="fecha"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('fechaEvento')}" 
+								th:errors="*{fechaEvento}">
+						</div>    					
+    				</div>    
+    				<div class="form-group">
+    					<label for="nombre">DESCRIPCION:</label>
+    					<input type="text" class="form-control" th:field="*{descripcionEvento}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('descripcionEvento')}" 
+								th:errors="*{descripcionEvento}">
+						</div>    					
+    				</div>
+    				<div class="form-group">
+    					<label for="complej">COMPLEJIDAD:</label>
+    					<input type="number" class="form-control" th:field="*{numcomplejidad}" id="complej"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('numcomplejidad')}" 
+								th:errors="*{numcomplejidad}">
+						</div>    					
+    				</div>
+    				<div class="form-group">
+    					<label for="persona">PERSONA</label>
+    					<select class="form-control" th:field="*{persona.idPersona}">
+    						<option th:each="p: ${listaPersonas}"
+    							th:value="${p.idPersona}"
+    							th:text="${p.nombrePersona}"
+    							th:selected="(${p.idPersona} == *{persona.idPersona})">
+    						</option>    					
+    					</select>
+    				</div>    
+
+    				<div class="form-group">
+    					<label for="tipoevento">TIPO EVENTO</label>
+    					<select class="form-control" th:field="*{tipoEvento.idTipoEvento}">
+    						<option th:each="t: ${listaTipoEventos}"
+    							th:value="${t.idTipoEvento}"
+    							th:text="${t.nombreTipoEvento}"
+    							th:selected="(${t.idTipoEvento} == *{tipoEvento.idTipoEvento})">
+    						</option>    					
+    					</select>
+    				</div>    
+   				
+    			</div>
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/evento/listar" class="btn btn-danger">Cancelar</a>
+    		</form> 
+        
+     		 </div>
+      </div>
+    </div>
+  </div>
+    	
+    	    	
     	    	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

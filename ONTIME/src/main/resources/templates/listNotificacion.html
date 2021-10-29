@@ -15,11 +15,8 @@
 	
 </head>
 
-	<body>
-    	<div th:replace="fragments/sidebar :: sidebar" id="panel"
-		class="activepanel"></div>
-		<div class="bg row">
-			<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+	<body oncontextmenu="return false" class="snippet-body" id="body-pd">
+    	<div th:replace="fragments/header :: header"> </div>
 			<div class="container">
     		<form id="myform">
     			<div class="row clearfix">
@@ -117,9 +114,7 @@
 			      </div>
 			      </div>
 			    </div>
-			  </div>
-	</div>
-    	
+			  </div>    	
     	
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>

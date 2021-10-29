@@ -12,12 +12,10 @@
 <link rel="stylesheet" href="/css/dive.css">
 <link rel="stylesheet" href="/css/style.css">
 <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
-<link rel="stylesheet" th:href="@{/css/style.css}" />
 				
 	</head>
 
 	<body>
-    	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
     		<form th:action="@{/persona/registrar}" method="post" th:object="${persona}">
     			<div class="form-group">

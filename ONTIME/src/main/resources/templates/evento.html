@@ -3,11 +3,10 @@
 
 	<head>
 	
-		<meta charset="ISO-8859-1"></meta>
+		<meta charset="UTF-8"></meta>
 		<title>Evento</title>
 		
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/dive.css">
 <link rel="stylesheet" href="/css/style.css">
@@ -15,13 +14,8 @@
 				
 	</head>
 
-	<body>
-    	 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
-		class="activepanel"></div>
-
-	<div class="bg row">
-		
-		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+	<body oncontextmenu="return false" class="snippet-body" id="body-pd">
+    	<div th:replace="fragments/header :: header"> </div>
 		<div class="container">
     		<form th:action="@{/eventopagina/registrarEvento}" method="post" th:object="${evento}">
     			<div class="form-group">
@@ -87,7 +81,6 @@
     			<a href="/eventopagina/listar" class="btn btn-danger">Cancelar</a>
     		</form>
     	</div>
-	</div>
     	
     	
     	<script src="/js/popper.min.js"></script>

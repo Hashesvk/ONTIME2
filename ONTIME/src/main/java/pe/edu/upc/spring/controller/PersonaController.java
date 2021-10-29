@@ -26,7 +26,7 @@ public class PersonaController {
 	private IPersonaService pService;
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido";
+		return "login";
 	}
 
 	@RequestMapping("/")
