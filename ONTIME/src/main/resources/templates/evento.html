@@ -17,7 +17,8 @@
 	<body oncontextmenu="return false" class="snippet-body" id="body-pd">
     	<div th:replace="fragments/header :: header"> </div>
 		<div class="container">
-    		<form th:action="@{/eventopagina/registrarEvento}" method="post" th:object="${evento}">
+		
+    			<form th:action="@{/eventopagina/registrarEvento}" method="post" th:object="${evento}">
     			<div class="form-group">
     				<label for="idEvento">ID:</label>
     				<input type="text" class="form-control" th:field="*{idEvento}"></input>

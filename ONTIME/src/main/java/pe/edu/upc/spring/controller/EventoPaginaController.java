@@ -75,7 +75,7 @@ public class EventoPaginaController {
 			{
 				model.addAttribute("listaTipoEventos", tService.listar());
 				model.addAttribute("listaPersonas", pService.listar());
-				return "Evento";
+				return "listEventoPag";
 			}
 		else {
 			boolean flag = eService.registrar(objEvento);
@@ -83,7 +83,7 @@ public class EventoPaginaController {
 				return "redirect:/eventopagina/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/eventopagina/irRegistrarEvento";
+				return "redirect:/eventopagina/listar";
 			}
 		}
 	}
@@ -149,7 +149,10 @@ public class EventoPaginaController {
 	
 	@RequestMapping("/eliminarEvento")
 	public String eliminarEvento(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		
+		model.put("evento", new Evento());
 		model.put("listaPersonas", pService.listar());
+		
 		try {
 			if (id!=null && id>0) {
 				eService.eliminar(id);
@@ -188,8 +191,14 @@ public class EventoPaginaController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
+		
+
+		model.put("evento", new Evento());
+		model.put("tipoevento", new TipoEvento());
+		
 		model.put("listaEventos", eService.listar());
 		model.put("listaTipoEventos", tService.listar());
+		
 		return "listEventoPag"; // cambiar el return 
 	}		
 	
