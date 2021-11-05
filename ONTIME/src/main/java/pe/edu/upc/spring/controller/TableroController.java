@@ -148,12 +148,14 @@ public class TableroController {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
 				model.put("listaPendientes", pService.listar());
+				model.put("listaNotas", nService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
 			model.put("listaPendientes", pService.listar());
+			model.put("listaNotas", nService.listar());
 			
 		}
 		return "listTablero";
@@ -169,12 +171,14 @@ public class TableroController {
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);
+				model.put("listaPendientes", pService.listar());
 				model.put("listaNotas", nService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un roche");
+			model.put("listaPendientes", pService.listar());
 			model.put("listaNotas", nService.listar());
 			
 		}

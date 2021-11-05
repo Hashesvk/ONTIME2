@@ -62,7 +62,13 @@ public class EventoPaginaController {
 	
 	@RequestMapping("/irRegistrarTipoEvento")
 	public String irRegistrarTipoEvento(Model model) {
-		model.addAttribute("tipoevento", new TipoEvento());
+		
+		model.addAttribute("evento", new Evento());
+		model.addAttribute("tipoEvento", new TipoEvento());
+		model.addAttribute("listaTipoEventos", tService.listar());
+		model.addAttribute("persona", new Persona());
+		model.addAttribute("listaPersonas", pService.listar());
+		
 		return "tipoevento";
 
 	}
@@ -73,7 +79,6 @@ public class EventoPaginaController {
 	{
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaTipoEventos", tService.listar());
 				model.addAttribute("listaPersonas", pService.listar());
 				return "listEventoPag";
 			}
@@ -92,8 +97,11 @@ public class EventoPaginaController {
 	public String registrarTipoEvento(@ModelAttribute TipoEvento objTipoEvento, BindingResult binRes, Model model)
 			throws ParseException
 	{
-		if (binRes.hasErrors())
-			return "tipoevento";
+		if (binRes.hasErrors()) {
+			
+			model.addAttribute("listaPersonas", pService.listar());
+			return "listEventoPag";
+		}
 		else {			
 			boolean flag = tService.registrar(objTipoEvento);
 			
@@ -101,7 +109,7 @@ public class EventoPaginaController {
 				return "redirect:/eventopagina/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/eventopagina/irRegistrarEvento";
+				return "redirect:/eventopagina/listar";
 				
 			}
 		}
@@ -150,8 +158,11 @@ public class EventoPaginaController {
 	@RequestMapping("/eliminarEvento")
 	public String eliminarEvento(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		
+		model.put("tipoevento", new TipoEvento());
 		model.put("evento", new Evento());
 		model.put("listaPersonas", pService.listar());
+		model.put("listaEventos", eService.listar());
+		model.put("listaTipoEventos", tService.listar());
 		
 		try {
 			if (id!=null && id>0) {
@@ -172,6 +183,13 @@ public class EventoPaginaController {
 	
 	@RequestMapping("/eliminarTipoEvento")
 	public String eliminarTipoEvento(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		
+		model.put("tipoevento", new TipoEvento());
+		model.put("evento", new Evento());
+		model.put("listaPersonas", pService.listar());
+		model.put("listaEventos", eService.listar());
+		model.put("listaTipoEventos", tService.listar());
+		
 		try {
 			if (id!=null && id>0) {
 				tService.eliminar(id);
@@ -191,7 +209,6 @@ public class EventoPaginaController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		
 
 		model.put("evento", new Evento());
 		model.put("tipoevento", new TipoEvento());
@@ -199,7 +216,7 @@ public class EventoPaginaController {
 		model.put("listaEventos", eService.listar());
 		model.put("listaTipoEventos", tService.listar());
 		
-		return "listEventoPag"; // cambiar el return 
+		return "listEventoPag";
 	}		
 	
 	@RequestMapping("/listarIdEvento")
@@ -221,7 +238,7 @@ public class EventoPaginaController {
 	@RequestMapping("/irBuscarEvento")
 	public String irBuscarEvento(Model model) 
 	{
-		model.addAttribute("Evento", new Evento());
+		model.addAttribute("evento", new Evento());
 		return "buscarEvento";
 	}	
 	
