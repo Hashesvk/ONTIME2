@@ -67,3 +67,25 @@ table {
 .dos{
 	border-radius: 5px 5px 5px 5px;
 }
+
+ .status {
+    border-radius: radius;
+    background-color: red;
+    padding: 0.2rem 1rem;
+    text-align: center;
+ }
+ 
+ .status-enproceso {
+      background-color: #fff0c2;
+      color: #a68b00;
+    }
+
+.status-completo {
+      background-color: #c8e6c9;
+      color: #388e3c;
+    }
+
+.status-incompleto {
+      background-color: #ffcdd2;
+      color: #c62828;
+}
