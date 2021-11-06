@@ -12,35 +12,36 @@
 <link rel="stylesheet" href="/css/dive.css">
 <link rel="stylesheet" href="/css/style.css">
 <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
-	
-</head>
+<link rel="stylesheet" href="/css/tablas.css">
 
-<body oncontextmenu="return false" class="snippet-body" id="body-pd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<body style="font-family: sans-serif;" oncontextmenu="return false" class="snippet-body" id="body-pd">
     	<div th:replace="fragments/header :: header"> </div>
 
 	<div class="container">	
     		<form id="myform">
-    			<div class="row clearfix">
+    			<div class="row">
     				<div class="col-md-12 column">
-    					
-    					<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-						  +Agregar Evento
+    					    					
+    					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">
+						  Agregar Evento
 						</button>	
     					
-						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/eventopagina/irBuscarEvento}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-search"></span> Buscar
-    					</a>
+						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">Buscar Evento</button>	
     					
-    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    					
+    					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
     						<thead>
     							<tr>
-    								<th class="text-center">Codigo</th>
     								<th class="text-center">Nombre</th>
     								<th class="text-center">Fecha</th>
     								<th class="text-center">Descripcion</th>
     								<th class="text-center">Complejidad</th>
-    								<th class="text-center">Persona</th>
     								<th class="text-center">Tipo Evento</th>
     								<th class="text-center">Operacion 01</th>
     								<th class="text-center">Operacion 02</th>
@@ -48,12 +49,10 @@
     						</thead>
     						<tbody>
     							<tr th:each="eventopagina: ${listaEventos}">
-    								<td class="text-center" th:text="${eventopagina.idEvento}"></td>
     								<td class="text-center" th:text="${eventopagina.nombreEvento}"></td>
     								<td class="text-center" th:text="${#dates.format(eventopagina.fechaEvento, 'dd/MM/yyyy')}"></td>
     								<td class="text-center" th:text="${eventopagina.descripcionEvento}"></td>
     								<td class="text-center" th:text="${eventopagina.numcomplejidad}"></td>
-    								<td class="text-center" th:text="${eventopagina.persona.nombrePersona}"></td>
     								<td class="text-center" th:text="${eventopagina.tipoEvento.nombreTipoEvento}"></td>
     								<td class="text-center"><a th:href="@{/eventopagina/eliminarEvento?id=}+${eventopagina.idEvento}">Eliminar</a></td>    								
     								<td class="text-center"><a th:href="@{'/eventopagina/modificarEvento/'}+${eventopagina.idEvento}">Modificar</a></td>
@@ -151,19 +150,18 @@
     	
     		<div class="container">
     		<form id="myform">
-    			<div class="row clearfix">
-    				<div class="col-md-12 column">
+    			<div>
+    				<div>
     					
-    					<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong2">
-						  +Agregar Tipo Evento
+    					<button style="margin-top: 30px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong2">
+						  Agregar Tipo Evento
 						</button>	
     					
-						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/eventopagina/irBuscarTipoEvento}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-search"></span> Buscar
-    					</a>
+						<button style="margin-top: 30px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong2">Buscar Tipo Evento</button>	
     					
-    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    					<table class="content-table" id="tab_logic">
     						<thead>
     							<tr>
     								<th class="text-center">Codigo</th>

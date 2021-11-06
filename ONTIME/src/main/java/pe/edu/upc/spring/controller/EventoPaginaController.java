@@ -212,9 +212,12 @@ public class EventoPaginaController {
 
 		model.put("evento", new Evento());
 		model.put("tipoevento", new TipoEvento());
+		model.put("persona", new Persona());
+		
 		
 		model.put("listaEventos", eService.listar());
 		model.put("listaTipoEventos", tService.listar());
+		model.put("listaPersonas", pService.listar());
 		
 		return "listEventoPag";
 	}		
