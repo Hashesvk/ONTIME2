@@ -25,7 +25,9 @@ public class PersonaController {
 	@Autowired
 	private IPersonaService pService;
 	@RequestMapping("/bienvenido")
-	public String irPaginaBienvenida() {
+	public String irPaginaBienvenida(Map<String, Object> model) {
+		model.put("listaPersonas", pService.listar());
+		model.put("persona", new Persona());
 		return "login";
 	}
 

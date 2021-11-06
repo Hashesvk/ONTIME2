@@ -13,9 +13,9 @@
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-            <form  autocomplete="off" class="sign-in-form">
+            <form autocomplete="off" class="sign-in-form" th:action="@{/persona/registrar}" method="post" th:object="${persona}"  >
               <div class="logo">
-                <img src="/img/logo.png" alt="easyclass" />
+                <img src="/img/logo/logo.png" alt="easyclass" />
               </div>
 
               <div class="heading">
@@ -29,7 +29,8 @@
                   <input
                     minlength="4"
                     class="input-field"
-                  />
+  
+                  ></input>
                   <label>Name</label>
                 </div>
 
@@ -40,11 +41,12 @@
                     class="input-field"
                     autocomplete="off"
                     required = "true"
-                  />
+           
+                  ></input>
                   <label>Password</label>
                 </div>
 
-                <input type="submit" value="Sign In" class="sign-btn" />
+                <input type="submit" value="Sign In" class="sign-btn"></input>
 
                 <p class="text">
                   Contraseña olvidada o datos olvidados ?
@@ -65,7 +67,20 @@
                 <a href="#" class="toggle"> Sign in </a>
               </div>
 
+
+
               <div class="actual-form">
+              <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="4"
+                    class="input-field"
+                    th:field="*{idPersona}"></input>
+
+                  <label>ID</label>
+                  
+                </div>
+              
                 <div class="input-wrap">
                   <input
                     type="text"
@@ -73,18 +88,42 @@
                     class="input-field"
                     autocomplete="off"
                     required = "true"
-                  />
+                    th:field="*{nombrePersona}"
+                    id="nombre"
+                  ></input>
                   <label>Name</label>
                 </div>
 
                 <div class="input-wrap">
                   <input
-                    type="email"
+                    type="number"
                     class="input-field"
                     autocomplete="off"
                     required = "true"
-                  />
-                  <label>Email</label>
+                    th:field="*{sueldoPersona}" id="salario">
+                  ></input>
+                  <label>Sueldo</label>
+                </div>
+
+				<div class="input-wrap">
+                  <input
+                    type="checkbox"
+                    id="adulto" name="tipo1" value="adulto"
+                    class="input-field"
+                    autocomplete="off"
+                  ></input>
+                   <label for="adulto"> I have a bike</label><br>
+                  <input
+                    type="checkbox"
+                    id="joven" name="tipo2" value="joven"
+                    class="input-field"
+                    autocomplete="off"
+                  ></input>
+                   <label for="joven"> I have a bike</label><br>
+                  
+                  <label>Tipo Persona</label>
+                
+                
                 </div>
 
                 <div class="input-wrap">
@@ -94,7 +133,8 @@
                     class="input-field"
                     autocomplete="off"
                     required = "true"
-                  />
+                    th:field="*{contrasenaPersona}" id="contrasena"
+                  ></input>
                   <label>Password</label>
                 </div>
 
