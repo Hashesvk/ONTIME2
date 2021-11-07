@@ -12,4 +12,8 @@ public interface INotificacionService {
 	public Optional<Notificacion> buscarId(int idNotificacion);
 	List<Notificacion> listar();
 	List<Notificacion> buscarNombre(String nombreNotificacion);
+	List<Notificacion> buscarDescripcion(String descripcionNotificacion);
+	List<Notificacion> buscarNevento(String nombreEvento);
+
+	
 }
