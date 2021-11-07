@@ -22,7 +22,7 @@
     	
 			<div class="container">  	 
 			   <div class="row">   	
-    			<form id="myform">
+    			<form id="myform"  th:action="@{/notificacion/buscar}" method="post" th:object="${notificacion}">
     				<div class="col-md-12 column">
     					
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
@@ -31,8 +31,22 @@
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
   						 data-toggle="modal" data-target="#exampleModalLong">Modificar Notificacion</button>	
   						 
-  						 <button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong">Buscar Notificacion</button>	
+  						 
+						<div class="row clearfix">
+    			 			
+       							<div class="col-md-12 column">
+       								
+    									<div class="form-group">
+    										<input type="text" class="form-control" th:field="*{nameNotificacion}"
+    											id="buscar" placeholder=" buscar por Nombre, Descripción y Evento">
+    										</input>
+    						 			<button style="margin-top: 50px;" type="submit" class="botones dos btn btn-primary">Buscar Notificación</button>
+			    						<a style="margin-top: 50px;" href="/notificacion/listar" class="botones dos btn btn-primary">Cancelar</a>
+    									</div>
+    								
+       							</div>
+    			 			
+    					 </div>
     					
     					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
     						<thead>

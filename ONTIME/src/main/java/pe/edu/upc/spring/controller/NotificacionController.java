@@ -133,16 +133,24 @@ public class NotificacionController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Notificacion notificaciones)
 			throws ParseException
 	{
+		model.put("notificacion", new Notificacion());
+
 		List<Notificacion> listanotificaciones;
 		notificaciones.setNameNotificacion(notificaciones.getNameNotificacion());
 		listanotificaciones = nService.buscarNombre(notificaciones.getNameNotificacion());
 		if(listanotificaciones.isEmpty()) {
 			listanotificaciones =nService.buscarNombre(notificaciones.getNameNotificacion());
 		}
+		if(listanotificaciones.isEmpty()) {
+			listanotificaciones =nService.buscarDescripcion(notificaciones.getNameNotificacion());
+		}
+		if(listanotificaciones.isEmpty()) {
+			listanotificaciones =nService.buscarNevento(notificaciones.getNameNotificacion());
+		}
 		if (listanotificaciones.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaNotificaciones", listanotificaciones);		
-		return "buscar";
+		return "listNotificacion";
 	}		
 }

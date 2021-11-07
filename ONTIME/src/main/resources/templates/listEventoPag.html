@@ -24,7 +24,7 @@
 
 	<div class="container"> 
     		    <div class="row"> 	    	
-    				<form id="myform">
+    				<form id="myform"  th:action="@{/eventopagina/buscarEvento}" method="post" th:object="${evento}">
     				<div class="col-md-12 column">
     					    					
     					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
@@ -33,8 +33,18 @@
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
   						 data-toggle="modal" data-target="#exampleModalLong">Modificar Tipo Evento</button>	
   						 
-  						 <button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong">Buscar Evento</button>	
+  						<div class="col-md-12 column">
+       								
+    									<div class="form-group">
+    										<input type="text" class="form-control" th:field="*{nombreEvento}"
+    											id="buscar" placeholder=" buscar por Nombre, complejidad, Tipo Evento">
+    										</input>
+    						 			<button style="margin-top: 50px;" type="submit" class="botones dos btn btn-primary">Buscar Evento</button>
+    						 			<a style="margin-top: 50px;" href="/eventopagina/listar" class="botones dos btn btn-primary">Cancelar</a>
+
+    									</div>
+    								
+       							</div>
     					
     					
     					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
@@ -155,7 +165,7 @@
     	
     		<div class="container"> 
     		    <div class="row"> 	    	
-    				<form id="myform">
+    				<form id="myform" th:action="@{/eventopagina/buscarTipoEvento}" method="post" th:object="${tipoevento}">
     				<div class="col-md-12 column">
     					
     					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
@@ -164,8 +174,18 @@
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
   						 data-toggle="modal" data-target="#exampleModalLong2">Modificar Tipo Evento</button>	
   						 
-  						 <button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong2">Buscar Tipo Evento</button>		
+  						 	<div class="col-md-12 column">
+       								
+    									<div class="form-group">
+    										<input type="text" class="form-control" th:field="*{nombreTipoEvento}"
+    											id="buscar" placeholder=" buscar por Nombre">
+    										</input>
+    						 			<button style="margin-top: 50px;" type="submit" class="botones dos btn btn-primary">Buscar Deuda</button>
+    						 			<a style="margin-top: 50px;" href="/eventopagina/listar" class="botones dos btn btn-primary">Cancelar</a>
+
+    									</div>
+    								
+       							</div>	
     					
     					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
     						<thead>

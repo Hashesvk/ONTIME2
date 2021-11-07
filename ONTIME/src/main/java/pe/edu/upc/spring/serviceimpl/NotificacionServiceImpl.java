@@ -60,4 +60,16 @@ public class NotificacionServiceImpl implements INotificacionService {
 		return dNotis.buscarNombre(nombreNotificacion);
 	}
 	
+	@Override
+	@Transactional
+	public List<Notificacion> buscarDescripcion(String descripcionNotificacion) {
+		return dNotis.buscarDescripcion(descripcionNotificacion);
+	}
+	
+	@Override
+	@Transactional
+	public List<Notificacion> buscarNevento(String nombreEvento) {
+		return dNotis.buscarNevento(nombreEvento);
+	}
+	
 }

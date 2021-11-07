@@ -13,4 +13,12 @@ import pe.edu.upc.spring.model.Notificacion;
 public interface INotificacionRepository extends JpaRepository<Notificacion, Integer> {
 	@Query("from Notificacion n where n.nameNotificacion like %:nameNotificacion%")
 	List<Notificacion> buscarNombre(@Param("nameNotificacion") String nameNotificacion);	
+	
+	@Query("from Notificacion n where n.descriptionNotificacion like %:descriptionNotificacion%")
+	List<Notificacion> buscarDescripcion(@Param("descriptionNotificacion") String descriptionNotificacion);
+	
+	@Query("from Notificacion n where n.evento.nombreEvento like %:nombreEvento%")
+	List<Notificacion> buscarNevento(@Param("nombreEvento") String nombreEvento);
+	
+	
 }

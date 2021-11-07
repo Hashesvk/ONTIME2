@@ -61,5 +61,19 @@ public class EventoServiceImpl implements IEventoService{
 
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Evento> buscarComple(String numcomplejidad) {
+		return dEvento.buscarComple(numcomplejidad);
+
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Evento> buscarTevento(String nombreTipoEvento) {
+		return dEvento.buscarTevento(nombreTipoEvento);
+
+	}
+	
 	
 }

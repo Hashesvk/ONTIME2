@@ -249,17 +249,25 @@ public class EventoPaginaController {
 	public String buscarEvento(Map<String, Object> model, @ModelAttribute Evento Evento)
 			throws ParseException
 	{
+		model.put("evento", new Evento());
+
 		List<Evento> listaEventos;
 		Evento.setNombreEvento(Evento.getNombreEvento());
 		listaEventos = eService.buscarNombre(Evento.getNombreEvento());
 		if(listaEventos.isEmpty()) {
 			listaEventos =eService.buscarNombre(Evento.getNombreEvento());
 		}
+		if(listaEventos.isEmpty()) {
+			listaEventos =eService.buscarComple(Evento.getNombreEvento());
+		}
+		if(listaEventos.isEmpty()) {
+			listaEventos =eService.buscarTevento(Evento.getNombreEvento());
+		}
 		if (listaEventos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaEventos", listaEventos);		
-		return "buscarEvento";
+		return "listEventoPag";
 	}	
 	
 	@RequestMapping("/irBuscarTipoEvento")
@@ -273,13 +281,18 @@ public class EventoPaginaController {
 	public String buscarTipoEvento(Map<String, Object> model, @ModelAttribute TipoEvento tipoevento)
 			throws ParseException
 	{
+		model.put("tipoevento", new TipoEvento());
+
 		List<TipoEvento> listaTipoEventos;
 		tipoevento.setNombreTipoEvento(tipoevento.getNombreTipoEvento());
 		listaTipoEventos = tService.buscarNombre(tipoevento.getNombreTipoEvento());
 		if (listaTipoEventos.isEmpty()) {
+			listaTipoEventos=tService.buscarNombre(tipoevento.getNombreTipoEvento());
+		}
+		if (listaTipoEventos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaTipoEventos", listaTipoEventos);		
-		return "buscarTipoEvento";
+		return "listEventoPag";
 	}		
 }

@@ -227,6 +227,8 @@ public class TableroController {
 	public String buscarPendiente(Map<String, Object> model, @ModelAttribute Pendiente pendiente)
 			throws ParseException
 	{
+		model.put("pendiente", new Pendiente());
+
 		List<Pendiente> listaPendientes;
 		pendiente.setNamePendiente(pendiente.getNamePendiente());
 		listaPendientes = pService.buscarNombre(pendiente.getNamePendiente());
@@ -237,7 +239,7 @@ public class TableroController {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaPendientes", listaPendientes);		
-		return "buscar";
+		return "listTablero";
 	}	
 	
 	@RequestMapping("/buscarNota")
