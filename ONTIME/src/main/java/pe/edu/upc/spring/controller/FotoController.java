@@ -199,16 +199,20 @@ public class FotoController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Foto foto)
 			throws ParseException
 	{
+		model.put("foto", new Foto());
 		List<Foto> listaFotos;
 		foto.setNamephoto(foto.getNamephoto());
 		listaFotos = fService.buscarNombre(foto.getNamephoto());
 		if(listaFotos.isEmpty()) {
 			listaFotos =fService.buscarNombre(foto.getNamephoto());
 		}
+		if(listaFotos.isEmpty()) {
+			listaFotos =fService.buscarTevento(foto.getNamephoto());
+		}
 		if (listaFotos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaFotos", listaFotos);		
-		return "buscar";//cambiar el return
+		return "listFoto";//cambiar el return
 	}		
 }
