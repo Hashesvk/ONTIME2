@@ -90,7 +90,7 @@ public class TableroController {
 		model.addAttribute("nota",new Nota());
 		model.addAttribute("listaNotas", nService.listar());
 		model.addAttribute("pendiente",new Pendiente());
-		model.addAttribute("listaPendiente", pService.listar());
+		model.addAttribute("listaPendientes", pService.listar());
 
 		
 		Optional<Pendiente> objPendiente = pService.buscarId(id);
@@ -115,7 +115,7 @@ public class TableroController {
 		model.addAttribute("nota",new Nota());
 		model.addAttribute("listaNotas", nService.listar());
 		model.addAttribute("pendiente",new Pendiente());
-		model.addAttribute("listaPendiente", pService.listar());
+		model.addAttribute("listaPendientes", pService.listar());
 		
 		Optional<Nota> objNota = nService.buscarId(id);
 		if (objNota == null) {
@@ -137,7 +137,7 @@ public class TableroController {
 		model.put("nota",new Nota());
 		model.put("listaNotas", nService.listar());
 		model.put("pendiente",new Pendiente());
-		model.put("listaPendiente", pService.listar());
+		model.put("listaPendientes", pService.listar());
 		model.put("listaPersonas", eService.listar());
 		try {
 			if (id!=null && id>0) {
@@ -161,7 +161,7 @@ public class TableroController {
 		model.put("nota",new Nota());
 		model.put("listaNotas", nService.listar());
 		model.put("pendiente",new Pendiente());
-		model.put("listaPendiente", pService.listar());
+		model.put("listaPendientes", pService.listar());
 		model.put("listaPersonas", eService.listar());
 		try {
 			if (id!=null && id>0) {

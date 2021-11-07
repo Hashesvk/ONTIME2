@@ -12,35 +12,36 @@
 <link rel="stylesheet" href="/css/dive.css">
 <link rel="stylesheet" href="/css/style.css">
 <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
-	
+
+<link rel="stylesheet" href="/css/tablas.css">
+
 </head>
 
 	<body oncontextmenu="return false" class="snippet-body" id="body-pd">
     	<div th:replace="fragments/header :: header"> </div>
-    	<div class="container">
-    	   	<div class="row">
-    		<form id="myform">   		
-    		
+    	
+    	<div class="container">  	 
+			   <div class="row">   	
+    			<form id="myform">
     				<div class="col-md-12 column">
     					
-						<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-						  +Agregar Deuda
-						</button>	    			
+						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">Agregar Deuda</button>	
     					
-						<a 	style="border-bottom-color: green; margin-bottom: 15px" th:href="@{/deuda/irBuscar}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-search"></span> Buscar
-    					</a>
+						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">Modificar Deuda</button>	
+  						 
+  						 <button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">Buscar Deuda</button>	
     					
-    					<table class="table table-bordered table-hover table-striped" id="tab_logic">
+    					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
     						<thead>
     							<tr>
     								<th class="text-center">Codigo</th>
     								<th class="text-center">Nombre</th>
-    								<th class="text-center">Fecha</th>
     								<th class="text-center">Monto</th>
-    								<th class="text-center">Operacion 01</th>
-    								<th class="text-center">Operacion 02</th>
+    								<th class="text-center">Fecha</th>
+    								<th class="text-center">Operaciones</th>
     							</tr>
     						</thead>
     						<tbody>
@@ -49,8 +50,12 @@
     								<td class="text-center" th:text="${deuda.nameCreditor}"></td>
     								<td class="text-center" th:text="${deuda.moneypayment}"></td>
     								<td class="text-center" th:text="${#dates.format(deuda.paymentDate, 'dd/MM/yyyy')}"></td>
-    								<td class="text-center"><a th:href="@{/deuda/eliminar?id=}+${deuda.idDeuda}">Eliminar</a></td>    								
-    								<td class="text-center"><a th:href="@{'/deuda/modificar/'}+${deuda.idDeuda}">Modificar</a></td>
+    								<td class="text-center">
+    									<a th:href="@{'/deuda/modificar/'}+${deuda.idDeuda}"><i
+											class="icono edit bx bxs-pen nav_icon"> </i></a>
+    									<a th:href="@{/deuda/eliminar?id=}+${deuda.idDeuda}"><i
+											 class="icono delete bx bxs-trash nav_icon"> </i></a>
+    								</td>
     							</tr>
     						</tbody>
     					</table> 
@@ -68,7 +73,7 @@
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+		        <h5 class="modal-title" id="exampleModalLongTitle">Deuda</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>

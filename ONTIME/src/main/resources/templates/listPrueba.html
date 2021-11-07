@@ -14,6 +14,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
 	rel="stylesheet" />
+<link rel="stylesheet" href="/css/tablas.css">
 
 </head>
 
@@ -27,18 +28,17 @@
 
 					<div class="col-md-12 column">
 
-						<button style="margin-bottom: 15px; margin-right: 10px" type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#exampleModalLong">+Agregar Prueba</button>
-
-
-						<a style="border-bottom-color: green; margin-bottom: 15px"
-							th:href="@{/prueba/irBuscar}" id="add-row" type="button"
-							class="btn btn-primary btn-md left-block"> <span
-							class="glyphicon glyphicon-search"></span> Buscar
-						</a>
-
-						<table class="table table-bordered table-hover table-striped"
-							id="tab_logic">
+						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">Agregar Prueba</button>	
+    					
+						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">Modificar Prueba</button>	
+  						 
+  						 <button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong">Buscar Prueba</button>	
+    					
+    					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
+						
 							<thead>
 								<tr>
 									<th class="text-center">Codigo</th>
@@ -49,8 +49,7 @@
 									<th class="text-center">Tipo Evento</th>
 									
 
-									<th class="text-center">Operacion 01</th>
-									<th class="text-center">Operacion 02</th>
+									<th class="text-center">Operaciones</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -62,8 +61,12 @@
 
 									<td class="text-center" th:text="${prueba.Tevento.nombreTipoEvento}"></td>
 									
-									<td class="text-center"><a th:href="@{/prueba/eliminar?id=}+${prueba.idPrueba}">Eliminar</a></td>
-									<td class="text-center"><a th:href="@{'/prueba/modificar/'}+${prueba.idPrueba}">Modificar</a></td>
+									<td class="text-center">
+										<a th:href="@{'/prueba/modificar/'}+${prueba.idPrueba}"><i
+											class="icono edit bx bxs-pen nav_icon"> </i></a>
+										<a th:href="@{/prueba/eliminar?id=}+${prueba.idPrueba}"><i
+											 class="icono delete bx bxs-trash nav_icon"> </i></a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -83,7 +86,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle">AGREGAR</h5>
+						<h5 class="modal-title" id="exampleModalLongTitle">Prueba</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>

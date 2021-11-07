@@ -68,13 +68,6 @@ table {
 	border-radius: 5px 5px 5px 5px;
 }
 
- .status {
-    border-radius: radius;
-    background-color: red;
-    padding: 0.2rem 1rem;
-    text-align: center;
- }
- 
  .status-enproceso {
       background-color: #fff0c2;
       color: #a68b00;
@@ -88,4 +81,27 @@ table {
 .status-incompleto {
       background-color: #ffcdd2;
       color: #c62828;
+}
+
+.icono{
+	color: white;
+	border-radius: 5px 5px 5px 5px;
+	padding: 5px;
+	margin: 1.5px;
+}
+
+.delete{
+	background-color: #FF3399;
+}
+
+.delete:hover{
+	background-color: #E60073;
+}
+
+.edit{
+	background-color: #33CCFF;
+}
+
+.edit:hover{
+	background-color: #00B3F2;
 }

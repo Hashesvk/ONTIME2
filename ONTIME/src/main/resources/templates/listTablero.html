@@ -8,6 +8,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/dive.css">
 <link rel="stylesheet" href="/css/style.css">
 <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="/css/tablas.css">
@@ -20,18 +21,19 @@
 </head>
 
 <body oncontextmenu="return false" class="snippet-body" id="body-pd">
-    	<div th:replace="fragments/header :: header"> </div>					
+    	<div th:replace="fragments/header :: header"> </div>
 			<div class="container">  	 
 			   <div class="row">   	
     			<form id="myform">
     				<div class="col-md-12 column">
     				
     					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong2">
-						  Agregar Pendiente
-						</button>	
+  						 data-toggle="modal" data-target="#exampleModalLong2">Agregar Pendiente</button>	
     					
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong2">Modificar Pendiente</button>	
+  						 
+  						 <button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
   						 data-toggle="modal" data-target="#exampleModalLong2">Buscar Pendiente</button>	
     					
     					
@@ -43,8 +45,7 @@
     								<th class="text-center">Nombre de Pendiente</th>
     								<th class="text-center">Tipo de Pendiente</th>
     								<th class="text-center">Estado</th>
-    								<th class="text-center">Operacion 01</th>
-    								<th class="text-center">Operacion 02</th>
+    								<th class="text-center">Operaciones</th>
     							</tr>
     						</thead>
     						
@@ -54,15 +55,20 @@
     								<td class="text-center" th:text="${pe.namePendiente}"></td>
     								<td class="text-center" th:text="${pe.nameTipoPendiente}"></td>
     								
-    								<td th:if="${pe.nameStatus == 'Incompleto'}" class="status status-incompleto" th:text="${pe.nameStatus}">
+    								<td th:if="${pe.nameStatus == 'Incompleto'}" class="status-incompleto" th:text="${pe.nameStatus}">
 									</td>
-									<td th:if="${pe.nameStatus == 'En proceso'}"  class="status status-enproceso" th:text="${pe.nameStatus}">
+									<td th:if="${pe.nameStatus == 'En proceso'}"  class="status-enproceso" th:text="${pe.nameStatus}">
 									</td>
-									<td th:if="${pe.nameStatus == 'Completo'}" class="status status-completo" th:text="${pe.nameStatus}">
+									<td th:if="${pe.nameStatus == 'Completo'}" class="status-completo" th:text="${pe.nameStatus}">
 									</td>
 									
-    								<td class="text-center"><a th:href="@{/tablero/eliminarPendiente?id=}+${pe.idPendiente}">Eliminar</a></td>    								
-    								<td class="text-center"><a th:href="@{'/tablero/modificarPendiente/'}+${pe.idPendiente}">Modificar</a></td>
+    								<td class="text-center">
+    									<a  th:href="@{'/tablero/modificarPendiente/'}+${pe.idPendiente}"><i
+											class="icono edit bx bxs-pen nav_icon"> </i></a>
+										<a th:href="@{/tablero/eliminarPendiente?id=}+${pe.idPendiente}"> <i
+											 class="icono delete bx bxs-trash nav_icon"> </i></a>
+									</td>
+									
     							</tr>
     						</tbody>
     						
@@ -82,13 +88,13 @@
     				<div class="col-md-12 column">
     				
     					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong">
-						  Agregar Nota
-						</button>	
+  						 data-toggle="modal" data-target="#exampleModalLong1">Agregar Nota</button>	
     					
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong">Buscar Nota</button>	
+  						 data-toggle="modal" data-target="#exampleModalLong1">Modificar Nota</button>	
     					
+    					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
+  						 data-toggle="modal" data-target="#exampleModalLong1">Buscar Nota</button>	
     					
     					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
     					
@@ -97,8 +103,7 @@
     								<th class="text-center">Codigo</th>
     								<th class="text-center">Nombre de la Nota</th>
     								<th class="text-center">Descripción de la Nota</th>
-    								<th class="text-center">Operacion 01</th>
-    								<th class="text-center">Operacion 02</th>
+    								<th class="text-center">Operaciones</th>
     							</tr>
     						</thead>
     						
@@ -107,8 +112,12 @@
     								<td class="text-center" th:text="${no.idNota}"></td>
     								<td class="text-center" th:text="${no.nameNota}"></td>
     								<td class="text-center" th:text="${no.descriptionNota}"></td>
-    								<td class="text-center"><a th:href="@{/tablero/eliminarNota?id=}+${no.idNota}">Eliminar</a></td>    								
-    								<td class="text-center"><a th:href="@{'/tablero/modificarNota/'}+${no.idNota}">Modificar</a></td>
+    								<td class="text-center">
+    									<a th:href="@{'/tablero/modificarNota/'}+${no.idNota}"><i
+											class="icono edit bx bxs-pen nav_icon"> </i></a>
+										<a th:href="@{/tablero/eliminarNota?id=}+${no.idNota}"> <i
+											 class="icono delete bx bxs-trash nav_icon"> </i></a>
+    								</td>
     							</tr>
     						</tbody>
     						
@@ -122,7 +131,7 @@
     			</div>
     	</div>
 			
-		<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" 
+		<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle1" 
 		 	 aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -178,12 +187,12 @@
 			</div>
 		</div>
 	
-		<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" 
+		<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle2" 
 			 aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle">Pendiente</h5>
+			        <h5 class="modal-title" id="exampleModalLongTitle2">Pendiente</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
