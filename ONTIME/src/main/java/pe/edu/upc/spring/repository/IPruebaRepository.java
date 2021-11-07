@@ -13,4 +13,7 @@ import pe.edu.upc.spring.model.Prueba;
 public interface IPruebaRepository extends JpaRepository<Prueba, Integer> {
 	@Query("from Prueba p where p.namePrueba like %:namePrueba%")
 	List<Prueba> buscarNombre(@Param("namePrueba") String namePrueba);
+	
+	@Query("from Prueba p where p.Tevento.nombreTipoEvento like %:nombreTipoEvento%")
+	List<Prueba> buscarTevento(@Param("nombreTipoEvento") String nombreTipoEvento);
 }

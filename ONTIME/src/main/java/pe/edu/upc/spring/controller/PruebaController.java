@@ -138,16 +138,20 @@ public class PruebaController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Prueba prueba)
 			throws ParseException
 	{
+		model.put("prueba", new Prueba());
 		List<Prueba> listaPruebas;
 		prueba.setNamePrueba(prueba.getNamePrueba());
 		listaPruebas = pService.buscarNombre(prueba.getNamePrueba());
 		if(listaPruebas.isEmpty()) {
 			listaPruebas =pService.buscarNombre(prueba.getNamePrueba());
 		}
+		if(listaPruebas.isEmpty()) {
+			listaPruebas =pService.buscarTevento(prueba.getNamePrueba());
+		}
 		if (listaPruebas.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaPruebas", listaPruebas);		
-		return "buscar";//cambiar el return
+		return "listPrueba";//cambiar el return
 	}		
 }

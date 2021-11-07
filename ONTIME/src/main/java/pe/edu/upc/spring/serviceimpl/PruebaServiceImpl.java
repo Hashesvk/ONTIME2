@@ -56,5 +56,10 @@ public class PruebaServiceImpl implements IPruebaService {
 	public List<Prueba> buscarNombre(String namePrub) {
 		return dPrueba.buscarNombre(namePrub);
 	}
-
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Prueba> buscarTevento(String nombreTevento) {
+		return dPrueba.buscarTevento(nombreTevento);
+	}
 }
