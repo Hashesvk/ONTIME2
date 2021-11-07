@@ -57,5 +57,11 @@ public class FotoServiceImpl implements IFotoService {
 	public List<Foto> buscarNombre(String namePho) {
 		return dFoto.buscarNombre(namePho);
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Foto> buscarTevento(String nombreTevento) {
+		return dFoto.buscarTevento(nombreTevento);
+	}
 
 }
