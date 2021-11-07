@@ -134,6 +134,7 @@ public class DeudaController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Deuda deuda)
 			throws ParseException
 	{
+		model.put("deuda", new Deuda());
 		List<Deuda> listaDeudas;
 		deuda.setNameCreditor(deuda.getNameCreditor());
 		listaDeudas = dService.buscarNombre(deuda.getNameCreditor());
@@ -144,6 +145,6 @@ public class DeudaController {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaDeudas", listaDeudas);		
-		return "buscar";
+		return "listDeuda";
 	}		
 }
