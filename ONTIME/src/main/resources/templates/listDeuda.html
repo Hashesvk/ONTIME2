@@ -19,10 +19,17 @@
 
 	<body oncontextmenu="return false" class="snippet-body" id="body-pd">
     	<div th:replace="fragments/header :: header"> </div>
+    		<div class="container">
+    			 
+    		
+    		</div>	 
+			    	
+    					
     	
-    	<div class="container">  	 
+    	<div class="container">  	
+    	
 			   <div class="row">   	
-    			<form id="myform">
+    			<form id="myform" th:action="@{/deuda/buscar}" method="post" th:object="${deuda}" >
     				<div class="col-md-12 column">
     					
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
@@ -30,9 +37,21 @@
     					
 						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
   						 data-toggle="modal" data-target="#exampleModalLong">Modificar Deuda</button>	
-  						 
-  						 <button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong">Buscar Deuda</button>	
+  						 <div class="row clearfix">
+    			 			
+       							<div class="col-md-12 column">
+       								
+    									<div class="form-group">
+    										<input type="text" class="form-control" th:field="*{nameCreditor}"
+    											id="buscar" placeholder=" buscar por Nombre">
+    										</input>
+    						 			<button style="margin-top: 50px;" type="submit" class="botones dos btn btn-primary">Buscar Deuda</button>
+    						 			<button style="margin-top: 50px;" href="/deuda/listar" class="botones dos btn btn-primary">Cancelar</button>	
+    									</div>
+    								
+       							</div>
+    			 			
+    					 </div>
     					
     					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
     						<thead>
