@@ -120,13 +120,6 @@ public class NotaController {
 		return "listNota";
 	}	
 	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("nota", new Nota());
-		return "buscar";
-	}	
-	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Nota nota)
 			throws ParseException

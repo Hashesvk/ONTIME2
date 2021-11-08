@@ -30,6 +30,7 @@ table {
   text-align: center;
   overflow: hidden;
   margin: 1rem;
+  width: 90vw;
 }
   thead {
     box-shadow: 0 5px 10px #e1e5ee;
@@ -49,8 +50,7 @@ table {
 
 .botones{
 	font-family: Mukta, sans-serif;
-	margin-bottom: 15px;
-	margin-right: 10px;
+	margin: 1rem;
 	background-color: #33CCFF;
 	border-color: #33CCFF; 
   	font-weight: bold; 

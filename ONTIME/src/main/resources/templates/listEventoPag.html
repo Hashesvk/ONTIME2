@@ -27,7 +27,7 @@
 	class="snippet-body" id="body-pd">
 	<div th:replace="fragments/header :: header"></div>
 
-	<div class="container">
+	<div class="container1">
 		<div class="row">
 			<form id="myform" th:action="@{/eventopagina/buscarEvento}"
 				method="post" th:object="${evento}">
@@ -35,40 +35,38 @@
 
 					<div class="midiv">
 
-		<div class="row" style="align-items: center">
+						<div class="row" style="align-items: center">
 
-						<div class="col-sm-1">
-							<button style="margin-top: 50px; border-radius: 50%;"
-								type="button" class="botones dos btn btn-primary"
-								data-toggle="modal" data-target="#exampleModalLong">+</button>
+							<div class="col-sm-1">
+								<button type="button" class="botones uno btn btn-primary"
+									data-toggle="modal" data-target="#exampleModalLong">+</button>
+							</div>
+							<div class="col-6">
+
+								<input type="text" class="form-control"
+									th:field="*{nombreEvento}" id="buscar"
+									placeholder=" buscar por Nombre, complejidad, Tipo Evento">
+								</input>
+							</div>
+
+							<div class="col-sm">
+
+								<button  type="submit"
+									class="botones dos btn btn-primary">Buscar Evento</button>
+							</div>
+
+							<div class="col-sm">
+
+								<a  href="/eventopagina/listar"
+									class="botones dos btn btn-primary">Cancelar</a>
+							</div>
+
 						</div>
-						<div class="col-6">
-
-							<input type="text" class="form-control"
-								th:field="*{nombreEvento}" id="buscar"
-								placeholder=" buscar por Nombre, complejidad, Tipo Evento">
-							</input>
-						</div>
-
-						<div class="col-sm">
-
-							<button style="margin-top: 50px;" type="submit"
-								class="botones dos btn btn-primary">Buscar Evento</button>
-						</div>
-
-						<div class="col-sm">
-
-							<a style="margin-top: 50px;" href="/eventopagina/listar"
-								class="botones dos btn btn-primary">Cancelar</a>
-						</div>
-
-						</div>
-						</div>
+					</div>
 
 
 
-					<table
-						class="content-table" id="tab_logic">
+					<table class="content-table" id="tab_logic">
 						<thead>
 							<tr>
 								<th class="text-center">Nombre</th>

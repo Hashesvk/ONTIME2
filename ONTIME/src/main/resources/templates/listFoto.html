@@ -1,156 +1,181 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-	
-		<meta charset="UTF-8"></meta>
-		<title>Deudas</title>
-		
+<head>
+
+<meta charset="UTF-8"></meta>
+<title>Deudas</title>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/dive.css">
 <link rel="stylesheet" href="/css/style.css">
-<link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
+<link
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+	rel="stylesheet" />
 
 <link rel="stylesheet" href="/css/tablas.css">
 
 </head>
 
-	<body oncontextmenu="return false" class="snippet-body" id="body-pd">
-    	<div th:replace="fragments/header :: header"> </div>
-    	
-    <div class="container">  	 
-			   <div class="row">   	
-    			<form id="myform" th:action="@{/foto/buscar}" method="post" th:object="${foto}">
-    				<div class="col-md-12 column">
-    					
-						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong">Agregar Foto</button>	
-    					
-						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong">Modificar Foto</button>	
-  						 
-  						 <div class="row clearfix">
-    			 			
-       							<div class="col-md-12 column">
-       								
-    									<div class="form-group">
-    										<input type="text" class="form-control" th:field="*{namephoto}"
-    											id="buscar" placeholder=" buscar por Nombre y Tipo evento">
-    										</input>
-    						 			<button style="margin-top: 50px;" type="submit" class="botones dos btn btn-primary">Buscar Foto</button>
- 			    						<a style="margin-top: 50px;" href="/foto/listar" class="botones dos btn btn-primary">Cancelar</a>
-    						 				
-    									</div>
-    								
-       							</div>
-    			 			
-    					 </div>
-    					
-    					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
-    						<thead>
-    							<tr>
-    								<th class="text-center">Codigo</th>
-    								<th class="text-center">Nombre</th>
-    								<th class="text-center">Tipo Evento</th>
-    								<th class="text-center">Imagen</th>
-    								<th class="text-center">Operaciones</th>
-    							</tr>
-    						</thead>
-    						<tbody>
-    							<tr th:each="foto: ${listaFotos}">
-    								<td class="text-center" th:text="${foto.idFoto}"></td>
-    								<td class="text-center" th:text="${foto.namephoto}"></td>
-    							<td class="text-center" th:text="${foto.Tevento.nombreTipoEvento}"></td>
-    								
-    								<td class="text-center" align="center"><a
-										th:href="@{/foto/view/} + ${foto.idFoto}">
-							
-											<i class="fa fa-eye" style="color: gray;"></i>
-									</a></td>
-    								<td class="text-center">
-    								<a th:href="@{'/foto/modificar/'}+${foto.idFoto}"><i
-											class="icono edit bx bxs-pen nav_icon"> </i></a>
-									<a th:href="@{/foto/eliminar?id=}+${foto.idFoto}"><i
-											 class="icono delete bx bxs-trash nav_icon"> </i></a>
-    								</td>
-    							</tr>
-    						</tbody>
-    					</table> 
-    					
-    				</div>
-    			<div th:if="${mensaje}" class="alert alert-danger">
-    				<p th:text="${mensaje}"></p>
-    			</div>
-    		</form>
-  			</div>
-    		
-    	</div>
-    	
-    	<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Foto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      	  
-<form th:action="@{/foto/registrar}" method="post" th:object="${foto}" enctype="multipart/form-data">
-    			<div class="form-group">
-    			
-    				<label for="idfoto">ID:</label>
-    				<input type="text" class="form-control" th:field="*{idFoto}"></input>
-    				
-    				<div class="form-group">
-    					<label for="nombre">Nombre:</label>
-    					<input type="text" class="form-control" th:field="*{namephoto}" id="nombre"></input>
+<body oncontextmenu="return false" class="snippet-body" id="body-pd">
+	<div th:replace="fragments/header :: header"></div>
 
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('namephoto')}" 
-								th:errors="*{namephoto}">
-						</div>    					
-    				</div>
-    				
-    				<div class="form-group">
-									<label for="TIEVENTO">Tipo Evento:</label> <select
-										class="form-control" th:field="*{Tevento.idTipoEvento}">
-										<option th:each="p: ${listaTipoEventos}"
-											th:value="${p.idTipoEvento}" th:text="${p.nombreTipoEvento}"
-											th:selected="(${p.idTipoEvento} == *{Tevento.idTipoEvento})">
-										</option>
-									</select>
-					</div>  
+	<div class="container1">
+		<div class="row">
+			<form id="myform" th:action="@{/foto/buscar}" method="post"
+				th:object="${foto}">
 
-    				<div class="form-group">
-    					<label for="image">Imagen:</label>
-    					<input type="file" class="form-control" th:text="${foto.image}" name="file"></input>
+				<div class="col-md-12 column">
 
-						    					
-    				</div>
-    				
-    				
-    			</div>
-    			<button type="submit" class="btn btn-primary">Aceptar</button>
-    			<a href="/foto/listar" class="btn btn-danger">Cancelar</a>
-    		</form>        
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>       
-    					    
-        
-        </div>
-      </div>
-    </div>
-  </div>
+					<div class="midiv">
+
+						<div class="row" style="align-items: center">
+
+							<div class="col-sm-1">
+
+								<button type="button"
+									class="botones uno btn btn-primary" data-toggle="modal"
+									data-target="#exampleModalLong">+</button>
+
+							</div>
+
+							<div class="col-6">
+
+								<input type="text" class="form-control" th:field="*{namephoto}"
+									id="buscar" placeholder=" buscar por Nombre y Tipo evento">
+								</input>
+
+							</div>
+
+							<div class="col-sm">
+
+
+								<button type="submit"
+									class="botones dos btn btn-primary">Buscar Foto</button>
+
+							</div>
+							<div class="col-sm">
+
+
+								<a  href="/foto/listar"
+									class="botones dos btn btn-primary">Cancelar</a>
+
+							</div>
+
+						</div>
+					</div>
+
+
+					<table
+						class="content-table" id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">Codigo</th>
+								<th class="text-center">Nombre</th>
+								<th class="text-center">Tipo Evento</th>
+								<th class="text-center">Imagen</th>
+								<th class="text-center">Operaciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="foto: ${listaFotos}">
+								<td class="text-center" th:text="${foto.idFoto}"></td>
+								<td class="text-center" th:text="${foto.namephoto}"></td>
+								<td class="text-center"
+									th:text="${foto.Tevento.nombreTipoEvento}"></td>
+
+								<td class="text-center" align="center"><a
+									th:href="@{/foto/view/} + ${foto.idFoto}"> <i
+										class="fa fa-eye" style="color: gray;"></i>
+								</a></td>
+								<td class="text-center"><a
+									th:href="@{'/foto/modificar/'}+${foto.idFoto}"><i
+										class="icono edit bx bxs-pen nav_icon"> </i></a> <a
+									th:href="@{/foto/eliminar?id=}+${foto.idFoto}"><i
+										class="icono delete bx bxs-trash nav_icon"> </i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+		</div>
+
+		<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
+		</div>
+
+	</div>
+
+	<div class="modal fade" id="exampleModalLong" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLongTitle"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Foto</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<form th:action="@{/foto/registrar}" method="post"
+						th:object="${foto}" enctype="multipart/form-data">
+						<div class="form-group">
+
+							<label for="idfoto">ID:</label> <input type="text"
+								class="form-control" th:field="*{idFoto}"></input>
+
+							<div class="form-group">
+								<label for="nombre">Nombre:</label> <input type="text"
+									class="form-control" th:field="*{namephoto}" id="nombre"></input>
+
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('namephoto')}"
+									th:errors="*{namephoto}"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="TIEVENTO">Tipo Evento:</label> <select
+									class="form-control" th:field="*{Tevento.idTipoEvento}">
+									<option th:each="p: ${listaTipoEventos}"
+										th:value="${p.idTipoEvento}" th:text="${p.nombreTipoEvento}"
+										th:selected="(${p.idTipoEvento} == *{Tevento.idTipoEvento})">
+									</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="image">Imagen:</label> <input type="file"
+									class="form-control" th:text="${foto.image}" name="file"></input>
+
+
+							</div>
+
+
+						</div>
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+						<a href="/foto/listar" class="btn btn-danger">Cancelar</a>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/dive.js"></script>
 	<script src="/js/app2.js"></script>
-	</body>
+</body>
 
 </html>

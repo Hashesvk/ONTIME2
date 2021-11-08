@@ -122,12 +122,6 @@ public class NotificacionController {
 		return "listNotificacion";
 	}	
 	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("notificacion", new Notificacion());
-		return "buscar";
-	}	
 	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Notificacion notificaciones)

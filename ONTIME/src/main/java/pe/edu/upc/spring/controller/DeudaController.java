@@ -122,14 +122,7 @@ public class DeudaController {
 		dService.listarId(deuda.getIdDeuda());
 		return "listDeuda";
 	}	
-	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("deuda", new Deuda());
-		return "buscar";
-	}	
-	
+		
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Deuda deuda)
 			throws ParseException

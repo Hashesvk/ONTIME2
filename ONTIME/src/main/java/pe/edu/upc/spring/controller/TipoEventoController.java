@@ -109,13 +109,6 @@ public class TipoEventoController {
 		return "listTipoEvento";
 	}	
 	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("tipoevento", new TipoEvento());
-		return "buscar";
-	}	
-	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute TipoEvento tipoevento)
 			throws ParseException

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.spring.model.Pendiente;
-import pe.edu.upc.spring.model.Persona;
 import pe.edu.upc.spring.service.IPendienteService;
 import pe.edu.upc.spring.service.IPersonaService;
 
@@ -40,17 +39,7 @@ public class PendienteController {
 		model.put("listaPendientes", pService.listar());
 		return "listPendiente";
 	}
-	
-	@RequestMapping("/irRegistrar")
-	public String irPaginaRegistrar(Model model) {
-		
-		model.addAttribute("pendiente", new Pendiente());
-		model.addAttribute("persona", new Persona());
-		
-		model.addAttribute("listaPersonas", eService.listar());	
-		
-		return "pendiente";
-	}
+
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Pendiente objPendiente, BindingResult binRes, Model model)
@@ -123,12 +112,6 @@ public class PendienteController {
 		return "listEvento";
 	}	
 	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("pendiente", new Pendiente());
-		return "buscar";
-	}	
 	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Pendiente pendiente)

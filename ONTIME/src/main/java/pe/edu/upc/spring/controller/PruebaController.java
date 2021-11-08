@@ -127,12 +127,7 @@ public class PruebaController {
 		return "listPrueba";
 	}	
 	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("prueba", new Prueba());
-		return "buscar";//cambiar el return
-	}	
+
 	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Prueba prueba)

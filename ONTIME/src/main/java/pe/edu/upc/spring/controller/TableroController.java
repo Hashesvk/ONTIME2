@@ -3,13 +3,11 @@ package pe.edu.upc.spring.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -209,19 +207,6 @@ public class TableroController {
 		return "listTablero";
 	}	
 	
-	@RequestMapping("/irBuscarPendiente")
-	public String irBuscarPendiente(Model model) 
-	{
-		model.addAttribute("pendiente", new Pendiente());
-		return "buscar";
-	}	
-	
-	@RequestMapping("/irBuscarNota")
-	public String irBuscarNota(Model model) 
-	{
-		model.addAttribute("nota", new Nota());
-		return "buscar";
-	}	
 	
 	@RequestMapping("/buscarPendiente")
 	public String buscarPendiente(Map<String, Object> model, @ModelAttribute Pendiente pendiente)

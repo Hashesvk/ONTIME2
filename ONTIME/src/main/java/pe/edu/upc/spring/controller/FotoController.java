@@ -188,13 +188,6 @@ public class FotoController {
 		return "listFoto";
 	}	
 	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("foto", new Foto());
-		return "buscar";//cambiar el return
-	}	
-	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Foto foto)
 			throws ParseException
