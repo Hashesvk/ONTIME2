@@ -250,6 +250,7 @@ public class EventoPaginaController {
 			throws ParseException
 	{
 		model.put("evento", new Evento());
+		model.put("tipoevento", new TipoEvento());
 
 		List<Evento> listaEventos;
 		Evento.setNombreEvento(Evento.getNombreEvento());
@@ -263,6 +264,7 @@ public class EventoPaginaController {
 		if(listaEventos.isEmpty()) {
 			listaEventos =eService.buscarTevento(Evento.getNombreEvento());
 		}
+		
 		if (listaEventos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
@@ -282,6 +284,7 @@ public class EventoPaginaController {
 			throws ParseException
 	{
 		model.put("tipoevento", new TipoEvento());
+		model.put("evento", new Evento());
 
 		List<TipoEvento> listaTipoEventos;
 		tipoevento.setNombreTipoEvento(tipoevento.getNombreTipoEvento());

@@ -25,10 +25,11 @@ body {
  
 table {
   border-collapse: collapse;
-  box-shadow: 0 5px 10px #e1e5ee;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: white;
-  text-align: left;
+  text-align: center;
   overflow: hidden;
+  margin: 1rem;
 }
   thead {
     box-shadow: 0 5px 10px #e1e5ee;

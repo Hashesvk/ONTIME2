@@ -20,6 +20,9 @@ public interface IEventoRepository extends JpaRepository<Evento, Integer> {
 	@Query("from Evento e where e.tipoEvento.nombreTipoEvento like %:nombreTipoEvento%")
 	List<Evento> buscarTevento(@Param("nombreTipoEvento") String nombreTipoEvento);
 	
+	@Query("from Evento e where e.numprioridad like %:numprioridad%")
+	List<Evento> buscarPriori(@Param("numprioridad") String numprioridad);
 	
-	
+	@Query("from Evento e where e.numimportancia like %:numimportancia%")
+	List<Evento> buscarImpor(@Param("numimportancia") String numimportancia);
 }

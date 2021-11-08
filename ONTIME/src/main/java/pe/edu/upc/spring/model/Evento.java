@@ -45,14 +45,20 @@ public class Evento implements Serializable{
 	@Column(name = "descripcionEvento", length = 60, nullable=false)
 	private String descripcionEvento;
 
-	@Column(name = "ComplejidadEvento", length = 30, nullable=false)
+	@Column(name = "ComplejidadEvento", length = 2, nullable=false)
 	private int numcomplejidad ;
+	
+	@Column(name = "PrioridadEvento", length = 2, nullable=false)
+	private int numprioridad ;
 
+	@Column(name = "ImportanciaEvento", length = 2, nullable=false)
+	private int numimportancia ;
+	
 	public Evento() {
 		super();
 	}
 	
-	public Evento(int idEvento, String nombreEvento, TipoEvento tpevento, Persona persona, Date fecha, String descripcion, int complejidad) {
+	public Evento(int idEvento, String nombreEvento, TipoEvento tpevento, Persona persona, Date fecha, String descripcion, int complejidad, int prioridad, int importancia) {
 		super();
 		this.idEvento = idEvento;
 		this.descripcionEvento = descripcion;
@@ -61,6 +67,8 @@ public class Evento implements Serializable{
 		this.persona = persona;
 		this.tipoEvento = tpevento;
 		this.numcomplejidad = complejidad;
+		this.numprioridad = prioridad;
+		this.numimportancia = importancia;
 	}
 
 	public int getIdEvento() {
@@ -117,6 +125,22 @@ public class Evento implements Serializable{
 
 	public void setNumcomplejidad(int numcomplejidad) {
 		this.numcomplejidad = numcomplejidad;
+	}
+
+	public int getNumprioridad() {
+		return numprioridad;
+	}
+
+	public void setNumprioridad(int numprioridad) {
+		this.numprioridad = numprioridad;
+	}
+
+	public int getNumimportancia() {
+		return numimportancia;
+	}
+
+	public void setNumimportancia(int numimportancia) {
+		this.numimportancia = numimportancia;
 	}
 
 	

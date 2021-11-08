@@ -228,10 +228,13 @@ public class TableroController {
 			throws ParseException
 	{
 		model.put("pendiente", new Pendiente());
+		model.put("nota", new Nota());
+
 
 		List<Pendiente> listaPendientes;
 		pendiente.setNamePendiente(pendiente.getNamePendiente());
 		listaPendientes = pService.buscarNombre(pendiente.getNamePendiente());
+		
 		if(listaPendientes.isEmpty()) {
 			listaPendientes = pService.buscarNombre(pendiente.getNamePendiente());
 		}
@@ -258,16 +261,7 @@ public class TableroController {
 		model.put("listaNotas", listaNotas);		
 		return "buscar";
 	}	
-	@GetMapping("/chart")
-	public String getPieChart(Model model) {
-        Map<String, Integer> graphData = new TreeMap<>();
-        graphData.put("2016", 147);
-        graphData.put("2017", 1256);
-        graphData.put("2018", 3856);
-        graphData.put("2019", 19807);
-        model.addAttribute("chartData", graphData);
-        return "charts";
-    }
+
 	
 	
 }

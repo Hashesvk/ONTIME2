@@ -174,19 +174,6 @@ a {
   margin: 1rem;
 }
 
-.midivtabla{
-	
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-color: white;
-  padding: .7rem;
-  margin: 1rem;  	
-  height: 18rem; 
-  
-}
-
-
-
-
 .active {
     color: var(--naranja-color)
 }

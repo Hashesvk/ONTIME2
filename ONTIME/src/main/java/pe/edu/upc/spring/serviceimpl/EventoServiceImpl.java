@@ -74,6 +74,18 @@ public class EventoServiceImpl implements IEventoService{
 		return dEvento.buscarTevento(nombreTipoEvento);
 
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Evento> buscarPriori(String numprioridad) {
+		return dEvento.buscarPriori(numprioridad);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Evento> buscarImpor(String numimportancia) {
+		return dEvento.buscarImpor(numimportancia);
+	}
 	
 	
 }
