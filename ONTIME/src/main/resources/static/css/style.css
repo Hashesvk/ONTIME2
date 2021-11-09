@@ -80,6 +80,16 @@ a {
 
 }
 
+.contabla{
+	overflow: auto;
+	height: auto;
+	max-height: 25vw;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  	background-color: white;
+	margin:1rem;
+	
+}
+
 .logo {
     width: 10rem;
     height: 1.rem;

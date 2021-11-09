@@ -2,272 +2,334 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-		<meta charset="UTF-8"></meta>
-		<title>Tablero</title>	
-			
+<meta charset="UTF-8"></meta>
+<title>Tablero</title>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/dive.css">
 <link rel="stylesheet" href="/css/style.css">
-<link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
+<link
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+	rel="stylesheet" />
 <link rel="stylesheet" href="/css/tablas.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;500;600;700&family=Poppins:wght@400;600;700;800&display=swap"
+	rel="stylesheet">
 
-	
+
 </head>
 
 <body oncontextmenu="return false" class="snippet-body" id="body-pd">
-    	<div th:replace="fragments/header :: header"> </div>
-			<div class="container">  	 
-			   <div class="row">   	
-    			<form id="myform" th:action="@{/tablero/buscarPendiente}" method="post" th:object="${pendiente}">
-    				<div class="col-md-12 column">
-    				
-    					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong2">Agregar Pendiente</button>	
-    					
-						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong2">Modificar Pendiente</button>	
-  						 
-  						 <div class="row clearfix">
-    			 			
-       							<div class="col-md-12 column">
-       								
-    									<div class="form-group">
-    										<input type="text" class="form-control" th:field="*{namePendiente}"
-    											id="buscar" placeholder=" buscar por Nombre, Descripción y Evento">
-    										</input>
-    						 			<button style="margin-top: 50px;" type="submit" class="botones dos btn btn-primary">Buscar Pendiente</button>
-			    						<a style="margin-top: 50px;" href="/tablero/listar" class="botones dos btn btn-primary">Cancelar</a>
-    									</div>
-    								
-       							</div>
-    			 			
-    					 </div>
-    					
-    					
-    					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
-    					
-    						<thead>
-    							<tr>
-    								<th class="text-center">Codigo</th>
-    								<th class="text-center">Nombre de Pendiente</th>
-    								<th class="text-center">Tipo de Pendiente</th>
-    								<th class="text-center">Estado</th>
-    								<th class="text-center">Operaciones</th>
-    							</tr>
-    						</thead>
-    						
-    						<tbody>
-    							<tr th:each="pe: ${listaPendientes}">
-    								<td class="text-center" th:text="${pe.idPendiente}"></td>
-    								<td class="text-center" th:text="${pe.namePendiente}"></td>
-    								<td class="text-center" th:text="${pe.nameTipoPendiente}"></td>
-    								
-    								<td th:if="${pe.nameStatus == 'Incompleto'}" class="status-incompleto" th:text="${pe.nameStatus}">
-									</td>
-									<td th:if="${pe.nameStatus == 'En proceso'}"  class="status-enproceso" th:text="${pe.nameStatus}">
-									</td>
-									<td th:if="${pe.nameStatus == 'Completo'}" class="status-completo" th:text="${pe.nameStatus}">
-									</td>
-									
-    								<td class="text-center">
-    									<a  th:href="@{'/tablero/modificarPendiente/'}+${pe.idPendiente}"><i
-											class="icono edit bx bxs-pen nav_icon"> </i></a>
-										<a th:href="@{/tablero/eliminarPendiente?id=}+${pe.idPendiente}"> <i
-											 class="icono delete bx bxs-trash nav_icon"> </i></a>
-									</td>
-									
-    							</tr>
-    						</tbody>
-    						
-    					</table> 
-    					
-    				</div>
-    			 </form>
-    			</div>
-    			<div th:if="${mensaje}" class="alert alert-danger">
-    				<p th:text="${mensaje}"></p>
-    			</div>
-    		</div>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container1">
 
-    		<div class="container"> 
-    		    <div class="row"> 	    	
-    				<form id="myform">
-    				<div class="col-md-12 column">
-    				
-    					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong1">Agregar Nota</button>	
-    					
-						<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong1">Modificar Nota</button>	
-    					
-    					<button style="margin-top: 50px;" type="button" class="botones dos btn btn-primary"
-  						 data-toggle="modal" data-target="#exampleModalLong1">Buscar Nota</button>	
-    					
-    					<table style="text-align:center; margin: 0 auto;" class="content-table" id="tab_logic">
-    					
-    						<thead>
-    							<tr>
-    								<th class="text-center">Codigo</th>
-    								<th class="text-center">Nombre de la Nota</th>
-    								<th class="text-center">Descripción de la Nota</th>
-    								<th class="text-center">Operaciones</th>
-    							</tr>
-    						</thead>
-    						
-    						<tbody>
-    							<tr th:each="no: ${listaNotas}">
-    								<td class="text-center" th:text="${no.idNota}"></td>
-    								<td class="text-center" th:text="${no.nameNota}"></td>
-    								<td class="text-center" th:text="${no.descriptionNota}"></td>
-    								<td class="text-center">
-    									<a th:href="@{'/tablero/modificarNota/'}+${no.idNota}"><i
-											class="icono edit bx bxs-pen nav_icon"> </i></a>
-										<a th:href="@{/tablero/eliminarNota?id=}+${no.idNota}"> <i
-											 class="icono delete bx bxs-trash nav_icon"> </i></a>
-    								</td>
-    							</tr>
-    						</tbody>
-    						
-    					</table> 
-    					
-    				</div>
-    				</form>
-    			</div>
-    			<div th:if="${mensaje}" class="alert alert-danger">
-    				<p th:text="${mensaje}"></p>
-    			</div>
-    	</div>
-			
-		<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle1" 
-		 	 aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle1">Nota</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-      	  
-			        	<form th:action="@{/tablero/registrarNota}" method="post" th:object="${nota}">
-			    			<div class="form-group">
-			    			
-			    				<label for="idNota">ID:</label>
-			    				<input type="text" class="form-control" th:field="*{idNota}"></input>
-			    				
-			    				<div class="form-group">
-			    					<label for="nombre">Nombre de la nota:</label>
-			    					<input type="text" class="form-control" th:field="*{nameNota}" id="nombre"></input>
-			
-									<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameNota')}" 
-											th:errors="*{nameNota}">
-									</div>    					
-			    				</div>
-			    				
-			    				<div class="form-group">
-			    					<label for="descripcion">Descripción:</label>
-			    					<input type="text" class="form-control" th:field="*{descriptionNota}" id="descriptionNota"></input>
-			
-									<div 	class="alert alert-danger" th:if="${#fields.hasErrors('descriptionNota')}" 
-											th:errors="*{descriptionNota}">
-									</div>    					
-			    				</div>  			
-			    				
-			    				<div class="form-group">
-			    					<label for="persona">Persona:</label>
-			    					<select class="form-control" th:field="*{persona.idPersona}">
-			    						<option th:each="p: ${listaPersonas}"
-			    							th:value="${p.idPersona}"
-			    							th:text="${p.nombrePersona}"
-			    							th:selected="(${p.idPersona} == *{persona.idPersona})">
-			    						</option>    					
-			    					</select>
-			    				</div>    
-			 				
-			    			</div>
-			    			<button type="submit" class="btn btn-primary">Aceptar</button>
-			    			<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>
-			    		</form>
-    		</div>
-			</div>
+		<div class="row">
+
+			<form id="myform" th:action="@{/tablero/buscarPendiente}"
+				method="post" th:object="${pendiente}">
+
+				<div class="col-md-12 column">
+
+					<div class="midiv">
+
+						<div class="row" style="align-items: center">
+
+							<div class="col-sm-1">
+
+								<button type="button" class="botones uno btn btn-primary"
+									data-toggle="modal" data-target="#exampleModalLong2">+</button>
+
+							</div>
+
+							<div class="col-6">
+
+								<input type="text" class="form-control"
+									th:field="*{namePendiente}" id="buscar"
+									placeholder=" buscar por Nombre, Descripción y Evento">
+								</input>
+
+							</div>
+
+							<div class="col-sm">
+
+								<button type="submit" class="botones dos btn btn-primary">Buscar
+									Pendiente</button>
+							</div>
+
+							<div class="col-sm">
+
+								<a style="margin-top: 50px;" href="/tablero/listar"
+									class="botones dos btn btn-primary">Cancelar</a>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="contabla">
+
+						<table
+							class="content-table" id="tab_logic">
+
+							<thead>
+								<tr>
+									<th class="text-center">Codigo</th>
+									<th class="text-center">Nombre de Pendiente</th>
+									<th class="text-center">Tipo de Pendiente</th>
+									<th class="text-center">Estado</th>
+									<th class="text-center">Operaciones</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="pe: ${listaPendientes}">
+									<td class="text-center" th:text="${pe.idPendiente}"></td>
+									<td class="text-center" th:text="${pe.namePendiente}"></td>
+									<td class="text-center" th:text="${pe.nameTipoPendiente}"></td>
+
+									<td th:if="${pe.nameStatus == 'Incompleto'}"
+										class="status-incompleto" th:text="${pe.nameStatus}"></td>
+									<td th:if="${pe.nameStatus == 'En proceso'}"
+										class="status-enproceso" th:text="${pe.nameStatus}"></td>
+									<td th:if="${pe.nameStatus == 'Completo'}"
+										class="status-completo" th:text="${pe.nameStatus}"></td>
+
+									<td class="text-center"><a
+										th:href="@{'/tablero/modificarPendiente/'}+${pe.idPendiente}"><i
+											class="icono edit bx bxs-pen nav_icon"> </i></a> <a
+										th:href="@{/tablero/eliminarPendiente?id=}+${pe.idPendiente}">
+											<i class="icono delete bx bxs-trash nav_icon"> </i>
+									</a></td>
+
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+
+				</div>
+			</form>
+		</div>
+		<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
+		</div>
+	</div>
+
+	<div class="container1">
+		<div class="row">
+<form id="myform" th:action="@{/tablero/buscarNota}"
+				method="post" th:object="${nota}">
+				<div class="col-md-12 column">
+
+					<div class="midiv">
+
+						<div class="row" style="align-items: center">
+
+							<div class="col-sm-1">
+
+								<button type="button" class="botones uno btn btn-primary"
+									data-toggle="modal" data-target="#exampleModalLong1">+</button>
+
+							</div>
+
+							<div class="col-6">
+								<input type="text" class="form-control" th:field="*{nameNota}"
+									id="buscar"
+									placeholder=" buscar por Nombre, complejidad, Tipo Evento">
+								</input>
+							</div>
+
+							<div class="col-sm">
+
+
+								<button class="botones dos btn btn-primary" data-toggle="modal"
+									data-target="#exampleModalLong1">Buscar Nota</button>
+
+							</div>
+
+
+							<div class="col-sm">
+
+								<a href="/tablero/listar" class="botones dos btn btn-primary">Cancelar</a>
+							</div>
+
+						</div>
+					</div>
+					<div class="contabla">
+
+						<table
+							class="content-table" id="tab_logic">
+
+							<thead>
+								<tr>
+									<th class="text-center">Codigo</th>
+									<th class="text-center">Nombre de la Nota</th>
+									<th class="text-center">Descripción de la Nota</th>
+									<th class="text-center">Operaciones</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="no: ${listaNotas}">
+									<td class="text-center" th:text="${no.idNota}"></td>
+									<td class="text-center" th:text="${no.nameNota}"></td>
+									<td class="text-center" th:text="${no.descriptionNota}"></td>
+									<td class="text-center"><a
+										th:href="@{'/tablero/modificarNota/'}+${no.idNota}"><i
+											class="icono edit bx bxs-pen nav_icon"> </i></a> <a
+										th:href="@{/tablero/eliminarNota?id=}+${no.idNota}"> <i
+											class="icono delete bx bxs-trash nav_icon"> </i></a></td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+
+				</div>
+			</form>
+		</div>
+		<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
+		</div>
+	</div>
+
+	<div class="modal fade" id="exampleModalLong1" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLongTitle1"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle1">Nota</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<form th:action="@{/tablero/registrarNota}" method="post"
+						th:object="${nota}">
+						<div class="form-group">
+
+							<label for="idNota">ID:</label> <input type="text"
+								class="form-control" th:field="*{idNota}"></input>
+
+							<div class="form-group">
+								<label for="nombre">Nombre de la nota:</label> <input
+									type="text" class="form-control" th:field="*{nameNota}"
+									id="nombre"></input>
+
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('nameNota')}"
+									th:errors="*{nameNota}"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="descripcion">Descripción:</label> <input type="text"
+									class="form-control" th:field="*{descriptionNota}"
+									id="descriptionNota"></input>
+
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('descriptionNota')}"
+									th:errors="*{descriptionNota}"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="persona">Persona:</label> <select
+									class="form-control" th:field="*{persona.idPersona}">
+									<option th:each="p: ${listaPersonas}" th:value="${p.idPersona}"
+										th:text="${p.nombrePersona}"
+										th:selected="(${p.idPersona} == *{persona.idPersona})">
+									</option>
+								</select>
+							</div>
+
+						</div>
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+						<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>
+					</form>
+				</div>
 			</div>
 		</div>
-	
-		<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle2" 
-			 aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLongTitle2">Pendiente</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-					<form th:action="@{/tablero/registrarPendiente}" method="post" th:object="${pendiente}">
-		    			<div class="form-group">
-		    			
-		    				<label for="idPendiente">ID:</label>
-		    				<input type="text" class="form-control" th:field="*{idPendiente}"></input>
-		    				
-		    				<div class="form-group">
-		    					<label for="nombre">Nombre del pendiente:</label>
-		    					<input type="text" class="form-control" th:field="*{namePendiente}" id="nombre"></input>
-		
-								<div 	class="alert alert-danger" th:if="${#fields.hasErrors('namePendiente')}" 
-										th:errors="*{namePendiente}">
-								</div>    					
-		    				</div>	
-		    				
-		    				<div class="form-group">
-		    					<label for="descripcion">Tipo de Pendiente:</label>
-								<select class="form-control" th:field="*{nameTipoPendiente}">
-		    						<option value="Limpieza">Limpieza</option>    
-		    						<option value="Cocina">Cocina</option>       	
-		    						<option value="Compras">Compras</option>    
-		    						<option value="Trabajo">Trabajo</option>  
-		    						<option value="Universidad">Universidad</option>      
-		    						<option value="Otro">Otro</option> 					
-		    					</select>  					
-		    				</div>  	
-	   				
-		    				<div class="form-group">
-		    					<label for="descripcion">Estado:</label>
-								<select class="form-control" th:field="*{nameStatus}">
-		    						<option value="Incompleto">Incompleto</option>    
-		    						<option value="En proceso">En proceso</option>       	
-		    						<option value="Completo">Completo</option>    				
-		    					</select>  					
-		    				</div>  			
-		    				
-		    				<div class="form-group">
-		    					<label for="persona">Persona:</label>
-		    					<select class="form-control" th:field="*{persona.idPersona}">
-		    						<option th:each="p: ${listaPersonas}"
-		    							th:value="${p.idPersona}"
-		    							th:text="${p.nombrePersona}"
-		    							th:selected="(${p.idPersona} == *{persona.idPersona})">
-		    						</option>    					
-		    					</select>
-		    				</div>  
-		    						 				
-		    			</div>
-		    			<button type="submit" class="btn btn-primary">Aceptar</button>
-		    			<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>
-		    		</form>
-			      </div>
-			    </div>
-			  </div>
+	</div>
+
+	<div class="modal fade" id="exampleModalLong2" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLongTitle2"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle2">Pendiente</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/tablero/registrarPendiente}" method="post"
+						th:object="${pendiente}">
+						<div class="form-group">
+
+							<label for="idPendiente">ID:</label> <input type="text"
+								class="form-control" th:field="*{idPendiente}"></input>
+
+							<div class="form-group">
+								<label for="nombre">Nombre del pendiente:</label> <input
+									type="text" class="form-control" th:field="*{namePendiente}"
+									id="nombre"></input>
+
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('namePendiente')}"
+									th:errors="*{namePendiente}"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="descripcion">Tipo de Pendiente:</label> <select
+									class="form-control" th:field="*{nameTipoPendiente}">
+									<option value="Limpieza">Limpieza</option>
+									<option value="Cocina">Cocina</option>
+									<option value="Compras">Compras</option>
+									<option value="Trabajo">Trabajo</option>
+									<option value="Universidad">Universidad</option>
+									<option value="Otro">Otro</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="descripcion">Estado:</label> <select
+									class="form-control" th:field="*{nameStatus}">
+									<option value="Incompleto">Incompleto</option>
+									<option value="En proceso">En proceso</option>
+									<option value="Completo">Completo</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="persona">Persona:</label> <select
+									class="form-control" th:field="*{persona.idPersona}">
+									<option th:each="p: ${listaPersonas}" th:value="${p.idPersona}"
+										th:text="${p.nombrePersona}"
+										th:selected="(${p.idPersona} == *{persona.idPersona})">
+									</option>
+								</select>
+							</div>
+
+						</div>
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+						<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>
+					</form>
+				</div>
 			</div>
-    	
-    <script src="/js/popper.min.js"></script>
+		</div>
+	</div>
+
+	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/dive.js"></script>

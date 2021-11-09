@@ -25,11 +25,8 @@ body {
  
 table {
   border-collapse: collapse;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: white;
   text-align: center;
-  overflow: hidden;
-  margin: 1rem;
   width: 90vw;
 }
   thead {
