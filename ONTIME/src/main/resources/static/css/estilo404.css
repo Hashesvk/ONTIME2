@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapos.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: linear-gradient(45deg, #8500ff,#5acaff);
+    height: 100vh;
+}
+
+#container{
+    position:absolute;
+    /*top:10%;
+    left: 10%;
+    right: 10%;
+    bottom: 10%;
+    border-radius: 10px;*/
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/img/error404F.png'), #151729;
+    box-shadow: 0 15px 30px rgba(0,0,0,.5);
+}
+
+#container .content{
+    max-width: 600px;
+    text-align: center;
+}
+
+#container .content h2{
+    font-size: 18vw;
+    color: #2B2B2B;
+    line-height: 1em;
+}
+
+#container .content h4{
+    position: relative;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    background: #33CCFF;
+    font-weight: 300;
+    padding: 10px 20px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#container .content p{
+    color: #000000;
+    font-size: 1.2rem;
+}
+
+#container .content a{
+    position: relative;
+    display: inline-block;
+    padding: 10px 25px;
+    background: #FF3399;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 25px;
+    border-radius: 25px;
+    border-bottom: 4px solid #E43E91;
+}
+
+#container .content a:hover{
+    background: #E43E91;
+}

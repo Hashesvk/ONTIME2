@@ -212,8 +212,13 @@ public class TableroController {
 	public String buscarPendiente(Map<String, Object> model, @ModelAttribute Pendiente pendiente)
 			throws ParseException
 	{
-		model.put("pendiente", new Pendiente());
 		model.put("nota", new Nota());
+		model.put("pendiente", new Pendiente());
+		model.put("persona", new Persona());
+		
+		model.put("listaPendientes", pService.listar());
+		model.put("listaNotas", nService.listar());
+		model.put("listaPersonas", eService.listar());
 
 
 		List<Pendiente> listaPendientes;
