@@ -32,19 +32,27 @@
     	<div class="container">
     	<div class="row"> 
         Spring Boot Google Charts Example
-        <div id="chart_div" class="midiv"></div>
-        <div id="piechart" class="midiv"  style="width: 500px; height: 200px;"></div>
+        <div id="chart_div" class="contabla"></div>
+                <div id="bubble" class="contabla"></div>
+    
+        <div id="piechart" class="contabla"></div>
+      
         </div>
     </div>
     
     <script th:inline="javascript">
         var real_data = /*[[${chartData}]]*/'noValue';
+        var real_data2 = /*[[${chartData2}]]*/'noValue';
+        var real_data3 = /*[[${chartData3}]]*/'noValue';
+        
         $(document).ready(function() {
             google.charts.load('current', {
-                packages : [ 'corechart', 'bar' ]
+                packages : [ 'corechart', 'bar','gauge']
             });
             google.charts.setOnLoadCallback(drawColumnChart);
             google.charts.setOnLoadCallback(drawPieChart);
+            google.charts.setOnLoadCallback(BubbleChart);
+            
         });
         function drawColumnChart() {
             var data = new google.visualization.DataTable();
@@ -70,8 +78,8 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Year');
             data.addColumn('number', 'Views');
-            Object.keys(real_data).forEach(function(key) {
-                data.addRow([ key, real_data[key] ]);
+            Object.keys(real_data2).forEach(function(key) {
+                data.addRow([ key, real_data2[key] ]);
             });
             var options = {
                 title : 'Blog stats'
@@ -80,6 +88,27 @@
                     .getElementById('piechart'));
             chart.draw(data, options);
         }
+
+        function BubbleChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Evento');
+            data.addColumn('number', 'Importancia');
+
+            Object.keys(real_data3).forEach(function(key) {
+                data.addRow([ key, real_data3[key] ]);
+            });
+            var options = {
+                    width: 400, height: 120,
+                    redFrom: 9, redTo: 10,
+                    yellowFrom:7, yellowTo: 9,
+                    minorTicks: 5,
+                    max: 10
+                  };
+
+            var chart = new google.visualization.Gauge(document.getElementById('bubble'));
+
+            chart.draw(data, options);
+          }
     </script>
     
 	<script src="/js/app2.js"></script>
