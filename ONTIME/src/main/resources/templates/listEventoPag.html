@@ -263,7 +263,7 @@
 								<label for="persona">PERSONA</label> <select
 									class="form-control" th:field="*{persona.idPersona}">
 									<option th:each="p: ${listaPersonas}" th:value="${p.idPersona}"
-										th:text="${p.nombrePersona}"
+										th:text="${p.username}"
 										th:selected="(${p.idPersona} == *{persona.idPersona})">
 									</option>
 								</select>
