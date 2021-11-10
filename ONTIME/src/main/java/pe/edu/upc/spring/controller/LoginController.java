@@ -23,7 +23,7 @@ public class LoginController {
 	@Autowired
 	private IPersonaService pService;
 	
-	@GetMapping("/login")
+	@GetMapping("/login/ingresar")
 	public String login(Model model) {
 		model.addAttribute("persona", new Persona());
 		return "login";
@@ -51,6 +51,6 @@ public class LoginController {
 	
 	@GetMapping("/")
 	public String irLogin() {
-		return "redirect:/login";
+		return "redirect:/login/ingresar";
 	}
 }
