@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Persona;
+import pe.edu.upc.spring.model.Role;
 import pe.edu.upc.spring.repository.IPersonaRepository;
+import pe.edu.upc.spring.repository.IRoleRepository;
 import pe.edu.upc.spring.service.IPersonaService;
 
 @Service
@@ -16,6 +18,9 @@ public class PersonaServiceImpl implements IPersonaService {
 
 	@Autowired
 	private IPersonaRepository dPersona;
+	
+	@Autowired
+	private IRoleRepository roleRepository;
 	
 	@Override
 	@Transactional
@@ -49,6 +54,12 @@ public class PersonaServiceImpl implements IPersonaService {
 	@Transactional(readOnly = true)
 	public List<Persona> listar() {
 		return dPersona.findAll();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Role> listarRoles() {
+		return roleRepository.findAll();
 	}
 
 }
