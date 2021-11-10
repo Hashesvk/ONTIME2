@@ -27,8 +27,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers("/prueba/**").access("hasRole('ROLE_JOVEN')")
 					.antMatchers("/deuda/**").access("hasRole('ROLE_ADULTO')")
 					.and().formLogin()
-					.successHandler(successHandler).loginPage("/login").loginProcessingUrl("/login")
-					.defaultSuccessUrl("/tablero/bienvenido").permitAll().and().logout().logoutSuccessUrl("/login")
+					.successHandler(successHandler).loginPage("/login/ingresar").loginProcessingUrl("/login/ingresar")
+					.defaultSuccessUrl("/tablero/bienvenido").permitAll().and().logout().logoutSuccessUrl("/login/ingresar")
 					.permitAll().and().exceptionHandling().accessDeniedPage("/error403");
 
 		} catch (Exception e) {
