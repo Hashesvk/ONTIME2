@@ -252,14 +252,19 @@ public class EventoPaginaController {
 		model.put("evento", new Evento());
 		model.put("tipoevento", new TipoEvento());
 
+		model.put("listaEventos", eService.listar());
+		model.put("listaTipoEventos", tService.listar());
+
 		List<Evento> listaEventos;
 		Evento.setNombreEvento(Evento.getNombreEvento());
+	
+		
 		listaEventos = eService.buscarNombre(Evento.getNombreEvento());
 		if(listaEventos.isEmpty()) {
 			listaEventos =eService.buscarNombre(Evento.getNombreEvento());
 		}
 		if(listaEventos.isEmpty()) {
-			listaEventos =eService.buscarComple(Evento.getNombreEvento());
+			listaEventos =eService.buscarComple(Integer.parseInt(Evento.getNombreEvento()));
 		}
 		if(listaEventos.isEmpty()) {
 			listaEventos =eService.buscarTevento(Evento.getNombreEvento());

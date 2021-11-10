@@ -63,7 +63,7 @@ public class EventoServiceImpl implements IEventoService{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Evento> buscarComple(String numcomplejidad) {
+	public List<Evento> buscarComple(int numcomplejidad) {
 		return dEvento.buscarComple(numcomplejidad);
 
 	}
@@ -75,7 +75,7 @@ public class EventoServiceImpl implements IEventoService{
 
 	}
 
-	@Override
+	/*@Override
 	@Transactional(readOnly = true)
 	public List<Evento> buscarPriori(String numprioridad) {
 		return dEvento.buscarPriori(numprioridad);
@@ -86,6 +86,6 @@ public class EventoServiceImpl implements IEventoService{
 	public List<Evento> buscarImpor(String numimportancia) {
 		return dEvento.buscarImpor(numimportancia);
 	}
-	
+	*/
 	
 }

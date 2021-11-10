@@ -72,8 +72,10 @@
 									<th class="text-center">Nombre</th>
 									<th class="text-center">Fecha</th>
 									<th class="text-center">Descripcion</th>
-									<th class="text-center">Complejidad</th>
 									<th class="text-center">Tipo Evento</th>
+									<th class="text-center">Complejidad</th>
+									<th class="text-center">Prioridad</th>
+									<th class="text-center">Importancia</th>			
 									<th class="text-center">Operaciones</th>
 								</tr>
 							</thead>
@@ -85,13 +87,14 @@
 									<td class="text-center"
 										th:text="${eventopagina.descripcionEvento}"></td>
 									<td class="text-center"
+										th:text="${eventopagina.tipoEvento.nombreTipoEvento}"></td>
+									<td class="text-center"
 										th:text="${eventopagina.numcomplejidad}"></td>
 									<td class="text-center" th:text="${eventopagina.numprioridad}"></td>
 									<td class="text-center"
 										th:text="${eventopagina.numimportancia}"></td>
 
-									<td class="text-center"
-										th:text="${eventopagina.tipoEvento.nombreTipoEvento}"></td>
+
 									<td class="text-center"><a
 										th:href="@{'/eventopagina/modificarEvento/'}+${eventopagina.idEvento}"><i
 											class="icono edit bx bxs-pen nav_icon"> </i></a> <a
@@ -141,7 +144,7 @@
 
 
 								<button type="submit"
-									class="botones dos btn btn-primary">Buscar Deuda</button>
+									class="botones dos btn btn-primary">Buscar TipoEvento</button>
 
 							</div>
 							<div class="col-sm">
