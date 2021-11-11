@@ -1,7 +1,6 @@
 package pe.edu.upc.spring.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +20,7 @@ public class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name = "id_persona")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPersona;
 
@@ -30,21 +30,21 @@ public class Persona implements Serializable {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_persona")
-	private List<Role> roles;
+	@ManyToOne
+	@JoinColumn(name = "id_role")
+	private Role role;
 	
 	public Persona() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Persona(int idPersona, String username, String password, List<Role> roles) {
+	public Persona(int idPersona, String username, String password, Role role) {
 		super();
 		this.idPersona = idPersona;
 		this.username = username;
 		this.password = password;
-		this.roles = roles;
+		this.role = role;
 	}
 
 	/**
@@ -89,15 +89,13 @@ public class Persona implements Serializable {
 		this.password = password;
 	}
 
-	/**
-	 * @return the roles
-	 */
-	public List<Role> getRoles() {
-		return roles;
+	public void setRole(Role roles) {
+		this.role = roles;
 	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
+	
+	public Role getRole() {
+		return role;
 	}
+	
 
 }

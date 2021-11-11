@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Persona;
-import pe.edu.upc.spring.model.Role;
 import pe.edu.upc.spring.repository.IPersonaRepository;
 
 @Service
@@ -29,9 +28,8 @@ public class JpaUserDetailsService implements UserDetailsService {
 		System.out.println(username);
 		Persona persona = personaRepository.findByUsername(username);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for(Role role : persona.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(role.getAuthoriry()));
-		}
+		authorities.add(new SimpleGrantedAuthority(persona.getRole().getAuthoriry()));
+	
 		return new User(persona.getUsername(), persona.getPassword(), true, true, true, true, authorities);
 	}
 
