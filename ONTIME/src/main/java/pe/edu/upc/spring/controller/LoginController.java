@@ -40,10 +40,10 @@ public class LoginController {
 			boolean flag = pService.registrar(objPersona);
 			
 			if (flag)
-				return "redirect:/login";
+				return "redirect:/login/ingresar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/login";
+				return "redirect:/login/ingresar";
 				
 			}
 		}
