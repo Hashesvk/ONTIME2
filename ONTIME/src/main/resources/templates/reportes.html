@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8"></meta>
+<title>Reportess</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="/css/tablas.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;500;600;700&family=Poppins:wght@400;600;700;800&display=swap"
+	rel="stylesheet">
+
+</head>
+
+<body style="font-family: sans-serif;" oncontextmenu="return false"
+	class="snippet-body" id="body-pd">
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 column">
+				<h3 class="title-content">Contabiladores de Pendiente, según al Estado</h3>
+				<div class="contabla">
+					<table class="content-table" id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">Pendientes - Estado</th>
+								<th class="text-center">Cantidad</th>
+							</tr>						
+						</thead>
+						<tbody>
+							<tr th:each="reporte: ${reportes}">
+								<td class="text-center" th:text="${reporte.Name}"></td>
+								<td class="text-center"	th:text="${reporte.Amount}"></td>
+							</tr>
+						</tbody>
+					</table>
+					<div th:if="${mensaje}" class="alert alert-danger">
+								<p th:text="${mensaje}"></p>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/app2.js"></script>
+</body>
+
+</html>
