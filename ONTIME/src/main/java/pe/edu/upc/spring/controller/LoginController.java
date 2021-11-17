@@ -53,4 +53,9 @@ public class LoginController {
 	public String irLogin() {
 		return "redirect:/login/ingresar";
 	}
+	
+	@GetMapping("/logout")
+    public String irLogout() {
+        return "redirect:/login/ingresar";
+    }
 }
