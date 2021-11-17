@@ -13,7 +13,7 @@ public interface IEventoService {
 	List<Evento> listar();
 	List<Evento> buscarNombre(String nameEvento);
 	List<Evento> buscarComple(int numcomplejidad);
-	List<Evento> buscarTevento(String nombreTipoEvento);
+	List<Evento> buscarTevento(String nombreTEvento);
 	//List<Evento> buscarPriori(String numprioridad);
 	//List<Evento> buscarImpor(String numimportancia);
 

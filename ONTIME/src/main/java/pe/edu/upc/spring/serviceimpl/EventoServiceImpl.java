@@ -70,8 +70,8 @@ public class EventoServiceImpl implements IEventoService{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Evento> buscarTevento(String nombreTipoEvento) {
-		return dEvento.buscarTevento(nombreTipoEvento);
+	public List<Evento> buscarTevento(String nombreTEvento) {
+		return dEvento.buscarTevento(nombreTEvento);
 
 	}
 

@@ -93,14 +93,15 @@
 							</tbody>
 
 						</table>
+						<div th:if="${mensaje}" class="alert alert-danger">
+							<p th:text="${mensaje}"></p>
+					</div>
 					</div>
 
 				</div>
 			</form>
 		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+		
 	</div>
 
 	<div class="container1">
@@ -172,14 +173,15 @@
 							</tbody>
 
 						</table>
+						<div th:if="${mensaje}" class="alert alert-danger">
+							<p th:text="${mensaje}"></p>
+					</div>
 					</div>
 
 				</div>
 			</form>
 		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+		
 	</div>
 
 	<div class="modal fade" id="exampleModalLong1" tabindex="-1"

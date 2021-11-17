@@ -275,6 +275,14 @@ public class TableroController {
 	public String buscarNota(Map<String, Object> model, @ModelAttribute Nota nota)
 			throws ParseException
 	{
+		model.put("nota", new Nota());
+		model.put("pendiente", new Pendiente());
+		model.put("persona", new Persona());
+		
+		model.put("listaPendientes", pService.listar());
+		model.put("listaNotas", nService.listar());
+		model.put("listaPersonas", eService.listar());
+
 		List<Nota> listaNotas;
 		nota.setNameNota(nota.getNameNota());
 		listaNotas = nService.buscarNombre(nota.getNameNota());
@@ -285,6 +293,6 @@ public class TableroController {
 			model.put("mensaje", "No existen coincidencias");
 		}
 		model.put("listaNotas", listaNotas);		
-		return "buscar";
+		return "listTablero";
 	}	
 }
