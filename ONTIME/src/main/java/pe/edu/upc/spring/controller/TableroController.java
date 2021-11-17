@@ -190,7 +190,43 @@ public class TableroController {
 		
 		return "listTablero"; 
 	}		
+	/*
+	@RequestMapping("/listarStatusI")
+	public String listarPendientesI(Map<String, Object> model) {
+		model.put("nota", new Nota());
+		model.put("pendiente", new Pendiente());
+		model.put("persona", new Persona());
+		
+		model.put("listaPendientesI", pService.listarPendientesI());
+		model.put("listaNotas", nService.listar());
+		model.put("listaPersonas", eService.listar());
+		return "listTablero";
+	}
 	
+	@RequestMapping("/listarStatusE")
+	public String listarPendientesE(Map<String, Object> model) {
+		model.put("nota", new Nota());
+		model.put("pendiente", new Pendiente());
+		model.put("persona", new Persona());
+		
+		model.put("listaPendientesI", pService.listarPendientesE());
+		model.put("listaNotas", nService.listar());
+		model.put("listaPersonas", eService.listar());
+		return "listTablero";
+	}
+	
+	@RequestMapping("/listarStatusC")
+	public String listarPendientesC(Map<String, Object> model) {
+		model.put("nota", new Nota());
+		model.put("pendiente", new Pendiente());
+		model.put("persona", new Persona());
+		
+		model.put("listaPendientesC", pService.listarPendientesC());
+		model.put("listaNotas", nService.listar());
+		model.put("listaPersonas", eService.listar());
+		return "listTablero";
+	}
+		*/
 	@RequestMapping("/listarIdPendiente")
 	public String listarIdPendiente(Map<String, Object> model, @ModelAttribute Pendiente pendiente) 
 	throws ParseException
@@ -251,7 +287,4 @@ public class TableroController {
 		model.put("listaNotas", listaNotas);		
 		return "buscar";
 	}	
-
-	
-	
 }
