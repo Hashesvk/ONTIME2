@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Estadisticas</title>
+<title>Estadísticas</title>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,15 +30,13 @@
     	<div th:replace="fragments/header :: header"> </div>    
     	
     	<div class="container">
-    	<div class="row"> 
-        Spring Boot Google Charts Example
-        <div id="chart_div" class="contabla"></div>
+    		<div class="row"> 
+     		   Estadísticas
+        		<div id="chart_div" class="contabla"></div>
                 <div id="bubble" class="contabla"></div>
-    
-        <div id="piechart" class="contabla"></div>
-      
-        </div>
-    </div>
+           		<div id="piechart" class="contabla"></div>
+        	</div>
+    	</div>
     
     <script th:inline="javascript">
         var real_data = /*[[${chartData}]]*/'noValue';
