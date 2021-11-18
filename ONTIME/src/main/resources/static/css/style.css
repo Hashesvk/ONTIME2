@@ -33,7 +33,8 @@ body {
 }
 
 a {
-    text-decoration: none
+    text-decoration: none;
+    
 }
 
 .header {
@@ -51,6 +52,12 @@ a {
     transition: .5s
 }
 
+.logout {
+    position: relative;
+    color: var(--first-color-light);
+    margin-bottom: 1.5rem;
+    transition: .3s
+}
 
 .header_toggle {
     color: var(--first-color);
@@ -84,7 +91,13 @@ a {
 	overflow: auto;
 	height: auto;
 	max-height: 25vw;
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  	background-color: white;
+	margin:1rem;
+	
+}
+.contabla2{
+	height: auto;
+	max-height: 26vw;
   	background-color: white;
 	margin:1rem;
 	
@@ -183,7 +196,13 @@ a {
   padding: .7rem;
   margin: 1rem;
 }
-
+.midiv2{
+	
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+  padding: .7rem;
+  margin: 2rem;
+}
 .active {
     color: var(--naranja-color)
 }

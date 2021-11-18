@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Estad�sticas</title>
+<meta charset="UTF-8">
+<title>Estadisticas</title>
 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,25 +16,29 @@
 
 <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script type="text/javascript"
     src="https://www.gstatic.com/charts/loader.js"></script>
     
-<link rel="stylesheet" href="/css/tablas.css">    
 <link rel="stylesheet" href="/css/style.css">
     
     
 </head>
-<body style="font-family: sans-serif;" oncontextmenu="return false" class="snippet-body" id="body-pd">
+<body oncontextmenu="return false" class="snippet-body" id="body-pd">
     	<div th:replace="fragments/header :: header"> </div>    
     	
-    	<div class="container">
+    	<div class="container1">
     		<div class="row"> 
-     		   Estad�sticas
-        		<div id="chart_div" class="contabla"></div>
-                <div id="bubble" class="contabla"></div>
-           		<div id="piechart" class="contabla"></div>
+     		   Estadísticas
+     		   <div class="midiv2"> 
+        		<div id="chart_div" class="contabla2"></div>
+        		</div>
+        		 <div class="midiv2"> 
+        		<div id="piechart" class="contabla2"></div>
+        		</div>
+        		<div class="midiv2"> 
+        		<div id="bubble" class="contabla"></div>
+        		</div>    		 
+           		
         	</div>
     	</div>
     
@@ -42,6 +46,7 @@
         var real_data = /*[[${chartData}]]*/'noValue';
         var real_data2 = /*[[${chartData2}]]*/'noValue';
         var real_data3 = /*[[${chartData3}]]*/'noValue';
+
         
         $(document).ready(function() {
             google.charts.load('current', {
@@ -54,18 +59,21 @@
         });
         function drawColumnChart() {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Year');
-            data.addColumn('number', 'Views');
+            data.addColumn('string', 'TipoEvento');
+            data.addColumn('number', 'Eventos');
             Object.keys(real_data).forEach(function(key) {
                 data.addRow([ key, real_data[key] ]);
             });
             var options = {
-                title : 'Blog stats',
+            		width: $(window).width()*0.8,
+                    height: $(window).height()*0.3,
+
+                title : 'Eventos por tipo de evento',
                 hAxis : {
-                    title : 'Years',
+                    title : 'Tipo eventos',
                 },
                 vAxis : {
-                    title : 'View Count'
+                    title : '# deEventos'
                 }
             };
             var chart = new google.visualization.ColumnChart(document
@@ -74,13 +82,14 @@
         }
         function drawPieChart() {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Year');
-            data.addColumn('number', 'Views');
+            data.addColumn('string', 'Evento');
+            data.addColumn('number', 'Complejidad');
             Object.keys(real_data2).forEach(function(key) {
                 data.addRow([ key, real_data2[key] ]);
             });
             var options = {
-                title : 'Blog stats'
+                title : 'Distribución de complejidad según eventos',
+
             };
             var chart = new google.visualization.PieChart(document
                     .getElementById('piechart'));
@@ -96,7 +105,8 @@
                 data.addRow([ key, real_data3[key] ]);
             });
             var options = {
-                    width: 400, height: 120,
+                    title : 'Distribución de importancia según eventos',
+                    height: $(window).height()*0.2,
                     redFrom: 9, redTo: 10,
                     yellowFrom:7, yellowTo: 9,
                     minorTicks: 5,
