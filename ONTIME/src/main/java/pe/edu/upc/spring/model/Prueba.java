@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 
 
@@ -25,6 +26,7 @@ public class Prueba implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPrueba;
 	
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales")
 	@Column(name="nombrePrueba", length=30, nullable=false)
 	private String namePrueba;//acreedor
 	
@@ -43,7 +45,9 @@ public class Prueba implements Serializable {
 		super();
 	}
 
-	public Prueba(int idPrueba, String namePrueba, float numberGrade, float numberweighted, TipoEvento tevento) {
+	public Prueba(int idPrueba,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales") String namePrueba,
+			float numberGrade, float numberweighted, TipoEvento tevento) {
 		super();
 		this.idPrueba = idPrueba;
 		this.namePrueba = namePrueba;
@@ -92,6 +96,7 @@ public class Prueba implements Serializable {
 		Tevento = tevento;
 	}
 
+	
 
 	
 	
