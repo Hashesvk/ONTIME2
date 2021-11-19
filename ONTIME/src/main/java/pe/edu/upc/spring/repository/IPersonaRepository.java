@@ -8,4 +8,5 @@ import pe.edu.upc.spring.model.Persona;
 @Repository
 public interface IPersonaRepository extends JpaRepository<Persona, Integer> {
 	public Persona findByUsername(String username);
+	
 }
