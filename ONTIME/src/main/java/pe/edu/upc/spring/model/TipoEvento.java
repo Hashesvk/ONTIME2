@@ -1,12 +1,14 @@
 package pe.edu.upc.spring.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +26,8 @@ public class TipoEvento implements Serializable{
 	
 	@Column(name="nombreTipoEvento", length = 10, nullable = false)
 	private String nombreTipoEvento;
+	
+	
 
 	public TipoEvento(int idTipoEvento, String descripcionTipoEvento, String nombreTipoEvento) {
 		super();

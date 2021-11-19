@@ -13,4 +13,6 @@ public interface IPersonaService {
 	public Optional<Persona> buscarId(int idPersona);
 	List<Persona> listar();
 	List<Role> listarRoles();
+	
+	List<Persona> listarporUsername(String username);
 }

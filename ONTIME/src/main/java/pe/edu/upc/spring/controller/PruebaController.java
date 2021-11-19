@@ -57,15 +57,21 @@ public class PruebaController {
 		if (binRes.hasErrors()) 
 			{
 				model.addAttribute("listaTipoEventos", tpService.listar());
-				return "listPrueba";
+				return "redirect:/prueba/listar";
 			}
 		else {
 			boolean flag = pService.registrar(objPrueba);
-			if (flag)
+			if (flag) {
+				
+				
 				return "redirect:/prueba/listar";
+				
+				}
 			else {
+				model.addAttribute("listaPruebas", pService.listar());
+
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/prueba/listar";
+				return "listPrueba";
 			}
 		}
 	}

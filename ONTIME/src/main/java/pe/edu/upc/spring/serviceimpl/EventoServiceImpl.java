@@ -74,7 +74,13 @@ public class EventoServiceImpl implements IEventoService{
 		return dEvento.buscarTevento(nombreTEvento);
 
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Evento> buscarporUsername(String username) {
+		return dEvento.findByPersonaUsername(username);
 
+	}
 	/*@Override
 	@Transactional(readOnly = true)
 	public List<Evento> buscarPriori(String numprioridad) {

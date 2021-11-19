@@ -14,6 +14,7 @@ public interface IEventoService {
 	List<Evento> buscarNombre(String nameEvento);
 	List<Evento> buscarComple(int numcomplejidad);
 	List<Evento> buscarTevento(String nombreTEvento);
+	List<Evento> buscarporUsername(String username);
 	//List<Evento> buscarPriori(String numprioridad);
 	//List<Evento> buscarImpor(String numimportancia);
 

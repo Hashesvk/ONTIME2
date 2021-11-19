@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,4 +63,13 @@ public class PersonaServiceImpl implements IPersonaService {
 		return roleRepository.findAll();
 	}
 
+	@Override
+	public List<Persona> listarporUsername(String username) {
+		Persona persona= dPersona.findByUsername(username);
+		List<Persona> personas=new ArrayList<Persona>();
+		personas.add(persona);
+		return personas;
+	}
+	
+	
 }
