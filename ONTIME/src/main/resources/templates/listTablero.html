@@ -34,9 +34,9 @@
 				method="post" th:object="${pendiente}">
 
 				<div class="col-md-12 column">
-					<div class="midiv">
+					<div class="midiv" style="box-shadow: none;">
 						<div class="row" style="align-items: center">
-							<div class="col-sm-1">
+							<div style="margin-left: 20px">
 								<button type="button" class="botones uno btn btn-primary"
 									data-toggle="modal" data-target="#exampleModalLong2">+</button>
 							</div>
@@ -46,13 +46,13 @@
 									placeholder=" buscar por Nombre, Descripción y Evento">
 								</input>
 							</div>
-							<div class="col-sm">
+							<div>
 								<button type="submit" class="botones dos btn btn-primary">Buscar
 									Pendiente</button>
 							</div>
-							<div class="col-sm">
+							<div>
 								<a href="/tablero/listar"
-									class="botones dos btn btn-primary">Cancelar</a>
+									style="background-color: #FF3399; border-color: #FF3399;" class="botones dos btn btn-primary">Cancelar</a>
 							</div>
 						</div>
 					</div>
@@ -109,14 +109,15 @@
 		
 			<form id="myform" th:action="@{/tablero/buscarNota}"
 				method="post" th:object="${nota}">
+				
 				<div class="col-md-12 column">
 
-					<div class="midiv">
+					<div class="midiv" style="box-shadow: none;">
 
 						<div class="row" style="align-items: center">
 
-							<div class="col-sm-1">
-
+							<div style="margin-left: 20px">
+							
 								<button type="button" class="botones uno btn btn-primary"
 									data-toggle="modal" data-target="#exampleModalLong1">+</button>
 
@@ -129,7 +130,7 @@
 								</input>
 							</div>
 
-							<div class="col-sm">
+							<div>
 
 
 								<button class="botones dos btn btn-primary" data-toggle="modal"
@@ -138,9 +139,9 @@
 							</div>
 
 
-							<div class="col-sm">
+							<div>
 
-								<a href="/tablero/listar" class="botones dos btn btn-primary">Cancelar</a>
+								<a href="/tablero/listar"  style="background-color: #FF3399; border-color: #FF3399;" class="botones dos btn btn-primary">Cancelar</a>
 							</div>
 
 						</div>
