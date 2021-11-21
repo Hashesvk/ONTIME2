@@ -20,27 +20,27 @@
 						<div class="heading">
 							<h2>Bienvenido</h2>
 							<h6>Todavìa no estás registrado?</h6>
-							<a href="#" class="toggle">Sign up</a>
+							<a href="#" class="toggle">Regístrate</a>
 						</div>
 
 						<div class="actual-form">
 							<div class="input-wrap">
 								<input type="text" name="username" id="username"
 									class="input-field" autofocus="true"
-									required="true" /> <label>Name</label>
+									required="true" /> <label>Nombre</label>
 							</div>
 
 							<div class="input-wrap">
 								<input type="password" name="password" id="password"
 									class="input-field" required="true" />
-								<label>Password</label>
+								<label>Contraseña</label>
 							</div>
 
-							<input type="submit" value="Sign In" class="sign-btn"></input>
+							<input type="submit" value="Iniciar Sesión" class="sign-btn"></input>
 
 							<p class="text">
-								Contraseña olvidada o datos olvidados ? <a href="#">Get help</a>
-								signing in
+								Este proyecto fue realizado para el curso de Programación en Web
+								2021-2
 							</p>
 						</div>
 					</form>
@@ -51,9 +51,9 @@
 						</div>
 						
 						<div class="heading">
-							<h2>Empieza con ONTIME</h2>
+							<h2>Empecemos</h2>
 							<h6>Ya tienes una cuenta?</h6>
-							<a href="#" class="toggle"> Sign in </a>
+							<a href="#" class="toggle">Iniciar Sesión</a>
 						</div>
 
 
@@ -68,30 +68,44 @@
 							<div class="input-wrap">
 								<input type="text" minlength="4" class="input-field"
 									autocomplete="off" required="true" th:field="*{username}"
-									id="nombre"></input><label>Name</label>
+									id="nombre"></input><label>Nombre</label>
 							</div>
 
 							<div class="input-wrap">
 								<input type="password" minlength="4" class="input-field"
 									autocomplete="off" required="true"
-									th:field="*{password}" id="contrasena"></input><label>password</label>
+									th:field="*{password}" id="contrasena"></input><label>Contraseña</label>
 							</div>
 							
-							<div class= "input-wrap">
-								<label style="top: 0%; padding-bottom: 10%">Tipo de Persona: </label>							
-								<select	class="form-control" th:field="*{role.id}">
-									<option value="1">Joven</option>
-									<option value="2">Adulto</option>															
+							<div class= "input-wrap">					
+								<select	style="	background: #fff;
+									width: 100%;
+									box-shadow: 0px 0px 0px rgba(0, 0, 0, .16);
+									border-radius: 4px;
+									font-family: Poppins, sans-serif;
+									padding: 4px;
+									border-color: #BABBBF;
+									color: #BABBBF;
+									display: flex;
+									justify-content: space-between;
+									transition: .2s ease all;
+									z-index: 200;"
+									class="form-control" th:field="*{role.id}">
+									<option 
+									
+									value="1">Joven</option>
+									<option 								
+									value="2">Adulto</option>															
 
 								</select>
 								
 							</div>
 
-							<input type="submit" value="Sign Up" class="sign-btn" />
+							<input type="submit" value="Registrarme" class="sign-btn" />
 
 							<p class="text">
-								Al registrarse, estoy de acuerdo con <a href="#">Términos de
-									servicio</a> and <a href="#">Políticas de privacidad</a>
+								Este proyecto fue realizado para el curso de Programación en Web
+								2021-2
 							</p>
 						</div>
 					</form>
@@ -99,17 +113,17 @@
 
 				<div class="carousel">
 					<div class="images-wrapper">
-						<img src="/img/imagen1.jpeg" class="image img-1 show" alt="" /> <img
-							src="/img/imagen2.jpeg" class="image img-2" alt="" /> <img
-							src="/img/imagen3.jpeg" class="image img-3" alt="" />
+						<img src="/img/imagen1.png" class="image img-1 show" alt="" /> <img
+							src="/img/imagen2.png" class="image img-2" alt="" /> <img
+							src="/img/imagen3.png" class="image img-3" alt="" />
 					</div>
 
 					<div class="text-slider">
 						<div class="text-wrap">
 							<div class="text-group">
-								<h2>Crea tu propio calendario</h2>
-								<h2>Organiza tus eventos</h2>
-								<h2>Planea tu día</h2>
+								<h2 style="color: white;">Crea tu propio calendario</h2>
+								<h2 style="color: white;">Organiza tus eventos</h2>
+								<h2 style="color: white;">Planea tu día</h2>
 							</div>
 						</div>
 
