@@ -57,4 +57,11 @@ public class DeudaServiceImpl implements IDeudaService {
 		return dDeuda.buscarNombre(nameCredit);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Deuda> buscarporUsername(String username) {
+		return dDeuda.findByPersonaUsername(username);
+
+	}
+	
 }

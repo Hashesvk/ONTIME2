@@ -59,5 +59,11 @@ public class PendienteServiceImpl implements IPendienteService{
 	public List<Pendiente> buscarNombre(String namePendiente) {
 		return dPendiente.buscarNombre(namePendiente);
 
-	}	
+	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Pendiente> buscarporUsername(String username) {
+		return dPendiente.findByPersonaUsername(username);
+
+	}
 }

@@ -13,4 +13,5 @@ import pe.edu.upc.spring.model.Pendiente;
 public interface IPendienteRepository extends JpaRepository<Pendiente, Integer> {
 	@Query("from Pendiente p where p.namePendiente like %:namePendiente%")
 	List<Pendiente> buscarNombre(@Param("namePendiente") String namePendiente);
+	List<Pendiente> findByPersonaUsername(String username);
 }

@@ -57,4 +57,10 @@ public class NotaServiceImpl implements INotaService {
 		return dNota.buscarNombre(nameNota);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Nota> buscarporUsername(String username) {
+		return dNota.findByPersonaUsername(username);
+
+	}
 }

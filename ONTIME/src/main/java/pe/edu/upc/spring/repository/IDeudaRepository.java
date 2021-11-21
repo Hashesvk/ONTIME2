@@ -13,4 +13,5 @@ import pe.edu.upc.spring.model.Deuda;
 public interface IDeudaRepository extends JpaRepository<Deuda, Integer> {
 	@Query("from Deuda d where d.nameCreditor like %:nameCreditor%")
 	List<Deuda> buscarNombre(@Param("nameCreditor") String nameCreditor);
+	List<Deuda> findByPersonaUsername(String username);
 }

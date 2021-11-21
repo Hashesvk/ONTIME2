@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import pe.edu.upc.spring.model.Deuda;
-
 public interface IDeudaService {
 	public boolean registrar(Deuda deuda);
 	public void eliminar(int idDeuda);
@@ -12,4 +11,5 @@ public interface IDeudaService {
 	public Optional<Deuda> buscarId(int idDeuda);
 	List<Deuda> listar();
 	List<Deuda> buscarNombre(String nameCredit);
+	List<Deuda> buscarporUsername(String username);
 }

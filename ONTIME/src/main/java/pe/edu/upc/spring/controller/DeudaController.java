@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,7 +40,9 @@ public class DeudaController {
 		
 	@RequestMapping("/")
 	public String irPaginaListadoDeudas(Map<String, Object> model) {
-		model.put("listaDeudas", dService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaDeudas", dService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", pService.listarporUsername(currentUserName));
 		return "listDeuda";
 	}	
 	
@@ -49,7 +52,8 @@ public class DeudaController {
 	{
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaPersonas", pService.listar());
+				final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+				model.addAttribute("listaPersonas", pService.listarporUsername(currentUserName));
 				return "listDeuda";
 			}
 		else {
@@ -67,16 +71,15 @@ public class DeudaController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{		
-		model.addAttribute("deuda", new Deuda());
-		model.addAttribute("listaDeudas", dService.listar());
-		
 		Optional<Deuda> objDeuda = dService.buscarId(id);
 		if (objDeuda == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/deuda/listar";
 		}
 		else {
-			model.addAttribute("listaPersonas", pService.listar());				
+			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+			model.addAttribute("listaDeudas", dService.buscarporUsername(currentUserName));
+			model.addAttribute("listaPersonas", pService.listarporUsername(currentUserName));			
 					
 			if (objDeuda.isPresent())
 				objDeuda.ifPresent(o -> model.addAttribute("deuda", o));
@@ -88,12 +91,14 @@ public class DeudaController {
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		model.put("deuda", new Deuda());
-		model.put("listaDeudas", dService.listar());		
-		model.put("listaPersonas", pService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaDeudas", dService.buscarporUsername(currentUserName));		
+		model.put("listaPersonas", pService.listarporUsername(currentUserName));	
 		try {
 			if (id!=null && id>0) {
 				dService.eliminar(id);
-				model.put("listaDeudas", dService.listar());
+				model.put("listaDeudas", dService.buscarporUsername(currentUserName));	
+				model.put("listaPersonas", pService.listarporUsername(currentUserName));
 			}
 		}
 		catch(Exception ex) {
@@ -108,11 +113,14 @@ public class DeudaController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaDeudas", dService.listar());
+
 		model.put("deuda", new Deuda());
 		model.put("persona", new Persona());
-		model.put("listaPersonas", pService.listar());
-
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaDeudas", dService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", pService.listarporUsername(currentUserName));
+		
 		return "listDeuda"; 
 	}		
 	@RequestMapping("/listarId")

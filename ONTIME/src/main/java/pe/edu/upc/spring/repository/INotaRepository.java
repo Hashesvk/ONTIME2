@@ -13,4 +13,5 @@ import pe.edu.upc.spring.model.Nota;
 public interface INotaRepository extends JpaRepository<Nota, Integer> {
 	@Query("from Nota n where n.nameNota like %:nameNota%")
 	List<Nota> buscarNombre(@Param("nameNota") String nameNota);
+	List<Nota> findByPersonaUsername(String username);
 }

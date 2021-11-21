@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,7 +48,8 @@ public class TableroController {
 	{
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaPersonas", eService.listar());
+				final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+				model.addAttribute("listaPersonas", eService.listarporUsername(currentUserName));
 				return "listTablero";
 			}
 		else {
@@ -67,7 +69,8 @@ public class TableroController {
 	{
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaPersonas", eService.listar());
+				final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+				model.addAttribute("listaPersonas", eService.listarporUsername(currentUserName));
 				return "listTablero";
 			}
 		else {
@@ -85,11 +88,6 @@ public class TableroController {
 	public String modificarPendiente(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
-		model.addAttribute("nota",new Nota());
-		model.addAttribute("listaNotas", nService.listar());
-		model.addAttribute("pendiente",new Pendiente());
-		model.addAttribute("listaPendientes", pService.listar());
-
 		
 		Optional<Pendiente> objPendiente = pService.buscarId(id);
 		if (objPendiente == null) {
@@ -97,7 +95,8 @@ public class TableroController {
 			return "redirect:/tablero/listar";
 		}
 		else {
-			model.addAttribute("listaPersonas", eService.listar());
+			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+			model.addAttribute("listaPersonas", eService.listarporUsername(currentUserName));
 			
 			if (objPendiente.isPresent())
 				objPendiente.ifPresent(o -> model.addAttribute("pendiente", o));
@@ -110,18 +109,14 @@ public class TableroController {
 	public String modificarNota(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
-		model.addAttribute("nota",new Nota());
-		model.addAttribute("listaNotas", nService.listar());
-		model.addAttribute("pendiente",new Pendiente());
-		model.addAttribute("listaPendientes", pService.listar());
-		
 		Optional<Nota> objNota = nService.buscarId(id);
 		if (objNota == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/tablero/listar";
 		}
 		else {		
-			model.addAttribute("listaPersonas", eService.listar());
+			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+			model.addAttribute("listaPersonas", eService.listarporUsername(currentUserName));
 				
 			if (objNota.isPresent())
 				objNota.ifPresent(o -> model.addAttribute("nota", o));
@@ -133,22 +128,24 @@ public class TableroController {
 	@RequestMapping("/eliminarPendiente")
 	public String eliminarPendiente(Map<String, Object> model, @RequestParam(value="id") Integer id) {		
 		model.put("nota",new Nota());
-		model.put("listaNotas", nService.listar());
-		model.put("pendiente",new Pendiente());
-		model.put("listaPendientes", pService.listar());
-		model.put("listaPersonas", eService.listar());
+		model.put("pendiente",new Pendiente());		
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaNotas", nService.buscarporUsername(currentUserName));
+		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", eService.listarporUsername(currentUserName));
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
-				model.put("listaPendientes", pService.listar());
-				model.put("listaNotas", nService.listar());
+				model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+				model.put("listaNotas", nService.buscarporUsername(currentUserName));
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaPendientes", pService.listar());
-			model.put("listaNotas", nService.listar());
+			model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+			model.put("listaNotas", nService.buscarporUsername(currentUserName));
 			
 		}
 		return "listTablero";
@@ -157,22 +154,24 @@ public class TableroController {
 	@RequestMapping("/eliminarNota")
 	public String eliminarNota(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		model.put("nota",new Nota());
-		model.put("listaNotas", nService.listar());
-		model.put("pendiente",new Pendiente());
-		model.put("listaPendientes", pService.listar());
-		model.put("listaPersonas", eService.listar());
+		model.put("pendiente",new Pendiente());		
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaNotas", nService.buscarporUsername(currentUserName));
+		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", eService.listarporUsername(currentUserName));
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);
-				model.put("listaPendientes", pService.listar());
-				model.put("listaNotas", nService.listar());
+				model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+				model.put("listaNotas", nService.buscarporUsername(currentUserName));
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un roche");
-			model.put("listaPendientes", pService.listar());
-			model.put("listaNotas", nService.listar());
+			model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+			model.put("listaNotas", nService.buscarporUsername(currentUserName));
 			
 		}
 		return "listTablero";
@@ -184,9 +183,10 @@ public class TableroController {
 		model.put("pendiente", new Pendiente());
 		model.put("persona", new Persona());
 		
-		model.put("listaPendientes", pService.listar());
-		model.put("listaNotas", nService.listar());
-		model.put("listaPersonas", eService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+		model.put("listaNotas", nService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", eService.listarporUsername(currentUserName));
 		
 		return "listTablero"; 
 	}		
