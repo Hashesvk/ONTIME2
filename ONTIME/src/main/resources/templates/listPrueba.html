@@ -16,24 +16,27 @@
 	rel="stylesheet" />
 <link rel="stylesheet" href="/css/tablas.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;500;600;700&family=Poppins:wght@400;600;700;800&display=swap"
+	rel="stylesheet">
+
 </head>
 
 <body>
 <body oncontextmenu="return false" class="snippet-body" id="body-pd">
 	<div th:replace="fragments/header :: header"></div>
-	<div class="container">
+	<div class="container1">
 		<div class="row">
 			<form id="myform" th:action="@{/prueba/buscar}" method="post"
 				th:object="${prueba}">
 
 
 				<div class="col-md-12 column">
-
-					<div class="midiv">
-
+					<div class="midiv" style="box-shadow: none;">
 						<div class="row" style="align-items: center">
-
-							<div class="col-sm-1">
+							<div style="margin-left: 20px">
 
 								<button type="button" class="botones uno btn btn-primary"
 									data-toggle="modal" data-target="#exampleModalLong">+</button>
@@ -44,19 +47,18 @@
 							<div class="col-6">
 
 								<input type="text" class="form-control" th:field="*{namePrueba}"
-									id="buscar" placeholder=" buscar por Nombre y Tipo Evento">
-								</input>
+									id="buscar" placeholder="Buscar por nombre o tipo evento">
 
 							</div>
-							<div class="col-sm">
+							<div>
 
 								<button type="submit" class="botones dos btn btn-primary">Buscar
 									Prueba</button>
 							</div>
 
-							<div class="col-sm">
+							<div>
 
-								<a href="/prueba/listar" class="botones dos btn btn-primary">Cancelar</a>
+								<a href="/prueba/listar" style="background-color: #FF3399; border-color: #FF3399;" class="botones dos btn btn-primary">Cancelar</a>
 							</div>
 
 						</div>
@@ -106,7 +108,6 @@
 					</form>
 				
 		</div>
-		<
 	</div>
 
 	<div class="modal fade" id="exampleModalLong" tabindex="-1"

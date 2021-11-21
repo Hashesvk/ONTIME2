@@ -26,13 +26,12 @@
 		<div class="row">
 			<form id="myform" th:action="@{/deuda/buscar}" method="post"
 				th:object="${deuda}">
+				
 				<div class="col-md-12 column">
-
-
-					<div class="midiv">
+					<div class="midiv" style="box-shadow: none;">
 						<div class="row" style="align-items: center">
+							<div style="margin-left: 20px">
 
-							<div class="col-sm-1">
 
 								<button type="button" class="botones uno btn btn-primary"
 									data-toggle="modal" data-target="#exampleModalLong">+</button>
@@ -42,20 +41,20 @@
 							<div class="col-6">
 								<input type="text" class="form-control"
 									th:field="*{nameCreditor}" id="buscar"
-									placeholder=" buscar por Nombre"> </input>
+									placeholder="Buscar por nombre"> </input>
 							</div>
 
-							<div class="col-sm">
+							<div>
 
 								<button type="submit" class="botones dos btn btn-primary">Buscar
 									Deuda</button>
 							</div>
 
 
-							<div class="col-sm">
+							<div>
 
 
-								<a href="/deuda/listar" class="botones dos btn btn-primary">Cancelar</a>
+								<a href="/deuda/listar" style="background-color: #FF3399; border-color: #FF3399;" class="botones dos btn btn-primary">Cancelar</a>
 
 							</div>
 

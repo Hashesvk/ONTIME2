@@ -26,14 +26,13 @@
 		<div class="row">
 			<form id="myform" th:action="@{/notificacion/buscar}" method="post"
 				th:object="${notificacion}">
+				
 				<div class="col-md-12 column">
-
-					<div class="midiv">
+					<div class="midiv" style="box-shadow: none;">
 						<div class="row" style="align-items: center">
-
-							<div class="col-sm-1">
-
-								<button type="button" class="botones one btn btn-primary"
+							<div style="margin-left: 20px">
+							
+								<button type="button" class="botones uno btn btn-primary"
 									data-toggle="modal" data-target="#exampleModalLong">+</button>
 
 							</div>
@@ -43,19 +42,19 @@
 
 								<input type="text" class="form-control"
 									th:field="*{nameNotificacion}" id="buscar"
-									placeholder=" buscar por Nombre, Descripción y Evento">
+									placeholder="Buscar por nombre, descripción o evento">
 								</input>
 							</div>
-							<div class="col-sm">
+							<div>
 
 								<button type="submit"
 									class="botones dos btn btn-primary">Buscar
 									Notificación</button>
 							</div>
-							<div class="col-sm">
+							<div>
 
 								<a href="/notificacion/listar"
-									class="botones dos btn btn-primary">Cancelar</a>
+									style="background-color: #FF3399; border-color: #FF3399;" class="botones dos btn btn-primary">Cancelar</a>
 							</div>
 						</div>
 
