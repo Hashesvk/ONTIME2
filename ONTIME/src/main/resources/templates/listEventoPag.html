@@ -33,11 +33,11 @@
 				method="post" th:object="${evento}">
 				<div class="col-md-12 column">
 
-					<div class="midiv">
+					<div class="midiv" style="box-shadow: none;">
 
-						<div class="row" style="align-items: center">
+						<div class="row" style="align-items: center;">
 
-							<div class="col-sm-1">
+							<div style="margin-left: 20px">
 								<button type="button" class="botones uno btn btn-primary"
 									data-toggle="modal" data-target="#exampleModalLong">+</button>
 							</div>
@@ -45,20 +45,20 @@
 
 								<input type="text" class="form-control"
 									th:field="*{nombreEvento}" id="buscar"
-									placeholder=" buscar por Nombre, complejidad, Tipo Evento">
+									placeholder="Buscar por nombre, complejidad o tipo evento">
 								</input>
 							</div>
 
-							<div class="col-sm">
+							<div>
 
 								<button type="submit" class="botones dos btn btn-primary">Buscar
 									Evento</button>
 							</div>
 
-							<div class="col-sm">
+							<div>
 
 								<a href="/eventopagina/listar"
-									class="botones dos btn btn-primary">Cancelar</a>
+									style="background-color: #FF3399; border-color: #FF3399;" class="botones dos btn btn-primary">Cancelar</a>
 							</div>
 
 						</div>
@@ -120,11 +120,11 @@
 
 				<div class="col-md-12 column">
 
-					<div class="midiv">
+					<div class="midiv" style="box-shadow: none;">
 
 						<div class="row" style="align-items: center">
 
-							<div class="col-sm-1">
+							<div style="margin-left: 20px">
 
 
 								<button type="button" class="botones uno btn btn-primary"
@@ -137,21 +137,21 @@
 
 								<input type="text" class="form-control"
 									th:field="*{nombreTipoEvento}" id="buscar"
-									placeholder=" buscar por Nombre"> </input>
+									placeholder="Buscar por nombre"> </input>
 
 							</div>
 
-							<div class="col-sm">
+							<div>
 
 
 								<button type="submit"
 									class="botones dos btn btn-primary">Buscar TipoEvento</button>
 
 							</div>
-							<div class="col-sm">
+							<div>
 
 								<a href="/eventopagina/listar"
-									class="botones dos btn btn-primary">Cancelar</a>
+									style="background-color: #FF3399; border-color: #FF3399;" class="botones dos btn btn-primary">Cancelar</a>
 							</div>
 
 						</div>
@@ -216,7 +216,7 @@
 								class="form-control" th:field="*{idEvento}"></input>
 
 							<div class="form-group">
-								<label for="nombre">NOMBRE:</label> <input type="text"
+								<label for="nombre">Nombre:</label> <input type="text"
 									class="form-control" th:field="*{nombreEvento}" id="nombre"></input>
 
 								<div class="alert alert-danger"
@@ -224,7 +224,7 @@
 									th:errors="*{nombreEvento}"></div>
 							</div>
 							<div class="form-group">
-								<label for="fecha">FECHA:</label> <input type="date"
+								<label for="fecha">Fecha:</label> <input type="date"
 									class="form-control" th:field="*{fechaEvento}" id="fecha"></input>
 
 								<div class="alert alert-danger"
@@ -232,7 +232,7 @@
 									th:errors="*{fechaEvento}"></div>
 							</div>
 							<div class="form-group">
-								<label for="nombre">DESCRIPCION:</label> <input type="text"
+								<label for="nombre">Descripcion:</label> <input type="text"
 									class="form-control" th:field="*{descripcionEvento}"
 									id="nombre"></input>
 
@@ -241,7 +241,7 @@
 									th:errors="*{descripcionEvento}"></div>
 							</div>
 							<div class="form-group">
-								<label for="complej">COMPLEJIDAD:</label> <input type="number"
+								<label for="complej">Complejidad:</label> <input type="number"
 									class="form-control" th:field="*{numcomplejidad}" id="complej"></input>
 
 								<div class="alert alert-danger"
@@ -265,7 +265,7 @@
 									th:errors="*{numimportancia}"></div>
 							</div>
 							<div class="form-group">
-								<label for="persona">PERSONA</label> <select
+								<label for="persona">Persona</label> <select
 									class="form-control" th:field="*{persona.idPersona}">
 									<option th:each="p: ${listaPersonas}" th:value="${p.idPersona}"
 										th:text="${p.username}"
@@ -275,7 +275,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="tipoevento">TIPO EVENTO</label> <select
+								<label for="tipoevento">Tipo Evento</label> <select
 									class="form-control" th:field="*{tipoEvento.idTipoEvento}">
 									<option th:each="t: ${listaTipoEventos}"
 										th:value="${t.idTipoEvento}" th:text="${t.nombreTipoEvento}"
@@ -317,7 +317,7 @@
 								class="form-control" th:field="*{idTipoEvento}"></input>
 
 							<div class="form-group">
-								<label for="nombre">NOMBRE:</label> <input type="text"
+								<label for="nombre">Nombre:</label> <input type="text"
 									class="form-control" th:field="*{nombreTipoEvento}" id="nombre"></input>
 
 								<div class="alert alert-danger"
@@ -326,7 +326,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="nombre">DESCRIPCION:</label> <input type="text"
+								<label for="nombre">Descripcion:</label> <input type="text"
 									class="form-control" th:field="*{descripcionTipoEvento}"
 									id="nombre"></input>
 
