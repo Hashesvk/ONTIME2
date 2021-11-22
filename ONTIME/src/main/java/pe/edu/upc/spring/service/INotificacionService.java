@@ -14,6 +14,6 @@ public interface INotificacionService {
 	List<Notificacion> buscarNombre(String nombreNotificacion);
 	List<Notificacion> buscarDescripcion(String descripcionNotificacion);
 	List<Notificacion> buscarNevento(String nombreEvento);
-
+	List<Notificacion> buscarporUsername(String username);
 	
 }

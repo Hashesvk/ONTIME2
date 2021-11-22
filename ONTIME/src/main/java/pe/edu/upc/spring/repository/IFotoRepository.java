@@ -18,4 +18,6 @@ public interface IFotoRepository extends JpaRepository<Foto, Integer> {
 	
 	@Query("from Foto f where f.Tevento.nombreTipoEvento like %:nombreTipoEvento%")
 	List<Foto> buscarTevento(@Param("nombreTipoEvento") String nombreTipoEvento);
+	
+	List<Foto> findByPersonaUsername(String username);
 }

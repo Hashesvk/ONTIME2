@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -120,10 +121,14 @@ public class PruebaController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaPruebas", pService.listar());
 		model.put("prueba", new Prueba());
 		model.put("tipoEvento", new TipoEvento());
-		model.put("listaTipoEventos", tpService.listar());
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaTipoEventos", tpService.buscarporUsername(currentUserName));
+		model.put("listaPruebas", pService.buscarporUsername(currentUserName));
+
+	
 		
 		return "listPrueba"; // cambiar el return 
 	}		

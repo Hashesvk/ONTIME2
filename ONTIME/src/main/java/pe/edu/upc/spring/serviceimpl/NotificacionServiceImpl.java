@@ -72,4 +72,10 @@ public class NotificacionServiceImpl implements INotificacionService {
 		return dNotis.buscarNevento(nombreEvento);
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Notificacion> buscarporUsername(String username) {
+		return dNotis.findByPersonaUsername(username);
+
+	}
 }

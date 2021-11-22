@@ -13,4 +13,6 @@ public interface IFotoService {
 	List<Foto> listar();
 	List<Foto> buscarNombre(String namePho);
 	List<Foto> buscarTevento(String nombreTevento);
+	List<Foto> buscarporUsername(String username);
+
 }

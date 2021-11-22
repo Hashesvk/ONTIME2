@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -106,10 +107,12 @@ public class NotificacionController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaNotificaciones", nService.listar());
 		model.put("notificacion", new Notificacion());
 		model.put("evento", new Evento());
-		model.put("listaEventos", eService.listar());
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaNotificaciones", nService.buscarporUsername(currentUserName));
+		model.put("listaEventos", eService.buscarporUsername(currentUserName));
 		
 		return "listNotificacion"; 
 	}		

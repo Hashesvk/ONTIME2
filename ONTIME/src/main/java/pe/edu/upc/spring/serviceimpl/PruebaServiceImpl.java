@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.upc.spring.model.Notificacion;
 import pe.edu.upc.spring.model.Prueba;
 import pe.edu.upc.spring.repository.IPruebaRepository;
 import pe.edu.upc.spring.service.IPruebaService;
@@ -61,5 +62,12 @@ public class PruebaServiceImpl implements IPruebaService {
 	@Transactional(readOnly = true)
 	public List<Prueba> buscarTevento(String nombreTevento) {
 		return dPrueba.buscarTevento(nombreTevento);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Prueba> buscarporUsername(String username) {
+		return dPrueba.findByPersonaUsername(username);
+
 	}
 }

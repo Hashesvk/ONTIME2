@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -142,10 +143,14 @@ public class FotoController {
 	
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model) {
-		model.put("listaFotos", fService.listar());
 		model.put("foto", new Foto());
-		model.put("listaTipoEventos",tpService.listar());
 		model.put("tipoEvento", new TipoEvento());
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaFotos", fService.buscarporUsername(currentUserName));
+		model.put("listaTipoEventos",tpService.buscarporUsername(currentUserName));
+
+		
 		return "listFoto";
 	}	
 	

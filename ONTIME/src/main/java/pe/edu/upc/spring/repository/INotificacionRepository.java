@@ -20,5 +20,6 @@ public interface INotificacionRepository extends JpaRepository<Notificacion, Int
 	@Query("from Notificacion n where n.evento.nombreEvento like %:nombreEvento%")
 	List<Notificacion> buscarNevento(@Param("nombreEvento") String nombreEvento);
 	
+	List<Notificacion> findByPersonaUsername(String username);
 	
 }
