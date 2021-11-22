@@ -41,8 +41,8 @@ public class DeudaController {
 	@RequestMapping("/")
 	public String irPaginaListadoDeudas(Map<String, Object> model) {
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaDeudas", dService.buscarporUsername(currentUserName));
-		model.put("listaPersonas", pService.listarporUsername(currentUserName));
+		//model.put("listaDeudas", dService.buscarporUsername(currentUserName));
+		//.put("listaPersonas", pService.listarporUsername(currentUserName));
 		return "listDeuda";
 	}	
 	
@@ -54,7 +54,7 @@ public class DeudaController {
 			{
 				final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 				model.addAttribute("listaPersonas", pService.listarporUsername(currentUserName));
-				return "listDeuda";
+				return "redirect:/deuda/listar";
 			}
 		else {
 			boolean flag = dService.registrar(objDeuda);
@@ -62,7 +62,7 @@ public class DeudaController {
 				return "redirect:/deuda/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un error");
-				return "redirect:/deuda/irRegistrar";
+				return "listDeuda";
 			}
 		}
 	}

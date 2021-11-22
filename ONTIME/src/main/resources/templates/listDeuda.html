@@ -124,8 +124,13 @@
 
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
-									class="form-control" th:field="*{nameCreditor}" id="nombre"></input>
-
+									class="form-control" th:field="*{nameCreditor}" id="nombre"
+									th:errorclass="'form-control alert-danger'"></input>
+								
+								<small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('nameCreditor')}" th:errors="*{nameCreditor}"></small>
+								
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('nameCreditor')}"
 									th:errors="*{nameCreditor}"></div>

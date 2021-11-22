@@ -14,5 +14,5 @@ public interface ITipoEventoRepository extends JpaRepository<TipoEvento, Integer
 	@Query("from TipoEvento t where t.nombreTipoEvento like %:nombreTipoEvento%")
 	List<TipoEvento> buscarNombre(@Param("nombreTipoEvento") String nombreTipoEvento);
 	
-	
+	List<TipoEvento> findByPersonaUsername(String username);
 }

@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,6 +27,7 @@ public class Deuda implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idDeuda;
 	
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales")
 	@Column(name="nombreDeuda", length=30, nullable=false)
 	private String nameCreditor;//acreedor
 	
@@ -48,16 +50,20 @@ public class Deuda implements Serializable {
 		super();
 	}
 
-	public Deuda(int idDeuda, String nameCreditor, float moneypayment, Date paymentDate, //boolean paymentMade,
-			Persona persona) {
+	
+
+	public Deuda(int idDeuda,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales") String nameCreditor,
+			float moneypayment, Date paymentDate, Persona persona) {
 		super();
 		this.idDeuda = idDeuda;
 		this.nameCreditor = nameCreditor;
 		this.moneypayment = moneypayment;
 		this.paymentDate = paymentDate;
-		//this.paymentMade = paymentMade;
 		this.persona = persona;
 	}
+
+
 
 	public int getIdDeuda() {
 		return idDeuda;
