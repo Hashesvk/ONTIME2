@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,9 +41,10 @@ public class ChartController {
         Map<String, Integer> graphData3 = new TreeMap<>();		
         		
         
-        
-		List<Evento> listaEventos = eService.listar();
-		List<TipoEvento> listaTipoEventos = tService.listar();
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		List<Evento> listaEventos = eService.buscarporUsername(currentUserName);
+		List<TipoEvento> listaTipoEventos = tService.buscarporUsername(currentUserName);
 
 		int cont = 0;
 		for(int i = 0; i < listaTipoEventos.size(); i++) {

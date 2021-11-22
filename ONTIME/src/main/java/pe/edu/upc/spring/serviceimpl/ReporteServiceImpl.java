@@ -3,6 +3,7 @@ package pe.edu.upc.spring.serviceimpl;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +21,10 @@ public class ReporteServiceImpl implements IReporteService {
 	@Override
 	@Transactional(readOnly = true)
     public List<Reporte> ListarStatusPendientes() {
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		List<Reporte> ListaR = new ArrayList<Reporte>();
-		List<Pendiente> ListaP = dPendiente.findAll();
+		List<Pendiente> ListaP = dPendiente.findByPersonaUsername(currentUserName);
 		ListaR.add(new Reporte ("Pendientes Incompletos", 0));
 		ListaR.add(new Reporte ("Pendientes En Proceso", 0));
 		ListaR.add(new Reporte ("Pendientes Completos", 0));		

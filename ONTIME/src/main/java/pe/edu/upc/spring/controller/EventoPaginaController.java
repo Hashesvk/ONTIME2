@@ -42,17 +42,6 @@ public class EventoPaginaController {
 		return "bienvenido";
 	}
 		
-	@RequestMapping("/")
-	public String irPaginaListado(Map<String, Object> model) {
-		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaEventos", eService.buscarporUsername(currentUserName));
-		model.put("listaTipoEventos", tService.listar());
-		model.put("listaPersonas", pService.listarporUsername(currentUserName));
-		return "listEventoPag"; //html de eventos
-	}
-	
-	
-	
 	@RequestMapping("/registrarEvento")
 	public String registrarEvento(@ModelAttribute Evento objEvento, BindingResult binRes, Model model)
 			throws ParseException
@@ -100,8 +89,14 @@ public class EventoPaginaController {
 	@RequestMapping("/modificarEvento/{id}")
 	public String modificarEvento(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
-	{
-		Optional<Evento> objEvento = eService.buscarId(id);
+	{	
+		
+		model.addAttribute("tipoevento", new TipoEvento());
+		model.addAttribute("evento", new Evento());
+		model.addAttribute("listaTipoEventos", tService.listar());
+		model.addAttribute("listaEventos", eService.listar());
+
+		Optional<Evento> objEvento = eService.listarId(id);
 		if (objEvento == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/eventopagina/listar";
@@ -115,7 +110,7 @@ public class EventoPaginaController {
 			if (objEvento.isPresent())
 				objEvento.ifPresent(o -> model.addAttribute("evento", o));
 			
-			return "evento";
+			return "listEventoPag";
 		}
 	}
 	
@@ -123,6 +118,11 @@ public class EventoPaginaController {
 	public String modificarTipoEvento(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("evento", new Evento());
+		model.addAttribute("listaEventos", eService.listar());		
+		model.addAttribute("tipoEvento", new TipoEvento());
+
+		
 		Optional<TipoEvento> objTipoEvento = tService.listarId(id);
 		if (objTipoEvento == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -137,7 +137,7 @@ public class EventoPaginaController {
 			if (objTipoEvento.isPresent())
 				objTipoEvento.ifPresent(o -> model.addAttribute("tipoevento", o));
 			
-			return "tipoevento";
+			return "listEventoPag";
 		}
 	}
 	
@@ -208,7 +208,7 @@ public class EventoPaginaController {
 		
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("listaEventos", eService.buscarporUsername(currentUserName));
-		model.put("listaTipoEventos", tService.listar());
+		model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
 		model.put("listaPersonas", pService.listarporUsername(currentUserName));
 		
 		return "listEventoPag";

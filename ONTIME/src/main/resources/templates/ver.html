@@ -15,7 +15,7 @@
 <body oncontextmenu="return false" class="snippet-body" id="body-pd">
     	<div th:replace="fragments/header :: header"> </div>
     	
-			<div class="conten container">
+			<div class="container1">
 				<div class="detail">
 					<img class="detailimg" th:if="${#strings.length(foto.image)>0}"
 						th:src="@{'/foto/uploads/' + ${foto.image}}"
@@ -33,7 +33,6 @@
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/dive.js"></script>
 	<script src="/js/app2.js"></script>
 </body>
 </html>

@@ -88,7 +88,11 @@ public class TableroController {
 	public String modificarPendiente(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
-		
+		model.addAttribute("nota",new Nota());
+		model.addAttribute("listaNotas", nService.listar());
+		model.addAttribute("pendiente",new Pendiente());
+		model.addAttribute("listaPendientes", pService.listar());
+
 		Optional<Pendiente> objPendiente = pService.buscarId(id);
 		if (objPendiente == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -109,6 +113,11 @@ public class TableroController {
 	public String modificarNota(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		model.addAttribute("nota",new Nota());
+		model.addAttribute("listaNotas", nService.listar());
+		model.addAttribute("pendiente",new Pendiente());
+		model.addAttribute("listaPendientes", pService.listar());
+
 		Optional<Nota> objNota = nService.buscarId(id);
 		if (objNota == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -127,13 +136,12 @@ public class TableroController {
 	
 	@RequestMapping("/eliminarPendiente")
 	public String eliminarPendiente(Map<String, Object> model, @RequestParam(value="id") Integer id) {		
+
 		model.put("nota",new Nota());
-		model.put("pendiente",new Pendiente());		
-		
+		model.put("pendiente",new Pendiente());
+		model.put("listaPersonas", eService.listar());
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaNotas", nService.buscarporUsername(currentUserName));
-		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
-		model.put("listaPersonas", eService.listarporUsername(currentUserName));
+
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
@@ -153,13 +161,11 @@ public class TableroController {
 	
 	@RequestMapping("/eliminarNota")
 	public String eliminarNota(Map<String, Object> model, @RequestParam(value="id") Integer id) {
-		model.put("nota",new Nota());
-		model.put("pendiente",new Pendiente());		
-		
+
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaNotas", nService.buscarporUsername(currentUserName));
-		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
-		model.put("listaPersonas", eService.listarporUsername(currentUserName));
+		model.put("nota",new Nota());
+		model.put("pendiente",new Pendiente());
+		model.put("listaPersonas", eService.listar());
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);
