@@ -124,22 +124,22 @@
         function drawColumnChart2() {
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Estado');
-            data.addColumn('number', 'Estado');
-            Object.keys(real_data).forEach(function(key) {
-                data.addRow([ key, real_data[key] ]);
+            data.addColumn('number', 'Cantidad');
+            Object.keys(real_data4).forEach(function(key) {
+                data.addRow([ key, real_data4[key] ]);
             });
             var options = {
                 title : 'Cantidad los pendientes registrados, segun su estado',
                 width: $(window).width()*0.8,
                 height: $(window).height()*0.3,
                 hAxis : {
-                    title : "Pendientes registrados, segun su estado",
+                    title : 'Cantidad',
                 },
                 vAxis : {
-                    title : 'Cantidad'
+                    title : 'Estados de pendientes',
                 }
             };
-            var chart = new google.visualization.ColumnChart(document
+            var chart = new google.visualization.BarChart(document
                     .getElementById('piechart2'));
             chart.draw(data, options);
         }

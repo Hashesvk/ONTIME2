@@ -36,20 +36,15 @@ public class NotificacionController {
 	public String irPaginaBienvenida() {
 		return "bienvenido";
 	}
-			
-	@RequestMapping("/")
-	public String irPaginaListadoNotificaciones(Map<String, Object> model) {
-		model.put("listaNotificaciones", nService.listar());
-		return "listNotificacion";
-	}
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute Notificacion objNotificacion, BindingResult binRes, Model model)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaEventos", eService.listar());
+				model.addAttribute("listaEventos", eService.buscarporUsername(currentUserName));
 				return "listNotificacion";
 			}
 		else {
@@ -68,8 +63,9 @@ public class NotificacionController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("notificacion", new Notificacion());
-		model.addAttribute("listaNotificaciones", nService.listar());
+		model.addAttribute("listaNotificaciones", nService.buscarporUsername(currentUserName));
 		
 		Optional<Notificacion> objNotificacion = nService.buscarId(id);
 		if (objNotificacion == null) {
@@ -77,7 +73,7 @@ public class NotificacionController {
 			return "redirect:/notificacion/listar";
 		}
 		else {
-			model.addAttribute("listaEventos", eService.listar());				
+			model.addAttribute("listaEventos", nService.buscarporUsername(currentUserName));				
 					
 			if (objNotificacion.isPresent())
 				objNotificacion.ifPresent(o -> model.addAttribute("notificacion", o));
@@ -88,18 +84,18 @@ public class NotificacionController {
 	
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("notificacion", new Notificacion());
-		model.put("listaNotificaciones", nService.listar());
 		try {
 			if (id!=null && id>0) {
 				nService.eliminar(id);
-				model.put("listaNotificaciones", nService.listar());
+				model.put("listaNotificaciones", nService.buscarporUsername(currentUserName));
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaNotificaciones", nService.listar());
+			model.put("listaNotificaciones", nService.buscarporUsername(currentUserName));
 			
 		}
 		return "listNotificacion";

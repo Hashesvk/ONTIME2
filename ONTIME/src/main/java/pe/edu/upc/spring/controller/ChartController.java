@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.upc.spring.model.Evento;
 import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.service.IEventoService;
+import pe.edu.upc.spring.service.IReporteService;
 import pe.edu.upc.spring.service.ITipoEventoService;
-
-
 
 @Controller
 @RequestMapping("/chart")
@@ -27,19 +26,20 @@ public class ChartController {
 	@Autowired
 	private ITipoEventoService tService;
 	
+	@Autowired
+	private IReporteService rService;	
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
 		return "bienvenido";
 	}
-		
 	
 	@GetMapping("/see")
 	public String getPieChart(Map<String, Object> model) {
 		Map<String, Integer> graphData = new TreeMap<>();		
         Map<String, Integer> graphData2 = new TreeMap<>();		
         Map<String, Integer> graphData3 = new TreeMap<>();		
-        		
+		Map<String, Integer> graphData4 = new TreeMap<>();	
         
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -58,17 +58,22 @@ public class ChartController {
 		}
 		
 		
-			for(int j = 0; j < listaEventos.size(); j++) {
-				graphData2.put( listaEventos.get(j).getNombreEvento(),listaEventos.get(j).getNumcomplejidad());									
+		for(int j = 0; j < listaEventos.size(); j++) {
+			graphData2.put( listaEventos.get(j).getNombreEvento(),listaEventos.get(j).getNumcomplejidad());									
 		}
 			
-			for(int j = 0; j < listaEventos.size(); j++) {
-				graphData3.put( listaEventos.get(j).getNombreEvento(),listaEventos.get(j).getNumimportancia());									
+		for(int j = 0; j < listaEventos.size(); j++) {
+			graphData3.put( listaEventos.get(j).getNombreEvento(),listaEventos.get(j).getNumimportancia());									
 		}		
+			
+		for(int i = 0; i < rService.ListarStatusPendientes().size(); i++) {
+			graphData4.put(rService.ListarStatusPendientes().get(i).getName(), rService.ListarStatusPendientes().get(i).getAmount());
+		}	
 			
         model.put("chartData", graphData);
         model.put("chartData2", graphData2);
         model.put("chartData3", graphData3);
+		model.put("chartData4", graphData4);
         return "charts";
     }
 	
