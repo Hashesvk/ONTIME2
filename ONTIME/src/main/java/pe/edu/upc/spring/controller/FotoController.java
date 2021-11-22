@@ -71,7 +71,7 @@ public class FotoController {
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.addAttribute("listaTipoEventos",tpService.buscarporUsername(currentUserName));
 		
-		return "foto";
+		return "redirect:/foto/listar";
 		} // cambiar el return 
 		else {
 			if(!foto.isEmpty()) {
@@ -94,7 +94,7 @@ public class FotoController {
 				return "redirect:/foto/listar";
 			} else {
 				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/foto/irRegistrar";
+				return "listFoto";
 			}
 		}
 	}

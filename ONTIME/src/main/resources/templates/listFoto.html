@@ -131,7 +131,12 @@
 
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
-									class="form-control" th:field="*{namephoto}" id="nombre"></input>
+									class="form-control" th:field="*{namephoto}" id="nombre"
+									th:errorclass="'form-control alert-danger'"></input>
+									
+								<small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('namephoto')}" th:errors="*{namephoto}"></small>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('namephoto')}"
