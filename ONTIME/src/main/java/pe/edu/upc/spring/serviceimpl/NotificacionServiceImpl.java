@@ -12,7 +12,9 @@ import pe.edu.upc.spring.model.Evento;
 import pe.edu.upc.spring.model.Notificacion;
 import pe.edu.upc.spring.repository.IEventoRepository;
 import pe.edu.upc.spring.repository.INotificacionRepository;
+import pe.edu.upc.spring.service.IEventoService;
 import pe.edu.upc.spring.service.INotificacionService;
+import pe.edu.upc.spring.service.ITipoEventoService;
 
 @Service
 public class NotificacionServiceImpl implements INotificacionService {
@@ -21,7 +23,7 @@ public class NotificacionServiceImpl implements INotificacionService {
 	private INotificacionRepository dNotis;
 
 	@Autowired
-	private IEventoRepository dEvento;
+	private IEventoService eService;
 
 	@Override
 	@Transactional
@@ -81,7 +83,7 @@ public class NotificacionServiceImpl implements INotificacionService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Notificacion> buscarporUsername(String username) {
-		List<Evento> eventos= dEvento.findByPersonaUsername(username);
+		List<Evento> eventos= eService.buscarporUsername(username);
 		List<Notificacion> NotisO= dNotis.findAll();
 		List<Notificacion> Notis=new ArrayList<Notificacion>();
 

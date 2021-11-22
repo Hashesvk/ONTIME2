@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Evento;
+import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.repository.IEventoRepository;
+import pe.edu.upc.spring.repository.ITipoEventoRepository;
 import pe.edu.upc.spring.service.IEventoService;
 
 @Service
@@ -17,6 +20,9 @@ public class EventoServiceImpl implements IEventoService{
 	@Autowired
 	private IEventoRepository dEvento;
 
+	@Autowired
+	private ITipoEventoRepository tService;
+	
 	@Override
 	@Transactional
 	public boolean registrar(Evento evento) {
@@ -78,8 +84,18 @@ public class EventoServiceImpl implements IEventoService{
 	@Override
 	@Transactional(readOnly = true)
 	public List<Evento> buscarporUsername(String username) {
-		return dEvento.findByPersonaUsername(username);
+		List<TipoEvento> listaTipoEventos = tService.findByPersonaUsername(username);
+		List<Evento> EventosO= dEvento.findAll();
+		List<Evento> Eventos=new ArrayList<Evento>();
 
+		for(int i =0 ; i<EventosO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(EventosO.get(i).getTipoEvento() == listaTipoEventos.get(j)){
+				Eventos.add(EventosO.get(i));
+			}
+			}
+		}
+		return Eventos;
 	}
 	/*@Override
 	@Transactional(readOnly = true)

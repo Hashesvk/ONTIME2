@@ -33,10 +33,6 @@ public class Evento implements Serializable{
 	@JoinColumn(name="idTipovento", nullable=false)
 	private TipoEvento tipoEvento;
 	
-	@ManyToOne
-	@JoinColumn(name="idPersona", nullable=false)
-	private Persona persona;
-	
 	@Temporal(TemporalType.DATE)
 	@Column(name="fechaEvento")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -58,13 +54,12 @@ public class Evento implements Serializable{
 		super();
 	}
 	
-	public Evento(int idEvento, String nombreEvento, TipoEvento tpevento, Persona persona, Date fecha, String descripcion, int complejidad, int prioridad, int importancia) {
+	public Evento(int idEvento, String nombreEvento, TipoEvento tpevento, Date fecha, String descripcion, int complejidad, int prioridad, int importancia) {
 		super();
 		this.idEvento = idEvento;
 		this.descripcionEvento = descripcion;
 		this.fechaEvento = fecha;
 		this.nombreEvento = nombreEvento;
-		this.persona = persona;
 		this.tipoEvento = tpevento;
 		this.numcomplejidad = complejidad;
 		this.numprioridad = prioridad;
@@ -93,14 +88,6 @@ public class Evento implements Serializable{
 
 	public void setTipoEvento(TipoEvento tipoEvento) {
 		this.tipoEvento = tipoEvento;
-	}
-
-	public Persona getPersona() {
-		return persona;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
 	}
 
 	public Date getFechaEvento() {

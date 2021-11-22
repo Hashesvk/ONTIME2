@@ -263,15 +263,7 @@
 									th:if="${#fields.hasErrors('numimportancia')}"
 									th:errors="*{numimportancia}"></div>
 							</div>
-							<div class="form-group">
-								<label for="persona">Persona</label> <select
-									class="form-control" th:field="*{persona.idPersona}">
-									<option th:each="p: ${listaPersonas}" th:value="${p.idPersona}"
-										th:text="${p.username}"
-										th:selected="(${p.idPersona} == *{persona.idPersona})">
-									</option>
-								</select>
-							</div>
+							
 
 							<div class="form-group">
 								<label for="tipoevento">Tipo Evento</label> <select
