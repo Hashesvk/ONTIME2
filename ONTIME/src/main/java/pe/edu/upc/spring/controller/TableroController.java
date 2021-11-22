@@ -88,10 +88,12 @@ public class TableroController {
 	public String modificarPendiente(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		model.addAttribute("nota",new Nota());
-		model.addAttribute("listaNotas", nService.listar());
+		model.addAttribute("listaNotas", nService.buscarporUsername(currentUserName));
 		model.addAttribute("pendiente",new Pendiente());
-		model.addAttribute("listaPendientes", pService.listar());
+		model.addAttribute("listaPendientes", pService.buscarporUsername(currentUserName));
 
 		Optional<Pendiente> objPendiente = pService.buscarId(id);
 		if (objPendiente == null) {
@@ -99,7 +101,6 @@ public class TableroController {
 			return "redirect:/tablero/listar";
 		}
 		else {
-			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 			model.addAttribute("listaPersonas", eService.listarporUsername(currentUserName));
 			
 			if (objPendiente.isPresent())
@@ -113,10 +114,12 @@ public class TableroController {
 	public String modificarNota(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		model.addAttribute("nota",new Nota());
 		model.addAttribute("listaNotas", nService.listar());
 		model.addAttribute("pendiente",new Pendiente());
-		model.addAttribute("listaPendientes", pService.listar());
+		model.addAttribute("listaPendientes", pService.buscarporUsername(currentUserName));
 
 		Optional<Nota> objNota = nService.buscarId(id);
 		if (objNota == null) {
@@ -124,7 +127,6 @@ public class TableroController {
 			return "redirect:/tablero/listar";
 		}
 		else {		
-			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 			model.addAttribute("listaPersonas", eService.listarporUsername(currentUserName));
 				
 			if (objNota.isPresent())
@@ -139,8 +141,8 @@ public class TableroController {
 
 		model.put("nota",new Nota());
 		model.put("pendiente",new Pendiente());
-		model.put("listaPersonas", eService.listar());
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaPersonas", eService.listarporUsername(currentUserName));
 
 		try {
 			if (id!=null && id>0) {

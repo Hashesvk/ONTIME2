@@ -42,22 +42,15 @@ public class PruebaController {
 	public String irPaginaBienvenida() {
 		return "bienvenido";
 	}
-		
-	@RequestMapping("/")
-	public String irPaginaListadoPruebas(Map<String, Object> model) {
-		model.put("listaPruebas", pService.listar());
-		return "listPrueba";
-	}
-	
-	
-	
+			
 	@PostMapping("/registrar")
 	public String registrar(@Valid @ModelAttribute Prueba objPrueba, BindingResult binRes, Model model)
 			throws ParseException
-	{
+	{		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		if (binRes.hasErrors()) 
 			{
-				model.addAttribute("listaTipoEventos", tpService.listar());
+			model.addAttribute("listaTipoEventos", tpService.buscarporUsername(currentUserName));
 				return "redirect:/prueba/listar";
 			}
 		else {
@@ -83,7 +76,10 @@ public class PruebaController {
 		throws ParseException 
 	{
 		model.addAttribute("prueba", new Prueba());
-		model.addAttribute("listaPruebas", pService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		model.addAttribute("listaPruebas", pService.buscarporUsername(currentUserName));
+
 		Optional<Prueba> objPrueba = pService.buscarId(id);
 		if (objPrueba == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
@@ -102,18 +98,20 @@ public class PruebaController {
 	
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
-		model.put("listaPruebas", pService.listar());
 		model.put("prueba", new Prueba());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaPruebas", pService.buscarporUsername(currentUserName));
+
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
-				model.put("listaPruebas", pService.listar());
+				model.put("listaPruebas", pService.buscarporUsername(currentUserName));
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaPruebas", pService.listar());
+			model.put("listaPruebas", pService.buscarporUsername(currentUserName));
 			
 		}
 		return "listPrueba"; // cambiar el return 
@@ -123,12 +121,9 @@ public class PruebaController {
 	public String listar(Map<String, Object> model) {
 		model.put("prueba", new Prueba());
 		model.put("tipoEvento", new TipoEvento());
-		
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaTipoEventos", tpService.buscarporUsername(currentUserName));
 		model.put("listaPruebas", pService.buscarporUsername(currentUserName));
-
-	
+		model.put("listaTipoEventos", tpService.buscarporUsername(currentUserName));
 		
 		return "listPrueba"; // cambiar el return 
 	}		

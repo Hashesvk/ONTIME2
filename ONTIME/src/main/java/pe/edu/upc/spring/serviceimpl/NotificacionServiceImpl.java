@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.upc.spring.model.Evento;
 import pe.edu.upc.spring.model.Notificacion;
+import pe.edu.upc.spring.repository.IEventoRepository;
 import pe.edu.upc.spring.repository.INotificacionRepository;
 import pe.edu.upc.spring.service.INotificacionService;
 
@@ -16,6 +19,9 @@ public class NotificacionServiceImpl implements INotificacionService {
 
 	@Autowired
 	private INotificacionRepository dNotis;
+
+	@Autowired
+	private IEventoRepository dEvento;
 
 	@Override
 	@Transactional
@@ -75,7 +81,17 @@ public class NotificacionServiceImpl implements INotificacionService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Notificacion> buscarporUsername(String username) {
-		return dNotis.findByPersonaUsername(username);
+		List<Evento> eventos= dEvento.findByPersonaUsername(username);
+		List<Notificacion> NotisO= dNotis.findAll();
+		List<Notificacion> Notis=new ArrayList<Notificacion>();
 
+		for(int i =0 ; i<NotisO.size();i++) {
+			for(int j =0 ; j< eventos.size(); j++) {
+			if(NotisO.get(i).getEvento() == eventos.get(j)){
+				Notis.add(NotisO.get(i));
+			}
+			}
+		}
+		return Notis;
 	}
 }

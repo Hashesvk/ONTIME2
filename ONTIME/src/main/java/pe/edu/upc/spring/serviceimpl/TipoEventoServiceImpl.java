@@ -12,7 +12,6 @@ import pe.edu.upc.spring.model.Evento;
 import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.repository.IEventoRepository;
 import pe.edu.upc.spring.repository.ITipoEventoRepository;
-import pe.edu.upc.spring.service.IEventoService;
 import pe.edu.upc.spring.service.ITipoEventoService;
 
 @Service
@@ -71,7 +70,6 @@ public class TipoEventoServiceImpl implements ITipoEventoService {
 		for(int i =0 ; i<eventos.size();i++) {
 			if(!teventos.contains(eventos.get(i).getTipoEvento())){
 				teventos.add(eventos.get(i).getTipoEvento());
-				System.out.println(eventos.get(i).getTipoEvento().getDescripcionTipoEvento());
 			}
 		}
 		return teventos;

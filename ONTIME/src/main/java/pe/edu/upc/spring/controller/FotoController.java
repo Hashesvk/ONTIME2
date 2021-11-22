@@ -68,7 +68,9 @@ public class FotoController {
 	{
 		if(binRes.hasErrors()) {
 			
-		model.addAttribute("listaTipoEventos",tpService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("listaTipoEventos",tpService.buscarporUsername(currentUserName));
+		
 		return "foto";
 		} // cambiar el return 
 		else {
@@ -102,7 +104,8 @@ public class FotoController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
-		model.addAttribute("listaFotos", fService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.addAttribute("listaFotos", fService.buscarporUsername(currentUserName));
 		model.addAttribute("foto", new Foto());
 		Optional<Foto> objFoto = fService.buscarId(id);
 		if (objFoto == null) {
@@ -123,7 +126,8 @@ public class FotoController {
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		
-		model.put("listaFotos", fService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		model.put("listaFotos", fService.buscarporUsername(currentUserName));
 		model.put("foto", new Foto());
 
 		try {

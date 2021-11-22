@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,14 +9,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.spring.model.Foto;
+import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.repository.IFotoRepository;
 import pe.edu.upc.spring.service.IFotoService;
+import pe.edu.upc.spring.service.ITipoEventoService;
 
 @Service
 public class FotoServiceImpl implements IFotoService {
 
 	@Autowired
 	private IFotoRepository dFoto;
+	
+	@Autowired
+	private ITipoEventoService tService;
+
 	
 	@Override
 	@Transactional
@@ -66,7 +73,18 @@ public class FotoServiceImpl implements IFotoService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Foto> buscarporUsername(String username) {
-		return dFoto.findByPersonaUsername(username);
+		List<TipoEvento> listaTipoEventos = tService.buscarporUsername(username);
+		List<Foto> FotosO= dFoto.findAll();
+		List<Foto> Fotos=new ArrayList<Foto>();
+
+		for(int i =0 ; i<FotosO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(FotosO.get(i).getTevento() == listaTipoEventos.get(j)){
+				Fotos.add(FotosO.get(i));
+			}
+			}
+		}
+		return Fotos;
 
 	}
 }

@@ -17,5 +17,4 @@ public interface IPruebaRepository extends JpaRepository<Prueba, Integer> {
 	@Query("from Prueba p where p.Tevento.nombreTipoEvento like %:nombreTipoEvento%")
 	List<Prueba> buscarTevento(@Param("nombreTipoEvento") String nombreTipoEvento);
 	
-	List<Prueba> findByPersonaUsername(String username);
 }
