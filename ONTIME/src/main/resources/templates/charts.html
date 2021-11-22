@@ -28,16 +28,19 @@
     	
     	<div class="container1">
     		<div class="row"> 
-     		   Estadísticas
-     		   <div class="midiv2"> 
-        		<div id="chart_div" class="contabla2"></div>
-        		</div>
-        		 <div class="midiv2"> 
-        		<div id="piechart" class="contabla2"></div>
+     		   Reportes Estadísticos
+				<div class="midiv2"> 
+        			<div id="chart_div" class="contabla2"></div>
         		</div>
         		<div class="midiv2"> 
-        		<div id="bubble" class="contabla"></div>
-        		</div>    		 
+        			<div id="piechart" class="contabla2"></div>
+        		</div>
+        		<div class="midiv2"> 
+        			<div id="bubble" class="contabla"></div>
+        		</div>    
+        		<div class="midiv2"> 
+        		<div id="piechart2" class="contabla2"></div>
+        		</div>	 
            		
         	</div>
     	</div>
@@ -46,7 +49,7 @@
         var real_data = /*[[${chartData}]]*/'noValue';
         var real_data2 = /*[[${chartData2}]]*/'noValue';
         var real_data3 = /*[[${chartData3}]]*/'noValue';
-
+        var real_data4 = /*[[${chartData4}]]*/'noValue';
         
         $(document).ready(function() {
             google.charts.load('current', {
@@ -55,6 +58,7 @@
             google.charts.setOnLoadCallback(drawColumnChart);
             google.charts.setOnLoadCallback(drawPieChart);
             google.charts.setOnLoadCallback(BubbleChart);
+            google.charts.setOnLoadCallback(drawColumnChart2);
             
         });
         function drawColumnChart() {
@@ -117,6 +121,29 @@
 
             chart.draw(data, options);
           }
+
+        function drawColumnChart2() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Estado');
+            data.addColumn('number', 'Estado');
+            Object.keys(real_data).forEach(function(key) {
+                data.addRow([ key, real_data[key] ]);
+            });
+            var options = {
+                title : 'Cantidad los pendientes registrados, segun su estado',
+                width: $(window).width()*0.8,
+                height: $(window).height()*0.3,
+                hAxis : {
+                    title : "Pendientes registrados, segun su estado",
+                },
+                vAxis : {
+                    title : 'Cantidad'
+                }
+            };
+            var chart = new google.visualization.ColumnChart(document
+                    .getElementById('piechart2'));
+            chart.draw(data, options);
+        }
     </script>
     
 	<script src="/js/app2.js"></script>
