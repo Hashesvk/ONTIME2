@@ -208,7 +208,7 @@ public class EventoPaginaController {
 		
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("listaEventos", eService.buscarporUsername(currentUserName));
-		model.put("listaTipoEventos", tService.listar());
+		model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
 		model.put("listaPersonas", pService.listarporUsername(currentUserName));
 		
 		return "listEventoPag";

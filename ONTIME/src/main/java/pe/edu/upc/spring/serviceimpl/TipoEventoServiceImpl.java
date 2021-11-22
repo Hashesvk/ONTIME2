@@ -65,14 +65,8 @@ public class TipoEventoServiceImpl implements ITipoEventoService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<TipoEvento> buscarporUsername(String username){
-		List<Evento> eventos= dEvento.findByPersonaUsername(username);
-		List<TipoEvento> teventos=new ArrayList<TipoEvento>();
-		for(int i =0 ; i<eventos.size();i++) {
-			if(!teventos.contains(eventos.get(i).getTipoEvento())){
-				teventos.add(eventos.get(i).getTipoEvento());
-			}
-		}
-		return teventos;
+		return dtipoevento.findByPersonaUsername(username);
+
 	}
 
 }
