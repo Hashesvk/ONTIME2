@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -47,7 +49,7 @@ public class DeudaController {
 	}	
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Deuda objDeuda, BindingResult binRes, Model model)
+	public String registrar(@Valid @ModelAttribute Deuda objDeuda, BindingResult binRes, Model model)
 			throws ParseException
 	{
 		if (binRes.hasErrors()) 
@@ -61,6 +63,7 @@ public class DeudaController {
 			if (flag)
 				return "redirect:/deuda/listar";
 			else {
+				model.addAttribute("listaDeudas",dService.listar());
 				model.addAttribute("mensaje", "Ocurrio un error");
 				return "listDeuda";
 			}
