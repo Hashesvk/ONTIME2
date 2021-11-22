@@ -90,11 +90,11 @@ public class EventoPaginaController {
 	public String modificarEvento(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{	
-		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		model.addAttribute("tipoevento", new TipoEvento());
 		model.addAttribute("evento", new Evento());
-		model.addAttribute("listaTipoEventos", tService.listar());
-		model.addAttribute("listaEventos", eService.listar());
+		model.addAttribute("listaEventos", eService.buscarporUsername(currentUserName));
 
 		Optional<Evento> objEvento = eService.listarId(id);
 		if (objEvento == null) {
@@ -102,9 +102,8 @@ public class EventoPaginaController {
 			return "redirect:/eventopagina/listar";
 		}
 		else {
-			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 			
-			model.addAttribute("listaTipoEventos", tService.listar());
+			model.addAttribute("listaTipoEventos", tService.buscarporUsername(currentUserName));
 			model.addAttribute("listaPersonas", pService.listarporUsername(currentUserName));
 					
 			if (objEvento.isPresent())
@@ -118,8 +117,10 @@ public class EventoPaginaController {
 	public String modificarTipoEvento(@PathVariable int id, Model model, RedirectAttributes objRedir)
 		throws ParseException 
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		model.addAttribute("evento", new Evento());
-		model.addAttribute("listaEventos", eService.listar());		
+		model.addAttribute("listaEventos", eService.buscarporUsername(currentUserName));		
 		model.addAttribute("tipoEvento", new TipoEvento());
 
 		
@@ -128,9 +129,7 @@ public class EventoPaginaController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/eventopagina/listar";
 		}
-		else {
-			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-			
+		else {			
 			model.addAttribute("listaTipoEventos", tService.buscarporUsername(currentUserName));
 			model.addAttribute("listaPersonas", pService.listarporUsername(currentUserName));
 					
@@ -147,15 +146,11 @@ public class EventoPaginaController {
 		model.put("tipoevento", new TipoEvento());
 		model.put("evento", new Evento());
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();//se busca por user en sesion
-		model.put("listaEventos", eService.buscarporUsername(currentUserName));
-		model.put("listaTipoEventos", tService.listar());
-		model.put("listaPersonas", pService.listarporUsername(currentUserName));
-		
 		try {
 			if (id!=null && id>0) {
 				eService.eliminar(id);
 				model.put("listaEventos", eService.buscarporUsername(currentUserName));
-				model.put("listaTipoEventos", tService.listar());
+				model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
 				model.put("listaPersonas", pService.listarporUsername(currentUserName));
 			}
 		}
@@ -163,7 +158,7 @@ public class EventoPaginaController {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
 			model.put("listaEventos", eService.buscarporUsername(currentUserName));
-			model.put("listaTipoEventos", tService.listar());
+			model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
 			model.put("listaPersonas", pService.listarporUsername(currentUserName));
 			
 		}
@@ -176,15 +171,13 @@ public class EventoPaginaController {
 		model.put("tipoevento", new TipoEvento());
 		model.put("evento", new Evento());
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaEventos", eService.buscarporUsername(currentUserName));
-		model.put("listaTipoEventos", tService.listar());
-		model.put("listaPersonas", pService.listarporUsername(currentUserName));
+
 		
 		try {
 			if (id!=null && id>0) {
 				tService.eliminar(id);
 				model.put("listaEventos", eService.buscarporUsername(currentUserName));
-				model.put("listaTipoEventos", tService.listar());
+				model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
 				model.put("listaPersonas", pService.listarporUsername(currentUserName));
 			}
 		}
@@ -192,7 +185,7 @@ public class EventoPaginaController {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un roche");
 			model.put("listaEventos", eService.buscarporUsername(currentUserName));
-			model.put("listaTipoEventos", tService.listar());
+			model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
 			model.put("listaPersonas", pService.listarporUsername(currentUserName));
 		}
 		return "listEventoPag";

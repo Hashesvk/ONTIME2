@@ -105,15 +105,15 @@ public class FotoController {
 		throws ParseException 
 	{
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.addAttribute("listaFotos", fService.buscarporUsername(currentUserName));
 		model.addAttribute("foto", new Foto());
+		model.addAttribute("listaFotos", fService.buscarporUsername(currentUserName));
 		Optional<Foto> objFoto = fService.buscarId(id);
 		if (objFoto == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un error");
 			return "redirect:/foto/listar";
 		}
 		else {
-			model.addAttribute("listaTipoEventos", tpService.listar());
+			model.addAttribute("listaTipoEventos", tpService.buscarporUsername(currentUserName));
 				
 					
 			if (objFoto.isPresent())
@@ -127,19 +127,18 @@ public class FotoController {
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaFotos", fService.buscarporUsername(currentUserName));
 		model.put("foto", new Foto());
 
 		try {
 			if (id!=null && id>0) {
 				fService.eliminar(id);
-				model.put("listaFotos", fService.listar());
+				model.put("listaFotos", fService.buscarporUsername(currentUserName));
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaFotos", fService.listar());
+			model.put("listaFotos", fService.buscarporUsername(currentUserName));
 			
 		}
 		return "listFoto"; // cambiar el return 

@@ -86,7 +86,7 @@ public class PruebaController {
 			return "redirect:/prueba/listar";
 		}
 		else {
-			model.addAttribute("listaTipoEventos", tpService.listar());
+			model.addAttribute("listaTipoEventos", tpService.buscarporUsername(currentUserName));
 				
 					
 			if (objPrueba.isPresent())
@@ -100,7 +100,6 @@ public class PruebaController {
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		model.put("prueba", new Prueba());
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaPruebas", pService.buscarporUsername(currentUserName));
 
 		try {
 			if (id!=null && id>0) {

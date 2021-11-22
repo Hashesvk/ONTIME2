@@ -117,7 +117,7 @@ public class TableroController {
 		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		model.addAttribute("nota",new Nota());
-		model.addAttribute("listaNotas", nService.listar());
+		model.addAttribute("listaNotas", nService.buscarporUsername(currentUserName));
 		model.addAttribute("pendiente",new Pendiente());
 		model.addAttribute("listaPendientes", pService.buscarporUsername(currentUserName));
 
@@ -223,10 +223,11 @@ public class TableroController {
 		model.put("nota", new Nota());
 		model.put("pendiente", new Pendiente());
 		model.put("persona", new Persona());
-		
-		model.put("listaPendientes", pService.listar());
-		model.put("listaNotas", nService.listar());
-		model.put("listaPersonas", eService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+	
+		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+		model.put("listaNotas", nService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", eService.listarporUsername(currentUserName));
 
 
 		List<Pendiente> listaPendientes;
@@ -251,9 +252,11 @@ public class TableroController {
 		model.put("pendiente", new Pendiente());
 		model.put("persona", new Persona());
 		
-		model.put("listaPendientes", pService.listar());
-		model.put("listaNotas", nService.listar());
-		model.put("listaPersonas", eService.listar());
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
+		model.put("listaNotas", nService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", eService.listarporUsername(currentUserName));
 
 		List<Nota> listaNotas;
 		nota.setNameNota(nota.getNameNota());
