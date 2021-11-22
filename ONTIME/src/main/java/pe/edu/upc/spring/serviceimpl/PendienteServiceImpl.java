@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,20 @@ public class PendienteServiceImpl implements IPendienteService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Pendiente> buscarNombre(String namePendiente) {
-		return dPendiente.buscarNombre(namePendiente);
+	public List<Pendiente> buscarNombre(String namePendiente, String username) {
+		List<Pendiente>pendiente0=dPendiente.findByPersonaUsername(username);
+		List<Pendiente>pendiente2=dPendiente.buscarNombre(namePendiente);
+		List<Pendiente>pendiente3= new ArrayList<Pendiente>();
+		
+		for(int i =0 ; i<pendiente0.size();i++) {
+			for(int j =0 ; j< pendiente2.size(); j++) {
+			if(pendiente0.get(i) == pendiente2.get(j)){
+				pendiente3.add(pendiente0.get(i));			
+			}
+			}	
+		}
+		return pendiente3;
+		
 
 	}
 	@Override

@@ -220,10 +220,11 @@ public class TableroController {
 	public String buscarPendiente(Map<String, Object> model, @ModelAttribute Pendiente pendiente)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("nota", new Nota());
 		model.put("pendiente", new Pendiente());
 		model.put("persona", new Persona());
-		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 	
 		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
 		model.put("listaNotas", nService.buscarporUsername(currentUserName));
@@ -232,10 +233,10 @@ public class TableroController {
 
 		List<Pendiente> listaPendientes;
 		pendiente.setNamePendiente(pendiente.getNamePendiente());
-		listaPendientes = pService.buscarNombre(pendiente.getNamePendiente());
+		listaPendientes = pService.buscarNombre(pendiente.getNamePendiente(),currentUserName);
 		
 		if(listaPendientes.isEmpty()) {
-			listaPendientes = pService.buscarNombre(pendiente.getNamePendiente());
+			listaPendientes = pService.buscarNombre(pendiente.getNamePendiente(),currentUserName);
 		}
 		if (listaPendientes.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
@@ -248,11 +249,12 @@ public class TableroController {
 	public String buscarNota(Map<String, Object> model, @ModelAttribute Nota nota)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("nota", new Nota());
 		model.put("pendiente", new Pendiente());
 		model.put("persona", new Persona());
 		
-		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		
 		model.put("listaPendientes", pService.buscarporUsername(currentUserName));
 		model.put("listaNotas", nService.buscarporUsername(currentUserName));
@@ -260,9 +262,9 @@ public class TableroController {
 
 		List<Nota> listaNotas;
 		nota.setNameNota(nota.getNameNota());
-		listaNotas = nService.buscarNombre(nota.getNameNota());
+		listaNotas = nService.buscarNombre(nota.getNameNota(),currentUserName);
 		if (listaNotas.isEmpty()) {
-			listaNotas = nService.buscarNombre(nota.getNameNota());
+			listaNotas = nService.buscarNombre(nota.getNameNota(),currentUserName);
 		}
 		if (listaNotas.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

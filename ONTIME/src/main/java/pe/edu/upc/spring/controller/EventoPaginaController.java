@@ -223,38 +223,37 @@ public class EventoPaginaController {
 		return "listEventoPag";
 	}
 	
-	@RequestMapping("/irBuscarEvento")
-	public String irBuscarEvento(Model model) 
-	{
-		model.addAttribute("evento", new Evento());
-		return "buscarEvento";
-	}	
+	
 	
 	@RequestMapping("/buscarEvento")
 	public String buscarEvento(Map<String, Object> model, @ModelAttribute Evento Evento)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("evento", new Evento());
 		model.put("tipoevento", new TipoEvento());
 
-		model.put("listaEventos", eService.listar());
-		model.put("listaTipoEventos", tService.listar());
+		
+		model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
+		
+		
+		model.put("listaEventos", eService.buscarporUsername(currentUserName));
+		
+		model.put("listaPersonas", pService.listarporUsername(currentUserName));
 
 		List<Evento> listaEventos;
 		Evento.setNombreEvento(Evento.getNombreEvento());
 	
 		
-		listaEventos = eService.buscarNombre(Evento.getNombreEvento());
+		listaEventos = eService.buscarNombre(Evento.getNombreEvento(), currentUserName);
 		if(listaEventos.isEmpty()) {
-			listaEventos =eService.buscarNombre(Evento.getNombreEvento());
+			listaEventos =eService.buscarNombre(Evento.getNombreEvento(), currentUserName);
 		}
 		if(listaEventos.isEmpty()) {
-			listaEventos =eService.buscarTevento(Evento.getNombreEvento());
+			listaEventos =eService.buscarTevento(Evento.getNombreEvento(), currentUserName);
 		}
 	
-		if(listaEventos.isEmpty()) {
-			listaEventos =eService.buscarComple(Integer.parseInt(Evento.getNombreEvento()));
-		}
+		
 		if (listaEventos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");
 		}
@@ -263,28 +262,30 @@ public class EventoPaginaController {
 		return "listEventoPag";
 	}	
 	
-	@RequestMapping("/irBuscarTipoEvento")
-	public String irBuscarTipoEvento(Model model) 
-	{
-		model.addAttribute("tipoevento", new TipoEvento());
-		return "buscarTipoEvento";
-	}	
+	
 	
 	@RequestMapping("/buscarTipoEvento")
 	public String buscarTipoEvento(Map<String, Object> model, @ModelAttribute TipoEvento tipoevento)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("evento", new Evento());
 		model.put("tipoevento", new TipoEvento());
 
 		
-		model.put("listaTipoEventos", tService.listar());
+		model.put("listaTipoEventos", tService.buscarporUsername(currentUserName));
+		
+		
+		model.put("listaEventos", eService.buscarporUsername(currentUserName));
+		
+		model.put("listaPersonas", pService.listarporUsername(currentUserName));
+
 
 		List<TipoEvento> listaTipoEventos;
 		tipoevento.setNombreTipoEvento(tipoevento.getNombreTipoEvento());
-		listaTipoEventos = tService.buscarNombre(tipoevento.getNombreTipoEvento());
+		listaTipoEventos = tService.buscarNombre(tipoevento.getNombreTipoEvento(), currentUserName);
 		if (listaTipoEventos.isEmpty()) {
-			listaTipoEventos=tService.buscarNombre(tipoevento.getNombreTipoEvento());
+			listaTipoEventos=tService.buscarNombre(tipoevento.getNombreTipoEvento(),currentUserName);
 		}
 		if (listaTipoEventos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

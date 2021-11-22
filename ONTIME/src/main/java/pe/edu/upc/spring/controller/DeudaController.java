@@ -129,12 +129,17 @@ public class DeudaController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Deuda deuda)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		model.put("deuda", new Deuda());
+		
+		model.put("listaDeudas", dService.buscarporUsername(currentUserName));
+		model.put("listaPersonas", pService.listarporUsername(currentUserName));
 		List<Deuda> listaDeudas;
 		deuda.setNameCreditor(deuda.getNameCreditor());
-		listaDeudas = dService.buscarNombre(deuda.getNameCreditor());
+		listaDeudas = dService.buscarNombre(deuda.getNameCreditor(),currentUserName);
 		if(listaDeudas.isEmpty()) {
-			listaDeudas =dService.buscarNombre(deuda.getNameCreditor());
+			listaDeudas =dService.buscarNombre(deuda.getNameCreditor(),currentUserName);
 		}
 		if (listaDeudas.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

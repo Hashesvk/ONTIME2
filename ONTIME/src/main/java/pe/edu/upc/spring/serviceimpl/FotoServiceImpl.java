@@ -62,14 +62,40 @@ public class FotoServiceImpl implements IFotoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Foto> buscarNombre(String namePho) {
-		return dFoto.buscarNombre(namePho);
+	public List<Foto> buscarNombre(String namePho, String username) {
+		List<TipoEvento> listaTipoEventos = tService.findByPersonaUsername(username);
+		List<Foto> FotosO= dFoto.buscarNombre(namePho);
+		List<Foto> Fotos=new ArrayList<Foto>();
+		
+		for(int i =0 ; i<FotosO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(FotosO.get(i).getTevento() == listaTipoEventos.get(j)){
+				Fotos.add(FotosO.get(i));
+				
+				
+			}
+			}
+		}
+		return Fotos;
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Foto> buscarTevento(String nombreTevento) {
-		return dFoto.buscarTevento(nombreTevento);
+	public List<Foto> buscarTevento(String nombreTevento, String username) {
+		List<TipoEvento> listaTipoEventos = tService.findByPersonaUsername(username);
+		List<Foto> FotosO= dFoto.buscarTevento(nombreTevento);
+		List<Foto> Fotos=new ArrayList<Foto>();
+		
+		for(int i =0 ; i<FotosO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(FotosO.get(i).getTevento() == listaTipoEventos.get(j)){
+				Fotos.add(FotosO.get(i));
+				
+				
+			}
+			}
+		}
+		return Fotos;
 	}
 	@Override
 	@Transactional(readOnly = true)

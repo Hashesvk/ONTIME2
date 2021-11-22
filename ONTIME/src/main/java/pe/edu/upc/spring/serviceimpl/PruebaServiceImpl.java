@@ -60,14 +60,36 @@ public class PruebaServiceImpl implements IPruebaService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Prueba> buscarNombre(String namePrub) {
-		return dPrueba.buscarNombre(namePrub);
+	public List<Prueba> buscarNombre(String namePrub, String username) {
+		List<TipoEvento> listaTipoEventos = tService.buscarporUsername(username);
+		List<Prueba> PruebasO= dPrueba.buscarNombre(namePrub);
+		List<Prueba> Pruebas=new ArrayList<Prueba>();
+		
+		for(int i =0 ; i<PruebasO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(PruebasO.get(i).getTevento() == listaTipoEventos.get(j)){
+				Pruebas.add(PruebasO.get(i));
+			}
+			}
+		}
+		return Pruebas;
 	}
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Prueba> buscarTevento(String nombreTevento) {
-		return dPrueba.buscarTevento(nombreTevento);
+	public List<Prueba> buscarTevento(String nombreTevento,String username) {
+		List<TipoEvento> listaTipoEventos = tService.buscarporUsername(username);
+		List<Prueba> PruebasO= dPrueba.buscarTevento(nombreTevento);
+		List<Prueba> Pruebas=new ArrayList<Prueba>();
+		
+		for(int i =0 ; i<PruebasO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(PruebasO.get(i).getTevento() == listaTipoEventos.get(j)){
+				Pruebas.add(PruebasO.get(i));
+			}
+			}
+		}
+		return Pruebas;
 	}
 	
 	@Override

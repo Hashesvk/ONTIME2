@@ -200,15 +200,20 @@ public class FotoController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Foto foto)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+	
 		model.put("foto", new Foto());
+		
+		model.put("listaFotos", fService.buscarporUsername(currentUserName));
+		model.put("listaTipoEventos",tpService.buscarporUsername(currentUserName));
 		List<Foto> listaFotos;
 		foto.setNamephoto(foto.getNamephoto());
-		listaFotos = fService.buscarNombre(foto.getNamephoto());
+		listaFotos = fService.buscarNombre(foto.getNamephoto(),currentUserName);
 		if(listaFotos.isEmpty()) {
-			listaFotos =fService.buscarNombre(foto.getNamephoto());
+			listaFotos =fService.buscarNombre(foto.getNamephoto(),currentUserName);
 		}
 		if(listaFotos.isEmpty()) {
-			listaFotos =fService.buscarTevento(foto.getNamephoto());
+			listaFotos =fService.buscarTevento(foto.getNamephoto(),currentUserName);
 		}
 		if (listaFotos.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

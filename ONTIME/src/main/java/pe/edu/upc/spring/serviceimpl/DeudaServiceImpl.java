@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,8 +54,19 @@ public class DeudaServiceImpl implements IDeudaService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Deuda> buscarNombre(String nameCredit) {
-		return dDeuda.buscarNombre(nameCredit);
+	public List<Deuda> buscarNombre(String nameCredit, String username) {
+		List<Deuda>deuda0=dDeuda.findByPersonaUsername(username);
+		List<Deuda>deuda1=dDeuda.buscarNombre(nameCredit);
+		List<Deuda>deuda2= new ArrayList<Deuda>();
+		
+		for(int i =0 ; i<deuda0.size();i++) {
+			for(int j =0 ; j< deuda1.size(); j++) {
+			if(deuda0.get(i) == deuda1.get(j)){
+				deuda2.add(deuda0.get(i));			
+			}
+			}	
+		}
+		return deuda2;
 	}
 
 	@Override

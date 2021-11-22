@@ -10,6 +10,6 @@ public interface IDeudaService {
 	public Optional<Deuda> listarId(int idDeuda);
 	public Optional<Deuda> buscarId(int idDeuda);
 	List<Deuda> listar();
-	List<Deuda> buscarNombre(String nameCredit);
+	List<Deuda> buscarNombre(String nameCredit,String username);
 	List<Deuda> buscarporUsername(String username);
 }

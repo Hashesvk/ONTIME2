@@ -62,8 +62,23 @@ public class EventoServiceImpl implements IEventoService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Evento> buscarNombre(String nameEvento) {
-		return dEvento.buscarNombre(nameEvento);
+	public List<Evento> buscarNombre(String nameEvento, String username) {
+		
+		List<TipoEvento> listaTipoEventos = tService.findByPersonaUsername(username);
+		List<Evento> EventosO = dEvento.buscarNombre(nameEvento);
+		List<Evento> Eventos=new ArrayList<Evento>();
+		
+		for(int i =0 ; i<EventosO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(EventosO.get(i).getTipoEvento() == listaTipoEventos.get(j)){
+				Eventos.add(EventosO.get(i));
+				
+				System.out.println(Eventos.get(i).getTipoEvento().getDescripcionTipoEvento());
+			}
+			}
+		}
+		return Eventos;
+
 
 	}
 	
@@ -76,8 +91,21 @@ public class EventoServiceImpl implements IEventoService{
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Evento> buscarTevento(String nombreTEvento) {
-		return dEvento.buscarTevento(nombreTEvento);
+	public List<Evento> buscarTevento(String nombreTEvento, String username) {
+		List<TipoEvento> listaTipoEventos = tService.findByPersonaUsername(username);
+		List<Evento> EventosO = dEvento.buscarTevento(nombreTEvento);
+		List<Evento> Eventos=new ArrayList<Evento>();
+		
+		for(int i =0 ; i<EventosO.size();i++) {
+			for(int j =0 ; j< listaTipoEventos.size(); j++) {
+			if(EventosO.get(i).getTipoEvento() == listaTipoEventos.get(j)){
+				Eventos.add(EventosO.get(i));
+				
+				System.out.println(Eventos.get(i).getTipoEvento().getDescripcionTipoEvento());
+			}
+			}
+		}
+		return Eventos;
 
 	}
 	

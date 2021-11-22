@@ -11,7 +11,7 @@ public interface IPruebaService {
 	public Optional<Prueba> listarId(int idPrueba);
 	public Optional<Prueba> buscarId(int idPrueba);
 	List<Prueba> listar();
-	List<Prueba> buscarNombre(String namePrueba);
-	List<Prueba> buscarTevento(String nombreTevento);
+	List<Prueba> buscarNombre(String namePrueba, String username);
+	List<Prueba> buscarTevento(String nombreTevento, String username);
 	List<Prueba> buscarporUsername(String username);
 }

@@ -11,7 +11,7 @@ public interface ITipoEventoService {
 	public Optional<TipoEvento> listarId(int idTipoEvento);
 	public Optional<TipoEvento> buscarId(int idTipoEvento);
 	List<TipoEvento> listar();
-	List<TipoEvento> buscarNombre(String nombreTipoEvento);
+	List<TipoEvento> buscarNombre(String nombreTipoEvento, String username);
 	List<TipoEvento> buscarporUsername(String username);
 }
 

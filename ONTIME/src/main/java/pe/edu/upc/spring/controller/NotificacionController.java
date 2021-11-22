@@ -126,19 +126,24 @@ public class NotificacionController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Notificacion notificaciones)
 			throws ParseException
 	{
+		
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 		model.put("notificacion", new Notificacion());
+		
+		model.put("listaNotificaciones", nService.buscarporUsername(currentUserName));
+		model.put("listaEventos", eService.buscarporUsername(currentUserName));
 
 		List<Notificacion> listanotificaciones;
 		notificaciones.setNameNotificacion(notificaciones.getNameNotificacion());
-		listanotificaciones = nService.buscarNombre(notificaciones.getNameNotificacion());
+		listanotificaciones = nService.buscarNombre(notificaciones.getNameNotificacion(),currentUserName);
 		if(listanotificaciones.isEmpty()) {
-			listanotificaciones =nService.buscarNombre(notificaciones.getNameNotificacion());
+			listanotificaciones =nService.buscarNombre(notificaciones.getNameNotificacion(),currentUserName);
 		}
 		if(listanotificaciones.isEmpty()) {
-			listanotificaciones =nService.buscarDescripcion(notificaciones.getNameNotificacion());
+			listanotificaciones =nService.buscarDescripcion(notificaciones.getNameNotificacion(),currentUserName);
 		}
 		if(listanotificaciones.isEmpty()) {
-			listanotificaciones =nService.buscarNevento(notificaciones.getNameNotificacion());
+			listanotificaciones =nService.buscarNevento(notificaciones.getNameNotificacion(),currentUserName);
 		}
 		if (listanotificaciones.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

@@ -141,15 +141,20 @@ public class PruebaController {
 	public String buscar(Map<String, Object> model, @ModelAttribute Prueba prueba)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
 		model.put("prueba", new Prueba());
+		
+		model.put("listaPruebas", pService.buscarporUsername(currentUserName));
+		model.put("listaTipoEventos", tpService.buscarporUsername(currentUserName));
 		List<Prueba> listaPruebas;
 		prueba.setNamePrueba(prueba.getNamePrueba());
-		listaPruebas = pService.buscarNombre(prueba.getNamePrueba());
+		listaPruebas = pService.buscarNombre(prueba.getNamePrueba(),currentUserName);
 		if(listaPruebas.isEmpty()) {
-			listaPruebas =pService.buscarNombre(prueba.getNamePrueba());
+			listaPruebas =pService.buscarNombre(prueba.getNamePrueba(),currentUserName);
 		}
 		if(listaPruebas.isEmpty()) {
-			listaPruebas =pService.buscarTevento(prueba.getNamePrueba());
+			listaPruebas =pService.buscarTevento(prueba.getNamePrueba(),currentUserName);
 		}
 		if (listaPruebas.isEmpty()) {
 			model.put("mensaje", "No existen coincidencias");

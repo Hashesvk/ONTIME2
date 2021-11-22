@@ -64,20 +64,54 @@ public class NotificacionServiceImpl implements INotificacionService {
 
 	@Override
 	@Transactional
-	public List<Notificacion> buscarNombre(String nombreNotificacion) {
-		return dNotis.buscarNombre(nombreNotificacion);
+	public List<Notificacion> buscarNombre(String nombreNotificacion, String username) {
+		List<Evento> eventos= eService.buscarporUsername(username);
+		List<Notificacion>noti1=dNotis.buscarNombre(nombreNotificacion);
+		List<Notificacion>noti2=new ArrayList<Notificacion>();
+		
+		for(int i =0 ; i<noti1.size();i++) {
+			for(int j =0 ; j< eventos.size(); j++) {
+			if(noti1.get(i).getEvento() == eventos.get(j)){
+				noti2.add(noti1.get(i));
+			}
+			}
+		}
+		return noti2;
+		
 	}
 	
 	@Override
 	@Transactional
-	public List<Notificacion> buscarDescripcion(String descripcionNotificacion) {
-		return dNotis.buscarDescripcion(descripcionNotificacion);
+	public List<Notificacion> buscarDescripcion(String descripcionNotificacion,String username) {
+		List<Evento> eventos= eService.buscarporUsername(username);
+		List<Notificacion>noti1=dNotis.buscarDescripcion(descripcionNotificacion);
+		List<Notificacion>noti2=new ArrayList<Notificacion>();
+		
+		for(int i =0 ; i<noti1.size();i++) {
+			for(int j =0 ; j< eventos.size(); j++) {
+			if(noti1.get(i).getEvento() == eventos.get(j)){
+				noti2.add(noti1.get(i));
+			}
+			}
+		}
+		return noti2;
 	}
 	
 	@Override
 	@Transactional
-	public List<Notificacion> buscarNevento(String nombreEvento) {
-		return dNotis.buscarNevento(nombreEvento);
+	public List<Notificacion> buscarNevento(String nombreEvento,String username) {
+		List<Evento> eventos= eService.buscarporUsername(username);
+		List<Notificacion>noti1=dNotis.buscarNevento(nombreEvento);
+		List<Notificacion>noti2=new ArrayList<Notificacion>();
+		
+		for(int i =0 ; i<noti1.size();i++) {
+			for(int j =0 ; j< eventos.size(); j++) {
+			if(noti1.get(i).getEvento() == eventos.get(j)){
+				noti2.add(noti1.get(i));
+			}
+			}
+		}
+		return noti2;
 	}
 	
 	@Override

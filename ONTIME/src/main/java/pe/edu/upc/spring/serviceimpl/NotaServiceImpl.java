@@ -1,5 +1,6 @@
 package pe.edu.upc.spring.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,8 +54,20 @@ public class NotaServiceImpl implements INotaService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Nota> buscarNombre(String nameNota) {
-		return dNota.buscarNombre(nameNota);
+	public List<Nota> buscarNombre(String nameNota, String username) {
+		List<Nota>nota0=dNota.findByPersonaUsername(username);
+		List<Nota>nota1=dNota.buscarNombre(nameNota);
+		List<Nota>nota2=new ArrayList<Nota>();
+		
+		for(int i =0 ; i<nota0.size();i++) {
+			for(int j =0 ; j< nota1.size(); j++) {
+			if(nota0.get(i) == nota1.get(j)){
+				nota2.add(nota0.get(i));			
+			}
+			}	
+		}
+		return nota2;
+		
 	}
 
 	@Override

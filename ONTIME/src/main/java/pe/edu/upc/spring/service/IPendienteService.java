@@ -11,6 +11,6 @@ public interface IPendienteService {
 	public Optional<Pendiente> listarId(int idPendiente);
 	public Optional<Pendiente> buscarId(int idPendiente);
 	List<Pendiente> listar();
-	List<Pendiente> buscarNombre(String namePendiente);
+	List<Pendiente> buscarNombre(String namePendiente, String username);
 	List<Pendiente> buscarporUsername(String username);
 }
