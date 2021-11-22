@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.spring.model.Foto;
 import pe.edu.upc.spring.model.TipoEvento;
 import pe.edu.upc.spring.repository.IFotoRepository;
+import pe.edu.upc.spring.repository.ITipoEventoRepository;
 import pe.edu.upc.spring.service.IFotoService;
 import pe.edu.upc.spring.service.ITipoEventoService;
 
@@ -21,7 +22,7 @@ public class FotoServiceImpl implements IFotoService {
 	private IFotoRepository dFoto;
 	
 	@Autowired
-	private ITipoEventoService tService;
+	private ITipoEventoRepository tService;
 
 	
 	@Override
@@ -73,7 +74,7 @@ public class FotoServiceImpl implements IFotoService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Foto> buscarporUsername(String username) {
-		List<TipoEvento> listaTipoEventos = tService.buscarporUsername(username);
+		List<TipoEvento> listaTipoEventos = tService.findByPersonaUsername(username);
 		List<Foto> FotosO= dFoto.findAll();
 		List<Foto> Fotos=new ArrayList<Foto>();
 
