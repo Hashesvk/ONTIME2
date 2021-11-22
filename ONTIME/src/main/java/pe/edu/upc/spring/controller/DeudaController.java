@@ -39,22 +39,15 @@ public class DeudaController {
 	public String irPaginaBienvenida() {
 		return "bienvenido";
 	}
-		
-	@RequestMapping("/")
-	public String irPaginaListadoDeudas(Map<String, Object> model) {
-		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		//model.put("listaDeudas", dService.buscarporUsername(currentUserName));
-		//.put("listaPersonas", pService.listarporUsername(currentUserName));
-		return "listDeuda";
-	}	
-	
+
 	@RequestMapping("/registrar")
 	public String registrar(@Valid @ModelAttribute Deuda objDeuda, BindingResult binRes, Model model)
 			throws ParseException
 	{
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
 		if (binRes.hasErrors()) 
 			{
-				final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 				model.addAttribute("listaPersonas", pService.listarporUsername(currentUserName));
 				return "redirect:/deuda/listar";
 			}
@@ -63,7 +56,7 @@ public class DeudaController {
 			if (flag)
 				return "redirect:/deuda/listar";
 			else {
-				model.addAttribute("listaDeudas",dService.listar());
+				model.addAttribute("listaDeudas",dService.buscarporUsername(currentUserName));
 				model.addAttribute("mensaje", "Ocurrio un error");
 				return "listDeuda";
 			}
@@ -94,9 +87,7 @@ public class DeudaController {
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value="id") Integer id) {
 		model.put("deuda", new Deuda());
-		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-		model.put("listaDeudas", dService.buscarporUsername(currentUserName));		
-		model.put("listaPersonas", pService.listarporUsername(currentUserName));	
+		final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();	
 		try {
 			if (id!=null && id>0) {
 				dService.eliminar(id);
@@ -107,7 +98,7 @@ public class DeudaController {
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje","Ocurrio un error");
-			model.put("listaDeudas", dService.listar());
+			model.put("listaDeudas", dService.buscarporUsername(currentUserName));
 			
 		}
 		return "listDeuda"; 
