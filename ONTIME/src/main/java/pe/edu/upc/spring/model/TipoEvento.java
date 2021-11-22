@@ -1,14 +1,15 @@
 package pe.edu.upc.spring.model;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,13 +28,21 @@ public class TipoEvento implements Serializable{
 	@Column(name="nombreTipoEvento", length = 10, nullable = false)
 	private String nombreTipoEvento;
 	
-	
+	@ManyToOne
+	@JoinColumn(name="idPersona", nullable=false)
+	private Persona persona;
 
-	public TipoEvento(int idTipoEvento, String descripcionTipoEvento, String nombreTipoEvento) {
+	public TipoEvento() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TipoEvento(int idTipoEvento, String descripcionTipoEvento, String nombreTipoEvento, Persona persona) {
 		super();
 		this.idTipoEvento = idTipoEvento;
 		this.descripcionTipoEvento = descripcionTipoEvento;
 		this.nombreTipoEvento = nombreTipoEvento;
+		this.persona = persona;
 	}
 
 	public int getIdTipoEvento() {
@@ -60,10 +69,15 @@ public class TipoEvento implements Serializable{
 		this.nombreTipoEvento = nombreTipoEvento;
 	}
 
-	public TipoEvento() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Persona getPersona() {
+		return persona;
 	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	
 
 	
 }
