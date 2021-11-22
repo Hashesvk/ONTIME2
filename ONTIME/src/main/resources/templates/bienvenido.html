@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/bienvestyle.css">
 <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet"/>
 
 	</head>
@@ -21,17 +22,38 @@
     			<div class="row clearfix">
     				<div class="col-md-12 column" align="center">
     				
-    				<div>
-						<img class ="logo_img" href="#" src="/img/logo/logo2.jpg"></img>
-					</div>
-    				
-    					On Time: La calidad de organización hecha aplicación
-    					
-    					<div class="modal"></div>
-    				</div>
+					<section>
+					        <img src="/img/p1.png" data-speed="-5" class="layer">
+					        <img src="/img/p2.png" data-speed="5" class="layer">
+					        <img src="/img/p3.png" data-speed="2" class="layer">
+					        <img src="/img/p4.png" data-speed="6" class="layer">
+					        <img src="/img/p5.png" data-speed="8" class="layer">
+					        <img src="/img/p6.png" data-speed="-2" class="layer">
+					        <img src="/img/p7.png" data-speed="4" class="layer">
+					        <img src="/img/p8.png" data-speed="-9" class="layer">
+					        <img src="/img/p9.png" data-speed="6" class="layer">
+					        <img src="/img/p10.png" data-speed="-7" class="layer">
+					        <img src="/img/p11.png" data-speed="-5" class="layer">
+					        <img src="/img/p12.png" data-speed="5" class="layer">
+					        <h2 style="font-family: 'Poppins', sans-serif; font-weight: bold;"class="layer" data-speed="2">Ontime</h2>
+					</section>
+					<script type="text/javascript">
+					        document.addEventListener("mousemove",parallax);
+					        function parallax(e){
+					            this.querySelectorAll('.layer').forEach(layer => {
+					                const speed = layer.getAttribute('data-speed')
+					
+					                const x = (window.innerWidth - e.pageX*speed)/100
+					                const y = (window.innerHeight - e.pageY*speed)/100
+					
+					                layer.style.transform = `translateX(${x}px) translateY(${y}px)`
+					            })
+					        }
+					</script>
     			</div>
-    		</form>
-    	</div>
+    		</div>
+    	</form>
+    </div>
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
