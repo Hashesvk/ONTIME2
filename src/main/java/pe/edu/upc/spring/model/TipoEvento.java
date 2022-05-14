@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="TipoEvento")
@@ -22,10 +24,13 @@ public class TipoEvento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTipoEvento;
 	
+	@NotEmpty
 	@Column(name="descripcionTipoEvento", length = 30, nullable = false)
 	private String descripcionTipoEvento;
 	
-	@Column(name="nombreTipoEvento", length = 10, nullable = false)
+	@NotEmpty
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales")
+	@Column(name="nombreTipoEvento", length = 20, nullable = false)
 	private String nombreTipoEvento;
 	
 	@ManyToOne

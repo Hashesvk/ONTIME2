@@ -216,7 +216,7 @@
 
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
-									class="form-control" th:field="*{nombreEvento}" id="nombre"></input>
+									class="form-control" th:field="*{nombreEvento}" id="nombre"  required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('nombreEvento')}"
@@ -224,7 +224,7 @@
 							</div>
 							<div class="form-group">
 								<label for="fecha">Fecha:</label> <input type="date"
-									class="form-control" th:field="*{fechaEvento}" id="fecha"></input>
+									class="form-control" th:field="*{fechaEvento}" id="fecha"  required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('fechaEvento')}"
@@ -241,15 +241,15 @@
 							</div>
 							<div class="form-group">
 								<label for="complej">Complejidad:</label> <input type="number"
-									class="form-control" th:field="*{numcomplejidad}" id="complej"></input>
+									class="form-control" th:field="*{numcomplejidad}" id="complej" min=0 max=5  required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('numcomplejidad')}"
-									th:errors="*{numcomplejidad}"></div>
+									th:errors="*{numcomplejidad}" min=0 max=5></div>
 							</div>
 							<div class="form-group">
 								<label for="priori">Prioridad:</label> <input type="number"
-									class="form-control" th:field="*{numprioridad}" id="priori"></input>
+									class="form-control" th:field="*{numprioridad}" id="priori"  min=0 max=5  required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('numprioridad')}"
@@ -257,7 +257,7 @@
 							</div>
 							<div class="form-group">
 								<label for="impor">Importancia:</label> <input type="number"
-									class="form-control" th:field="*{numimportancia}" id="impor"></input>
+									class="form-control" th:field="*{numimportancia}" id="impor"  min=0 max=5  required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('numimportancia')}"

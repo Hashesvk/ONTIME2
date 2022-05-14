@@ -25,7 +25,7 @@ public class Persona implements Serializable {
 	@Column(name = "username", nullable = false, length = 15, unique=true)
 	private String username;
 
-	@Column(name = "password", nullable = false)
+	@Column(name = "password", nullable = false,  length = 15)
 	private String password;
 
 	@ManyToOne

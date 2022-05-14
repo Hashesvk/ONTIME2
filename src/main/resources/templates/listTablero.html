@@ -209,7 +209,7 @@
 							<div class="form-group">
 								<label for="nombre">Nombre de la nota:</label> <input
 									type="text" class="form-control" th:field="*{nameNota}"
-									id="nombre"></input>
+									id="nombre" required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('nameNota')}"
@@ -219,7 +219,7 @@
 							<div class="form-group">
 								<label for="descripcion">Descripción:</label> <input type="text"
 									class="form-control" th:field="*{descriptionNota}"
-									id="descriptionNota"></input>
+									id="descriptionNota" required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('descriptionNota')}"
@@ -263,12 +263,12 @@
 						<div class="form-group">
 
 							<label for="idPendiente">ID:</label> <input type="text"
-								class="form-control" th:field="*{idPendiente}"></input>
+								class="form-control" th:field="*{idPendiente}" ></input>
 
 							<div class="form-group">
 								<label for="nombre">Nombre del pendiente:</label> <input
 									type="text" class="form-control" th:field="*{namePendiente}"
-									id="nombre"></input>
+									id="nombre" required="true"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('namePendiente')}"
@@ -309,7 +309,11 @@
 						</div>
 						<button type="submit" class="btn btn-primary">Aceptar</button>
 						<a href="/tablero/listar" class="btn btn-danger">Cancelar</a>
+						<p th:text="${mensaje}" class="form-text text-danger"></p>
+				
+						
 					</form>
+					
 				</div>
 			</div>
 		</div>

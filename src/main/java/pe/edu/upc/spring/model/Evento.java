@@ -13,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,7 +30,10 @@ public class Evento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idEvento; 
 	
-	@Column(name = "nombreEvento", length = 30, nullable=false)
+	
+	@NotBlank(message = "Name is mandatory")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales")
+	@Column(name = "nombreEvento", length = 40, nullable=false)
 	private String nombreEvento;
 
 	@ManyToOne
@@ -35,10 +42,12 @@ public class Evento implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="fechaEvento")
+	@FutureOrPresent
+	@NotEmpty
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaEvento;
 
-	@Column(name = "descripcionEvento", length = 60, nullable=false)
+	@Column(name = "descripcionEvento", length = 100, nullable=false)
 	private String descripcionEvento;
 
 	@Column(name = "ComplejidadEvento", length = 2, nullable=false)

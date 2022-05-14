@@ -13,7 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,14 +32,18 @@ public class Deuda implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idDeuda;
 	
+	@NotBlank(message = "Name is mandatory")
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales")
 	@Column(name="nombreDeuda", length=30, nullable=false)
 	private String nameCreditor;//acreedor
 	
+	@PositiveOrZero 	
 	@Column(name="pagoDinero", nullable=false)
 	private float  moneypayment;
 	
 	@Temporal(TemporalType.DATE)
+	@FutureOrPresent
+	@NotEmpty
 	@Column(name="fechaPago")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date paymentDate;

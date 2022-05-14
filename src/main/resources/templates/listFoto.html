@@ -132,7 +132,7 @@
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
 									class="form-control" th:field="*{namephoto}" id="nombre"
-									th:errorclass="'form-control alert-danger'"></input>
+									th:errorclass="'form-control alert-danger'" required="true"></input>
 									
 								<small
 									class="form-text text-danger"
@@ -155,7 +155,7 @@
 
 							<div class="form-group">
 								<label for="image">Imagen:</label> <input type="file"
-									class="form-control" th:text="${foto.image}" name="file"></input>
+									class="form-control" th:text="${foto.image}" name="file" required="true"></input>
 
 
 							</div>

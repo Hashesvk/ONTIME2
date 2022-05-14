@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
 
 
 
@@ -30,9 +32,11 @@ public class Prueba implements Serializable {
 	@Column(name="nombrePrueba", length=30, nullable=false)
 	private String namePrueba;//acreedor
 	
+	@PositiveOrZero 	
 	@Column(name="NumNota", nullable=false)
 	private float  NumberGrade;
 	
+	@PositiveOrZero 	
 	@Column(name="NumPonderado", nullable=false)
 	private float  Numberweighted;
 	

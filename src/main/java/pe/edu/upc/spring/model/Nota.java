@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="Nota")
@@ -21,9 +23,12 @@ public class Nota implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idNota;
 	
-	@Column(name="nombreNota", length=30, nullable=false)
+	@NotBlank(message = "Name is mandatory")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "No puede contener letras especiales")
+	@Column(name="nombreNota", length=40, nullable=false)
 	private String nameNota;
 	
+	@NotBlank(message = "Name is mandatory")	
 	@Column(name="descripcionNota", length=100, nullable=false)
 	private String descriptionNota;
 	

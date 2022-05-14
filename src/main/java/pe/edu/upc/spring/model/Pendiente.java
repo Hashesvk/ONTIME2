@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="Pendiente")
@@ -21,13 +22,14 @@ public class Pendiente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPendiente; 
 	
+	@NotBlank(message = "Name is mandatory")
 	@Column(name = "nombrePendiente", length = 30, nullable=false)
 	private String namePendiente;
 	
-	@Column(name = "nombreTipoPendiente", length = 20, nullable=false)
+	@Column(name = "nombreTipoPendiente", nullable=false)
 	private String nameTipoPendiente;
 	
-	@Column(name = "nombreEstado", length = 20, nullable=false)
+	@Column(name = "nombreEstado", nullable=false)
 	private String nameStatus;
 	
 	@ManyToOne
