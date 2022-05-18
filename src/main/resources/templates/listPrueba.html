@@ -136,7 +136,7 @@
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
 									class="form-control" th:field="*{namePrueba}" id="nombre"
-									th:errorclass="'form-control alert-danger'" required="true"></input>
+									th:errorclass="'form-control alert-danger'" minlength="4" required="true"></input>
 								<small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('namePrueba')}" th:errors="*{namePrueba}"></small>

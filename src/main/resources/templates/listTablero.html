@@ -211,7 +211,7 @@
 							<div class="form-group">
 								<label for="nombre">Nombre de la nota:</label> <input
 									type="text" class="form-control" th:field="*{nameNota}"
-									id="nombre" required="true"></input>
+									id="nombre" required="true" minlength="4" maxlength="20"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('nameNota')}"
@@ -221,7 +221,7 @@
 							<div class="form-group">
 								<label for="descripcion">Descripción:</label> <input type="text"
 									class="form-control" th:field="*{descriptionNota}"
-									id="descriptionNota" required="true"></input>
+									id="descriptionNota" required="true" maxlength="100"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('descriptionNota')}"
@@ -270,7 +270,7 @@
 							<div class="form-group">
 								<label for="nombre">Nombre del pendiente:</label> <input
 									type="text" class="form-control" th:field="*{namePendiente}"
-									id="nombre" required="true"></input>
+									id="nombre" required="true" minlength="4" maxlength="20"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('namePendiente')}"

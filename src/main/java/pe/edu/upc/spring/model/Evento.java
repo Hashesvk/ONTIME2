@@ -46,7 +46,8 @@ public class Evento implements Serializable{
 	@NotEmpty
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaEvento;
-
+	
+	@NotEmpty
 	@Column(name = "descripcionEvento", length = 100, nullable=false)
 	private String descripcionEvento;
 
