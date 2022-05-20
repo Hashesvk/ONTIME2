@@ -31,7 +31,7 @@ public class Foto implements Serializable {
 	@Column(name="nombreFoto",length=80, nullable=false)
 	private String namephoto;//acreedor
 	
-	@NotBlank(message = "Name is mandatory")
+	
 	@Column(name="imagen", nullable=false)
 	private String  image;
 	

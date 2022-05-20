@@ -43,7 +43,7 @@ public class Evento implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@Column(name="fechaEvento")
 	@FutureOrPresent
-	@NotEmpty
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaEvento;
 	

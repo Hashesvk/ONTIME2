@@ -43,7 +43,7 @@ public class Deuda implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@FutureOrPresent
-	@NotEmpty
+	
 	@Column(name="fechaPago")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date paymentDate;
