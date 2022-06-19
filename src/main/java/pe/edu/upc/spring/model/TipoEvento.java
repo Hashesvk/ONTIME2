@@ -24,8 +24,9 @@ public class TipoEvento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTipoEvento;
 	
+	
 	@NotEmpty
-	@Column(name="descripcionTipoEvento", length = 30, nullable = false)
+	@Column(name="descripcionTipoEvento", length = 100, nullable = false)
 	private String descripcionTipoEvento;
 	
 	@NotEmpty

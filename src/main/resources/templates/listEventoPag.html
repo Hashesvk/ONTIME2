@@ -268,7 +268,7 @@
 							
 
 							<div class="form-group">
-								<label for="tipoevento">Tipo Evento</label> <select
+								<label for="tipoevento">Tipo Evento</label> <select required="true"
 									class="form-control" th:field="*{tipoEvento.idTipoEvento}">
 									<option th:each="t: ${listaTipoEventos}"
 										th:value="${t.idTipoEvento}" th:text="${t.nombreTipoEvento}"
@@ -311,7 +311,7 @@
 
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
-									class="form-control" th:field="*{nombreTipoEvento}" id="nombre"></input>
+									class="form-control" th:field="*{nombreTipoEvento}" id="nombre" minlength="4" maxlength="20"></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('nombreTipoEvento')}"
@@ -321,11 +321,8 @@
 							<div class="form-group">
 								<label for="nombre">Descripcion:</label> <input type="text"
 									class="form-control" th:field="*{descripcionTipoEvento}"
-									id="nombre"></input>
+									id="nombre"  minlength="4" maxlength="100" required="true" ></input>
 
-								<div class="alert alert-danger"
-									th:if="${#fields.hasErrors('descripcionTipoEvento')}"
-									th:errors="*{descripcionTipoEvento}"></div>
 							</div>
 							<div class="form-group">
 								<label for="persona">Persona</label> <select

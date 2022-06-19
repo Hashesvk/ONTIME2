@@ -133,7 +133,7 @@
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
 									class="form-control" th:field="*{namephoto}" id="nombre"
-									th:errorclass="'form-control alert-danger'" minlength="4" required="true"></input>
+									th:errorclass="'form-control alert-danger'" minlength="4" maxlength="20" required="true"></input>
 									
 								<small
 									class="form-text text-danger"
@@ -145,7 +145,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="TIEVENTO">Tipo Evento:</label> <select
+								<label for="TIEVENTO">Tipo Evento:</label> <select required="true"
 									class="form-control" th:field="*{Tevento.idTipoEvento}">
 									<option th:each="p: ${listaTipoEventos}"
 										th:value="${p.idTipoEvento}" th:text="${p.nombreTipoEvento}"
