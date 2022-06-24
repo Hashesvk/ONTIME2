@@ -311,7 +311,7 @@
 
 							<div class="form-group">
 								<label for="nombre">Nombre:</label> <input type="text"
-									class="form-control" th:field="*{nombreTipoEvento}" id="nombre" minlength="4" maxlength="20"></input>
+									class="form-control" th:field="*{nombreTipoEvento}" id="nombre" minlength="4" maxlength="20" required="true" ></input>
 
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('nombreTipoEvento')}"
